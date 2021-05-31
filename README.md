@@ -23,11 +23,7 @@
 一人で行きやすい店を発見し、共有したい時  
 
 ## 設計書
-ER図  
-https://app.diagrams.net/#G120VELJeHWzVP9ikMH_gNlI2Hm1kmwotm  
-テーブル定義書  
-
-詳細設計書  
+![ER図](https://app.diagrams.net/#G120VELJeHWzVP9ikMH_gNlI2Hm1kmwotm)/![テーブル定義書]https://docs.google.com/spreadsheets/d/1X2m4--OhGo-udLdgg2Ti3hiOds6uG1aofqfEk9Qn7Rw/edit#gid=0)/![詳細設計書]https://docs.google.com/spreadsheets/d/1ax1ASPWxX8YRhjrtDPhbMeRb6cbMNh6NEozthiKesP4/edit?copiedFromTrash#gid=0)  
 
 ## チャレンジ要素一覧
 
