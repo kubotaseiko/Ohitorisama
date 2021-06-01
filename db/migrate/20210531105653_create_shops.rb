@@ -3,7 +3,7 @@ class CreateShops < ActiveRecord::Migration[5.2]
     create_table :shops do |t|
       t.string :user_id
       t.string :shop_name
-      t.integer :shop_image
+      t.integer :shop_image_id
       t.text :introduction
       t.string :address
       t.string :tell

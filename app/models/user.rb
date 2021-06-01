@@ -6,7 +6,6 @@ class User < ApplicationRecord
 
   has_many :shops, dependent: :destroy
 
-
   attachment :profile_image, destroy: false
 
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true

@@ -4,20 +4,20 @@
 <table>
   <tr>
     <th>紹介</th>
-    <td><%= @shop.address %></td>
+    <td><%= @shop.introduction %></td>
   </tr>
   <tr>
     <th>住所</th>
     <td><%= @shop.address %></td>
-  </tr>    
+  </tr>
   <tr>
     <th>電話番号</th>
     <td><%= @shop.tell %></td>
-  </tr>    
+  </tr>
   <tr>
     <th>定休日</th>
     <td><%= @shop.holiday %></td>
-  </tr>    
+  </tr>
 </table>
 
 <% if current_user.id == @shop.user_id.to_i %>
