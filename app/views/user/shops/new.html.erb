@@ -1,0 +1,18 @@
+<h1>新規投稿</h1>
+
+<%= form_with model: @shop, url:'/shops', local:true do |f| %>
+  <h4>店名</h4>
+  <%= f.text_field :shop_name %>
+  <h4>画像</h4>
+  <%= f.attachment_field :shop_image %>
+  <h4>お店紹介</h4>
+  <%= f.text_area :introduction %>
+  <h4>住所</h4>
+  <%= f.text_field :address %>
+  <h4>電話番号</h4>
+  <%= f.text_field :tell %>
+  <h4>定休日</h4>
+  <%= f.text_field :holiday %>
+
+  <%= f.submit '投稿' %>
+<% end %>
