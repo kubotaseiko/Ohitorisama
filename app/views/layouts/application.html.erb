@@ -7,9 +7,19 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" type="text/css" href="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Modaal/0.4.4/css/modaal.min.css">
+    <link rel="stylesheet" type="text/css" href="css/9-6-3.css">
+    <link rel="stylesheet" type="text/css" href="css/5-2-1.css">
   </head>
 
   <body>
-    <%= yield %>
-  </body>
+
+   <%= render 'layouts/header' %>
+
+      <%= yield %>
+    </div>
+
+</body>
+
 </html>

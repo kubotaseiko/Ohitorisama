@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
+  devise_for :admins
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
  # ========= ユーザー(user)のルーティング ================
-
   root to: 'homes#top'
   get 'about' => 'homes#about'
 
-  resources 'shops', only: [:index, :show, :edit, :update, :new, :create] do
+scope module: :user do
+  resources 'shops', only: [:index, :show, :edit, :update, :new, :create, :destroy] do
     resources 'reviews', only: [:index, :create, :destroy]
     resources 'bookmarks', only: [:create, :destroy]
   end
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
 
   resources 'contacts', only: [:new, :create]
   get 'thanks' => 'contacts#thanks'
+end
 
 # ========= 管理者側(admin)のルーティング ================
 

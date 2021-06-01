@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+
+/* リンクの色: 黒、下線付与 */
+a {
+  color: #000;
+  text-decoration: underline;
+}
+
+/* ナビゲーションバーの下線はなし */
+nav a {
+  text-decoration: none;
+}

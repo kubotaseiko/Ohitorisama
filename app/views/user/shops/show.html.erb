@@ -1,0 +1,28 @@
+<div class='container' >
+<%= render 'shop_details_top', shop: @shop %>
+
+<table>
+  <tr>
+    <th>紹介</th>
+    <td><%= @shop.address %></td>
+  </tr>
+  <tr>
+    <th>住所</th>
+    <td><%= @shop.address %></td>
+  </tr>    
+  <tr>
+    <th>電話番号</th>
+    <td><%= @shop.tell %></td>
+  </tr>    
+  <tr>
+    <th>定休日</th>
+    <td><%= @shop.holiday %></td>
+  </tr>    
+</table>
+
+<% if current_user.id == @shop.user_id.to_i %>
+<%= link_to '編集', edit_shop_path(@shop.id) %>
+<%= link_to '削除', shop_path(@shop.id), method: :delete, "data-confirm" => "本当に消しますか？" %>
+<% end %>
+
+</div>
