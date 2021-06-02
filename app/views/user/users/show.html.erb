@@ -1,0 +1,23 @@
+<div class="container">
+<%= attachment_image_tag @user, :profile_image, size: "100x100", fallback: "no_image.jpeg" %>
+<h1><%= @user.name %></h1>
+<a><%= @user.introduction %><a>
+
+<% if current_user.id == @user.id.to_i %>
+  <%= link_to '編集', edit_user_path(@user.id) %>
+<% end %>
+
+
+フォロー数：<%= link_to @user.following.count, followings_user_path(@user) %></td>
+フォロワー数：<%= link_to @user.followers.count, followers_user_path(@user) %></td>
+<%= render 'user/relationships/follow_button', user: @user %>
+
+
+<% @shops.order('updated_at DESC').each do |shop| %>
+  <div class="card" style="width: 20rem;">
+    <%= attachment_image_tag shop, :shop_image, :fill, 200, 200, format: 'jpeg', class: "card-img-top" %>
+    <%= link_to shop.shop_name, shop_path(shop.id),class: "card-title" %>
+  </div>
+<% end %>
+
+</div>

@@ -1,10 +1,10 @@
-<div class='container' >
+<div class='container'>
 
 <h1>投稿一覧</h1>
 
   <% @shops.order('updated_at DESC').each do |shop| %>
   <div class="card" style="width: 20rem;">
-    <%= attachment_image_tag shop, :shop_image, :fill, 200, 200, format: 'jpeg', class: "card-img-top" %>
+    <%= attachment_image_tag shop, :shop_image, size: '200x200', format: 'jpeg', class: "card-img-top" %>
     <%= link_to shop.shop_name, shop_path(shop.id),class: "card-title" %>
   </div>
   <% end %>

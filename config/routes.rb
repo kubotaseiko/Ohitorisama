@@ -14,11 +14,15 @@ scope module: :user do
   end
   get 'search' => 'shops#search'
 
-  resources 'users', only: [:show, :edit, :update]
-  get 'users/quit_confirm' => 'users#quit_confirm'
-  patch 'users/quit' => 'users#quit'
+  resources 'users', only: [:show, :edit, :update] do
+    member do
+      get :followings, :followers
+    end
+  end
+  get 'user/quit_confirm' => 'users#quit_confirm'
+  patch 'user/quit' => 'users#quit'
 
-  resources 'relationships', only: [:ceate, :destroy]
+  resources 'relationships', only: [:create, :destroy]
 
   resources 'tweets', only: [:index, :new, :create, :destroy]
 

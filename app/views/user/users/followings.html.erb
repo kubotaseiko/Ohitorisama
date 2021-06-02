@@ -1,0 +1,15 @@
+<div class="container">
+  <h2>フォロワー</h2>
+  <% if @user.following.length > 0 %>  
+    <% @user.following.each do |user| %>
+      <%= attachment_image_tag user, :profile_image, size: "100x100", fallback: "no_image.jpeg" %>
+      <%= link_to user.name, user_path(user.id) %>
+    <% end %>
+  <% else %>    
+    <% if @user == current_user %>
+      いいお店を紹介しているアカウントをフォローしよう！</br>
+      <%= link_to 'お店紹介一覧を見る', shops_path %>
+    <% else %>
+      ユーザーがいません
+    <% end %>
+  <% end %>
