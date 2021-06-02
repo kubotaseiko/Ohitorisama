@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_31_144307) do
+ActiveRecord::Schema.define(version: 2021_06_02_111452) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -24,16 +24,30 @@ ActiveRecord::Schema.define(version: 2021_05_31_144307) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "shops", force: :cascade do |t|
     t.string "user_id"
     t.string "shop_name"
+    t.string "shop_image_id"
     t.text "introduction"
     t.string "address"
     t.string "tell"
     t.string "holiday"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "shop_image_id"
+  end
+
+  create_table "tweets", force: :cascade do |t|
+    t.integer "user_id"
+    t.text "tweet"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -43,7 +57,7 @@ ActiveRecord::Schema.define(version: 2021_05_31_144307) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name"
-    t.integer "profile_image"
+    t.string "profile_image_id"
     t.text "introduction"
     t.boolean "is_valid", default: true, null: false
     t.datetime "created_at", null: false

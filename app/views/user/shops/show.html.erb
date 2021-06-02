@@ -1,10 +1,16 @@
 <div class='container' >
 <%= render 'shop_details_top', shop: @shop %>
 
+
+　<h5>おすすめしているユーザー</h5>
+  <%= attachment_image_tag @user, :profile_image, size: '50x50', fallback: 'no_image.jpg' %></td>
+  <%= link_to @user.name, user_path(@user.id) %>さん</td>
+
+  
 <table>
   <tr>
     <th>紹介</th>
-    <td><%= @shop.address %></td>
+    <td><%= @shop.introduction %></td>
   </tr>
   <tr>
     <th>住所</th>
