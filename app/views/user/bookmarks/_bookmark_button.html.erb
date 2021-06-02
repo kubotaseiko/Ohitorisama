@@ -1,0 +1,6 @@
+
+<% if shop.bookmarked_by?(current_user) %>
+  <%= link_to "ブックマークを外す", shop_bookmarks_path(shop), method: :delete %>
+<% else %>
+  <%= link_to "ブックマーク", shop_bookmarks_path(shop), method: :post %>
+<% end %>

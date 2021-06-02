@@ -3,6 +3,8 @@ class User::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @shops = @user.shops.all
+    @tweets = Tweet.all
+    @tweet = Tweet.new
   end
 
   def edit

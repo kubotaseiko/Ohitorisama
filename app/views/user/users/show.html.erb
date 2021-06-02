@@ -7,7 +7,6 @@
   <%= link_to '編集', edit_user_path(@user.id) %>
 <% end %>
 
-
 フォロー数：<%= link_to @user.following.count, followings_user_path(@user) %></td>
 フォロワー数：<%= link_to @user.followers.count, followers_user_path(@user) %></td>
 <%= render 'user/relationships/follow_button', user: @user %>
@@ -20,4 +19,10 @@
   </div>
 <% end %>
 
+<% if current_user.id == @user.id.to_i %>
+<!--つぶやき投稿フォーム-->
+<%= render 'user/tweets/post_tweet', tweet: @tweet %>
+<!--つぶやき一覧-->
+<%= render 'user/tweets/index', tweets: @tweets, tweet: @tweet %>
+<% end %>
 </div>

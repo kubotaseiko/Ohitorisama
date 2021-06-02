@@ -30,7 +30,7 @@ class User::ShopsController < ApplicationController
   def update
     shop = Shop.find(params[:id])
     if shop.update(shop_params)
-    redirect_to shop_path(shop.id)
+      redirect_to shop_path(shop.id)
     else
       render 'edit'
     end

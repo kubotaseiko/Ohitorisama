@@ -1,0 +1,18 @@
+<div class='container'>
+
+<div>
+<% tweets.order('updated_at DESC').each do |tweet|  %>
+  <div>
+  <%= attachment_image_tag tweet.user, :profile_image, size: '25x25', fallback: 'no_image.jpg' %>
+  <%= tweet.user.name %>さん
+  </div>
+  <div>
+  <%= tweet.tweet %>
+  <% if current_user.id == tweet.user_id.to_i %>
+  <%= link_to '削除する', '/tweets', method: :delete, "data-confirm" => "本当に消しますか？" %>
+  <% end %>
+  </div>
+<% end %>
+</div>
+
+</div>
