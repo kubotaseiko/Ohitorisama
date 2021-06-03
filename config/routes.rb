@@ -12,11 +12,11 @@ scope module: :user do
     resources 'reviews', only: [:create, :destroy, :index]
     resource 'bookmarks', only: [:create, :destroy]
   end
-  
+
   resources :tags do
   get 'shops', to: 'shops#tag_search'
   end
-  
+
   get 'search' => 'shops#search'
 
   resources 'users', only: [:show, :edit, :update] do
@@ -37,10 +37,15 @@ end
 
 # ========= 管理者側(admin)のルーティング ================
 
+    devise_for :admins, controllers: {
+    sessions:      'admins/sessions',
+    passwords:     'admins/passwords',
+    registrations: 'admins/registrations'
+  }
+
   namespace :admin do
     resources 'users', only: [:index, :show, :edit, :update]
     resources 'contacts', only: [:index, :update]
   end
-
 
 end
