@@ -20,6 +20,8 @@
 <% end %>
 
 <% if current_user.id == @user.id.to_i %>
+<!--ブックマーク一覧-->
+<%= render 'user/bookmarks/bookmark_list', bookmarks: @bookmarks %>
 <!--つぶやき投稿フォーム-->
 <%= render 'user/tweets/post_tweet', tweet: @tweet %>
 <!--つぶやき一覧-->

@@ -21,4 +21,5 @@ class User::BookmarksController < ApplicationController
         redirect_to request.referer
     end
   end
+  
 end

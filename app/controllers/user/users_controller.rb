@@ -5,6 +5,7 @@ class User::UsersController < ApplicationController
     @shops = @user.shops.all
     @tweets = Tweet.all
     @tweet = Tweet.new
+    @bookmarks = Bookmark.where(user_id: current_user.id)
   end
 
   def edit

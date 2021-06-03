@@ -1,0 +1,29 @@
+
+<h4>ブックマーク一覧</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>写真</th>
+      <th>店名</th>
+      <th>ユーザー</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% bookmarks.each do |bookmark| %>
+      <tr>
+        <td><%= attachment_image_tag bookmark.shop, :shop_image, :fill, 150, 150, format: 'jpeg' %></td>
+        <td>
+          <%= link_to shop_path(bookmark.shop) do %>
+            <%= bookmark.shop.shop_name %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to user_path(bookmark.shop.user) do %>
+            <%= bookmark.shop.user.name %>
+          <% end %>さん
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
