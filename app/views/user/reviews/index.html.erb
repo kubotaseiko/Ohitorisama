@@ -1,0 +1,33 @@
+<div class="container">
+
+<div class="col-sm-8">
+  <h2><%= @shop.shop_name %></h2>
+  <h3>image</h3>
+  <h2>Average Rating</h2>
+  <div class="average-review-rating" data-score=<%= @average_review %>></div>
+  <span>Based on <%= @shop.reviews.count %> Reviews</span>
+  <p><%= @shop.introduction %></p>
+</div>
+
+
+<div id='review_form'>
+  <%= render 'user/reviews/index', shop: @shop, review: @review %>
+</div>
+
+<%= render 'user/reviews/form', shop: @shop, review: @review %>
+
+</div>
+
+
+
+
+
+<script>
+  $('.average-review-rating').raty({
+    readOnly: true,
+    path: '/assets/',
+    score: function() {
+      return $(this).attr('data-score')
+    }
+  });
+</script>

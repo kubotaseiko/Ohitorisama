@@ -14,8 +14,23 @@
   <%= f.text_field :tell %>
   <h4>定休日</h4>
   <%= f.text_field :holiday %>
+  <h4>スペースを入力することで複数のタグを付けることができます。</h4>
+  <h5>例：音楽 文芸 スポーツ</h5>
+  <%= f.text_field :tag_name %>
+  
+  <div id="rate-form">
+    <label>Rating</label>
+  </div>
 
   <%= f.submit '投稿' %>
 <% end %>
 
 </div>
+
+<script>
+  $('#rate-form').raty({
+    path: '/assets/',
+    scoreName: 'review[rate]'
+  });
+  
+</script>

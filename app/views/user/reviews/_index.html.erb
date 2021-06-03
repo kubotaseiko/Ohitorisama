@@ -1,0 +1,27 @@
+<h2>Review</h2>
+<p><%= shop.reviews.count %>件</p>
+<% shop.reviews.each do |review| %>
+  <table class="table table-sm">
+    <tbody>
+      <td style="width: 20%" class="text-cente" ><%= review.created_at.strftime('%Y/%m/%d') %></td>
+      <td style="width: 40%"><%= review.review_text %></td>
+      <td style="width: 10%"><%= review.user.name %><td>
+      <td style="width: 20%"><div class="review-rating" data-score="<%= review.rate %>"></div><td>
+      <td style="width: 10%">
+        <% if review.user == current_user %>
+        <%= link_to '削除', shop_review_path(review.shop, review), method: :delete %>
+        <% end %>
+      <td>
+    </tbody>
+  </table>
+<% end %>
+
+<script>
+  $('.review-rating').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+</script>
