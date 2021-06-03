@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
 scope module: :user do
   resources 'shops', only: [:index, :show, :edit, :update, :new, :create, :destroy] do
-    resources 'reviews', only: [:index, :create, :destroy]
+    resources 'reviews', only: [:create, :destroy, :index]
     resource 'bookmarks', only: [:create, :destroy]
   end
   get 'search' => 'shops#search'
