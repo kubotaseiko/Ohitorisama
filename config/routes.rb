@@ -12,6 +12,11 @@ scope module: :user do
     resources 'reviews', only: [:create, :destroy, :index]
     resource 'bookmarks', only: [:create, :destroy]
   end
+  
+  resources :tags do
+  get 'shops', to: 'shops#tag_search'
+  end
+  
   get 'search' => 'shops#search'
 
   resources 'users', only: [:show, :edit, :update] do

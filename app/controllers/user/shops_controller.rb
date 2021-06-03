@@ -1,11 +1,13 @@
 class User::ShopsController < ApplicationController
 
   def index
+    @tag_list = Tag.all
     @shops = Shop.all
   end
 
   def show
     @shop = Shop.find(params[:id])
+    @shop_tags = @shop.tags
     @user = @shop.user
   end
 
@@ -14,10 +16,11 @@ class User::ShopsController < ApplicationController
   end
 
   def create
-    shop = Shop.new(shop_params)
-    shop.user_id = current_user.id
-    if shop.save
-    redirect_to shops_path
+    @shop = current_user.shops.new(shop_params)
+    tag_list = params[:shop][:tag_name].split(/[[:blank:]]+/)
+    if @shop.save
+      @shop.save_tag(tag_list)
+      redirect_to shops_path
     else
       render 'new'
     end
@@ -43,6 +46,12 @@ class User::ShopsController < ApplicationController
   end
 
   def search
+  end
+
+  def tag_search
+    @tag_list = Tag.all
+    @tag = Tag.find(params[:tag_id])
+    @shops = @tag.shops.all
   end
 
   private
