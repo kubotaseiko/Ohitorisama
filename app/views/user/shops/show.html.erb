@@ -6,7 +6,7 @@
   <%= attachment_image_tag @user, :profile_image, size: '50x50', fallback: 'no_image.jpg' %></td>
   <%= link_to @user.name, user_path(@user.id) %>さん</td>
 
-  
+
 <table>
   <tr>
     <th>紹介</th>
@@ -15,16 +15,63 @@
   <tr>
     <th>住所</th>
     <td><%= @shop.address %></td>
-  </tr>    
+  </tr>
   <tr>
     <th>電話番号</th>
     <td><%= @shop.tell %></td>
-  </tr>    
+  </tr>
   <tr>
     <th>定休日</th>
     <td><%= @shop.holiday %></td>
-  </tr>    
+  </tr>
 </table>
+
+
+<!--地図の表示-->
+
+<div id="map"></div>
+・・・
+
+<style>
+#map{
+  height: 180px;
+  width:350px;
+}
+</style>
+
+<script type="text/javascript">
+    function initMap() {
+
+        var test ={lat: <%= @shop.latitude %>, lng: <%= @shop.longitude %>};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: test
+        });
+        var transitLayer = new google.maps.TransitLayer();
+        transitLayer.setMap(map);
+
+        var contentString = '住所：<%= @shop.address %>';
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+
+        var marker = new google.maps.Marker({
+            position:test,
+            map: map,
+            title: contentString
+        });
+
+        marker.addListener('click', function() {
+            infowindow.open(map, marker);
+        });
+    }
+</script>
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+</script>
+
+
 
 <% if current_user.id == @shop.user_id.to_i %>
 <%= link_to '編集', edit_shop_path(@shop.id) %>

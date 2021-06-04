@@ -1,23 +1,22 @@
 Rails.application.routes.draw do
-  devise_for :admins
-  devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
  # ========= ユーザー(user)のルーティング ================
+  devise_for :users
   root to: 'homes#top'
   get 'about' => 'homes#about'
 
-scope module: :user do
-  resources 'shops', only: [:index, :show, :edit, :update, :new, :create, :destroy] do
-    resources 'reviews', only: [:create, :destroy, :index]
-    resource 'bookmarks', only: [:create, :destroy]
-  end
-  
+  scope module: :user do
+    resources 'shops', only: [:index, :show, :edit, :update, :new, :create, :destroy] do
+      resources 'reviews', only: [:create, :destroy, :index]
+      resource 'bookmarks', only: [:create, :destroy]
+    end
+
+  get 'search' => 'shops#search'
+
   resources :tags do
   get 'shops', to: 'shops#tag_search'
   end
-  
-  get 'search' => 'shops#search'
 
   resources 'users', only: [:show, :edit, :update] do
     member do
@@ -36,6 +35,11 @@ scope module: :user do
 end
 
 # ========= 管理者側(admin)のルーティング ================
+  devise_for :admins, controllers: {
+    sessions:      'admins/sessions',
+    passwords:     'admins/passwords',
+    registrations: 'admins/registrations'
+  }
 
   namespace :admin do
     resources 'users', only: [:index, :show, :edit, :update]

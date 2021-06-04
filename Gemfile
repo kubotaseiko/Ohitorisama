@@ -66,7 +66,7 @@ gem 'devise'	#ユーザー登録用
 # gem 'omniauth-twitter' 	Twitter認証
 # gem 'omniauth-google-oauth2'    	Google認証
 # gem 'omniauth-github'   	GitHub認証
-# gem 'dotenv-rails'	環境変数の管理
+gem 'dotenv-rails'	#環境変数の管理
 	
 # gem 'acts-as-taggable-on', '~> 6.0'	タグ付け
 	
@@ -82,3 +82,5 @@ gem 'font-awesome-sass', '~> 5.13'	#アイコン用
 gem 'kaminari', '~> 0.17.0'	#ページ編集用
 # gem 'enum_help'	日本語翻訳
 # gem 'bullet'	N+1問題
+
+gem 'geocoder' # addressから、緯度と経度の割り出しするため（googlemap用）
