@@ -6,6 +6,10 @@ class Shop < ApplicationRecord
   has_many :tags, through: :tagmaps
 
   attachment :shop_image
+  
+  # mapに使用
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
 
   def bookmarked_by?(user)
     bookmarks.where(user_id: user).exists?
