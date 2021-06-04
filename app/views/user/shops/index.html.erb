@@ -1,20 +1,33 @@
 <div class='container'>
 
-<h2>投稿一覧</h2>
-
-  <% @shops.order('updated_at DESC').each do |shop| %>
-  <div class="card" style="width: 20rem;">
-    <%= attachment_image_tag shop, :shop_image, size: '200x200', format: 'jpeg', class: "card-img-top" %>
-    <%= link_to shop.shop_name, shop_path(shop.id) %>
+  <div class="search-form">
+    <%= form_with url: search_path, method: :get, local: true do |f| %>
+      <%= f.text_field :keyword, value: @keyword %>
+      <%= f.submit "検索" %>
+    <% end %>
   </div>
+  
+
+  
+  <div class='title'>投稿一覧</div>
+  
+  <div class="shop-list">
+    <% @shops.each do |shop| %>
+    <div class="card" style="width: 20rem;">
+      <%= attachment_image_tag shop, :shop_image, size: '200x200', format: 'jpeg', class: "card-img-top" %>
+      <%= link_to shop.shop_name, shop_path(shop.id) %>
+    </div>
+    <% end %>
+  </div>
+  
+  
+  
+  
+  <div class='title'>タグリスト</div>
+  
+  <% @tag_list.each do |list| %>
+    <%= link_to list.tag_name, tag_shops_path(tag_id: list.id) %>
+    <%= "(#{list.shops.count})" %>
   <% end %>
-
-
-<h2>タグリスト</h2>
-
-<% @tag_list.each do |list| %>
-  <%= link_to list.tag_name, tag_shops_path(tag_id: list.id) %>
-  <%= "(#{list.shops.count})" %>
-<% end %>
 
 </div>
