@@ -30,5 +30,8 @@ class Shop < ApplicationRecord
     end
   end
 
-
+  def self.search(keyword)
+    where(["shop_name like? OR address like?", "%#{keyword}%", "%#{keyword}%"])
+  end
+  
 end

@@ -12,11 +12,11 @@ Rails.application.routes.draw do
       resource 'bookmarks', only: [:create, :destroy]
     end
 
+  get 'search' => 'shops#search'
+
   resources :tags do
   get 'shops', to: 'shops#tag_search'
   end
-
-  get 'search' => 'shops#search'
 
   resources 'users', only: [:show, :edit, :update] do
     member do
