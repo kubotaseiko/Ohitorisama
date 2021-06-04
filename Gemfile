@@ -82,3 +82,5 @@ gem 'font-awesome-sass', '~> 5.13'	#アイコン用
 gem 'kaminari', '~> 0.17.0'	#ページ編集用
 # gem 'enum_help'	日本語翻訳
 # gem 'bullet'	N+1問題
+
+gem 'geocoder' # addressから、緯度と経度の割り出しするため（googlemap用）
