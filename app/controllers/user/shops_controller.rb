@@ -46,6 +46,10 @@ class User::ShopsController < ApplicationController
   end
 
   def search
+    @tag_list = Tag.all
+    @shops = Shop.search(params[:keyword])
+    @keyword = params[:keyword]
+    render 'index'
   end
 
   def tag_search
@@ -53,6 +57,7 @@ class User::ShopsController < ApplicationController
     @tag = Tag.find(params[:tag_id])
     @shops = @tag.shops.all
   end
+
 
   private
 

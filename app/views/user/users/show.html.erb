@@ -7,24 +7,66 @@
   <%= link_to '編集', edit_user_path(@user.id) %>
 <% end %>
 
-フォロー数：<%= link_to @user.following.count, followings_user_path(@user) %></td>
-フォロワー数：<%= link_to @user.followers.count, followers_user_path(@user) %></td>
+
+<!--フォロー・フォロワー数-->
 <%= render 'user/relationships/follow_button', user: @user %>
 
 
-<% @shops.order('updated_at DESC').each do |shop| %>
-  <div class="card" style="width: 20rem;">
-    <%= attachment_image_tag shop, :shop_image, :fill, 200, 200, format: 'jpeg', class: "card-img-top" %>
-    <%= link_to shop.shop_name, shop_path(shop.id),class: "card-title" %>
-  </div>
-<% end %>
+<ul class="tab">
+  <li><a href="#user">投稿者の情報</a></li>
+  <li><a href="#bookmarks">bookmarks</a></li>
+  <li><a href="#review">その他のレビュー</a></li>
+</ul>
 
-<% if current_user.id == @user.id.to_i %>
-<!--ブックマーク一覧-->
-<%= render 'user/bookmarks/bookmark_list', bookmarks: @bookmarks %>
-<!--つぶやき投稿フォーム-->
-<%= render 'user/tweets/post_tweet', tweet: @tweet %>
-<!--つぶやき一覧-->
-<%= render 'user/tweets/index', tweets: @tweets, tweet: @tweet %>
-<% end %>
+
+<div id="user" class="area">
+  
+  <div class="card-columns">
+    <% @shops.order('updated_at DESC').each do |shop| %>
+      <div class="card" style="width: 20rem;">
+        <%= attachment_image_tag shop, :shop_image, :fill, 200, 200, format: 'jpeg', class: "card-img-top" %>
+        <%= link_to shop.shop_name, shop_path(shop.id),class: "card-title" %>
+        <div class="average-review-rating" data-score=<%= shop.reviews.average(:rate) %>></div>
+      </div>
+    <% end %>
+  </div>
+  
+  <div class="tweet">
+    <% if current_user.id == @user.id.to_i %>
+      <!--つぶやき投稿フォーム-->
+      <%= render 'user/tweets/post_tweet', tweet: @tweet %>
+    <% end %>
+    
+    <!--つぶやき一覧-->
+    <%= render 'user/tweets/index', tweets: @tweets, tweet: @tweet %>
+  </div>
+  
 </div>
+
+
+<div id="bookmarks" class="area">
+  <%= render 'user/bookmarks/bookmark_list', bookmarks: @bookmarks %>
+</div>
+
+
+<div id="review" class="area">
+  review一覧
+</div>
+
+
+
+
+
+
+</div>
+
+
+<script>
+  $('.average-review-rating').raty({
+    readOnly: true,
+    path: '/assets/',
+    score: function() {
+      return $(this).attr('data-score')
+    }
+  });
+</script>

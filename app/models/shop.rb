@@ -7,6 +7,10 @@ class Shop < ApplicationRecord
 
   attachment :shop_image
 
+  # mapに使用
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
+
   def bookmarked_by?(user)
     bookmarks.where(user_id: user).exists?
   end
@@ -24,6 +28,10 @@ class Shop < ApplicationRecord
       new_shop_tag = Tag.find_or_create_by(tag_name: new)
       self.tags << new_shop_tag
     end
+  end
+
+  def self.search(keyword)
+    where(["shop_name like? OR address like?", "%#{keyword}%", "%#{keyword}%"])
   end
 
 

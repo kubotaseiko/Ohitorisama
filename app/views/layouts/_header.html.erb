@@ -1,26 +1,26 @@
 <header>
 <nav class="navbar navbar-expand-lg">
   <div class="container">
-    <a class="navbar-brand" href="/"><span>Bookers</span></a>
+    <a class="navbar-brand" href="/"><span>Ohitorisama</span></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
     </button>
   <% if user_signed_in? %>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav ml-auto">
-    <li class:"fas fa-home nav-link text-light"><%= link_to ' マイページ',user_path(current_user) %></li>
-    <li class:"fas fa-home nav-link text-light"><%= link_to ' お店一覧', shops_path %></li>
-    <li class:"fas fa-home nav-link text-light"><%= link_to ' 新規投稿', new_shop_path %></li>
-    <li class:"fas fa-home nav-link text-light"><%= link_to ' ログアウト', destroy_user_session_path, method: :delete %></li>
-  <% else %>
-    <li class:"fas fa-home nav-link text-light"><%= link_to ' Home', root_path  %></li>
-    <li class:"fas fa-home nav-link text-light"><%= link_to ' About', about_path %></li>
-    <li class:"fas fa-home nav-link text-light"><%= link_to ' sign up', new_user_registration_path %></li>
-    <li class:"fas fa-home nav-link text-light"><%= link_to ' login', new_user_session_path %></li>
-    </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class:"nav-link text-light"><%= link_to ' mypege',user_path(current_user) %></li>
+        <li class:"nav-link text-light ml-1"><%= link_to ' shops', shops_path %></li>
+        <li class:"nav-link text-light"><%= link_to ' new!', new_shop_path %></li>
+        <li class:"nav-link text-light"><%= link_to ' logout', destroy_user_session_path, method: :delete %></li>
+      <% else %>
+        <li class:"nav-link text-light"><%= link_to ' Home', root_path  %></li>
+        <li class:"nav-link text-light"><%= link_to ' About', about_path %></li>
+        <li class:"nav-link text-light"><%= link_to ' sign up', new_user_registration_path %></li>
+        <li class:"nav-link text-light"><%= link_to ' login', new_user_session_path %></li>
+      </ul>
     </div>
   <% end %>
-  
+
   </div>
   </nav>
   </header>

@@ -20,7 +20,12 @@
 /* リンクの色: 黒、下線付与 */
 a {
   color: #000;
-  text-decoration: underline;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #000;
+  text-decoration: none;
 }
 
 /* ナビゲーションバーの下線はなし */

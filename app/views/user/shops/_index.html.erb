@@ -1,0 +1,52 @@
+<div class='row'>
+  <div class="shop-list">
+
+    <div class="card-columns">
+      <% shops.each do |shop| %>
+        <div class="card" style="">
+          <ul class="list-inline">
+            <%= attachment_image_tag shop.user, :profile_image, size: '40x40', format: 'jpeg', fallback: "no_image.jpeg", class: 'rounded-circle' %>
+            <%= link_to shop.user.name, user_path(shop.user.id) %>
+  
+            <div class='card-img-top'>
+            <%= attachment_image_tag shop, :shop_image, size: '200x200', format: 'jpeg', class: "card-img-top" %>
+            </div>
+  
+            <div class='card-title'>
+              <%= link_to shop.shop_name, shop_path(shop.id) %>
+            </div>
+  
+            <!--星評価-->
+             <div class="average-review-rating" data-score=<%= shop.reviews.average(:rate) %>></div>
+  
+            <!--レビュー詳細-->
+            <%= link_to shop_reviews_path(shop.id) do %>
+              <i class="fas fa-comment-dots"></i>
+            <% end %>
+  
+            <!--タグ-->
+            <div class='tags'>
+              <i class="fas fa-tags"></i>
+              <% shop.tags.each do |tag| %>
+                <%= link_to tag.tag_name, tag_shops_path(tag_id: tag.id), class: "btn btn-sm btn-outline-info" %>
+              <% end %>
+            </div>
+  
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  
+  </div>
+</div>
+
+
+<script>
+  $('.average-review-rating').raty({
+    readOnly: true,
+    path: '/assets/',
+    score: function() {
+      return $(this).attr('data-score')
+    }
+  });
+</script>
