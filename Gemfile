@@ -67,14 +67,14 @@ gem 'devise'	#ユーザー登録用
 # gem 'omniauth-google-oauth2'    	Google認証
 # gem 'omniauth-github'   	GitHub認証
 gem 'dotenv-rails'	#環境変数の管理
-	
+
 # gem 'acts-as-taggable-on', '~> 6.0'	タグ付け
-	
+
 gem "refile", require: "refile/rails", github: 'manfe/refile'	#画像用
 gem "refile-mini_magick"	#画像用
-	
+
 gem 'pry-byebug'	#デバック用
-	
+
 gem 'bootstrap', '~> 4.5'	#CSS
 gem 'jquery-rails'	 #jQuery
 gem 'jp_prefecture'	#住所検索
@@ -86,3 +86,5 @@ gem 'kaminari', '~> 0.17.0'	#ページ編集用
 group :production do
   gem 'mysql2'
 end
+
+gem 'geocoder'
