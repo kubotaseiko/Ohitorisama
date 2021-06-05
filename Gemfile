@@ -83,4 +83,6 @@ gem 'kaminari', '~> 0.17.0'	#ページ編集用
 # gem 'enum_help'	日本語翻訳
 # gem 'bullet'	N+1問題
 
-gem 'geocoder' # addressから、緯度と経度の割り出しするため（googlemap用）
+group :production do
+  gem 'mysql2'
+end
