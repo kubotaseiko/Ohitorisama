@@ -29,6 +29,7 @@ class Shop < ApplicationRecord
       self.tags << new_shop_tag
     end
   end
+  
 
   def self.search(keyword)
     where(["shop_name like? OR address like?", "%#{keyword}%", "%#{keyword}%"])

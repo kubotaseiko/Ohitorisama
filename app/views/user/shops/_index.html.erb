@@ -1,21 +1,23 @@
-<div class='row'>
   <div class="shop-list">
 
-    <div class="card-columns">
-      <% shops.each do |shop| %>
-        <div class="card" style="">
-          <ul class="list-inline">
+    <% shops.each do |shop| %>
+      <div class="card">
+        <div class="card-columns">
+          
+          <div class="card-header">
             <%= attachment_image_tag shop.user, :profile_image, size: '40x40', format: 'jpeg', fallback: "no_image.jpeg", class: 'rounded-circle' %>
             <%= link_to shop.user.name, user_path(shop.user.id) %>
+          </div>
   
-            <div class='card-img-top'>
-            <%= attachment_image_tag shop, :shop_image, size: '200x200', format: 'jpeg', class: "card-img-top" %>
-            </div>
-  
-            <div class='card-title'>
+          
+          <div class='card-img'>
+            <h4 class='card-title'>
+              <%= attachment_image_tag shop, :shop_image, size: '200x200', format: 'jpeg', class: "card-img" %>
               <%= link_to shop.shop_name, shop_path(shop.id) %>
-            </div>
+          </div>
+          
   
+          <div class="card-body">
             <!--星評価-->
              <div class="average-review-rating" data-score=<%= shop.reviews.average(:rate) %>></div>
   
@@ -31,14 +33,13 @@
                 <%= link_to tag.tag_name, tag_shops_path(tag_id: tag.id), class: "btn btn-sm btn-outline-info" %>
               <% end %>
             </div>
+          </div>
   
-          </ul>
         </div>
-      <% end %>
-    </div>
-  
+      </div>
+    <% end %>
+
   </div>
-</div>
 
 
 <script>
