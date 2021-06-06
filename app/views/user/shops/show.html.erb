@@ -1,5 +1,5 @@
 <div class='container' >
-  <%= render 'shop_details_top', shop: @shop %>
+  <%= render 'user/shops/shop_details_top', shop: @shop %>
 
   <!--星評価-->
   <div class="average-review-rating" data-score=<%= @shop.reviews.average(:rate) %>></div>
@@ -72,7 +72,7 @@
 </script>
 
 <script async defer
-        src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLEMAP'] %>&callback=initMap">
 </script>
 
 

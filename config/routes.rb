@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       get :followings, :followers
     end
   end
+  
   get 'user/quit_confirm' => 'users#quit_confirm'
   patch 'user/quit' => 'users#quit'
 
