@@ -8,14 +8,31 @@
   <% if user_signed_in? %>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ml-auto">
-        <li class:"nav-link text-light"><%= link_to ' mypege',user_path(current_user) %></li>
-        <li class:"nav-link text-light ml-1"><%= link_to ' shops', shops_path %></li>
-        <li class:"nav-link text-light"><%= link_to ' logout', destroy_user_session_path, method: :delete %></li>
+        <li class="nav-link">
+          <%= link_to new_contact_path do %>
+            <i class="fas fa-info-circle"></i>
+          <% end %>
+        </li>
+        <li class="nav-link">
+          <%= link_to user_path(current_user) do %>
+            <% image_tag 'mypage.png'%>
+          <% end %>
+        </li>
+        <li class="nav-link">
+          <%= link_to shops_path do %>
+            <i class="fas fa-store"></i>
+          <% end %>
+        </li>
+        <li class="nav-link">
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="fas fa-sign-out-alt"></i>
+          <% end %>
+        </li>
       <% else %>
-        <li class:"nav-link text-light"><%= link_to ' Home', root_path  %></li>
-        <li class:"nav-link text-light"><%= link_to ' About', about_path %></li>
-        <li class:"nav-link text-light"><%= link_to ' sign up', new_user_registration_path %></li>
-        <li class:"nav-link text-light"><%= link_to ' login', new_user_session_path %></li>
+        <li class="nav-link text-light"><%= link_to ' Home', root_path  %></li>
+        <li class="nav-link text-light"><%= link_to ' About', about_path %></li>
+        <li class="nav-link text-light"><%= link_to ' sign up', new_user_registration_path %></li>
+        <li class="nav-link text-light"><%= link_to ' login', new_user_session_path %></li>
       </ul>
     </div>
   <% end %>

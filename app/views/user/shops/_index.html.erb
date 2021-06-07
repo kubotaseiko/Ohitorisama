@@ -11,8 +11,14 @@
               <%= attachment_image_tag shop, :shop_image, size: '200x200', format: 'jpeg', class: "card-img" %>
               <span class="cap">
               <h4 class="fas fa-store">&nbsp;<%= shop.shop_name %></h4></br>
-              <h6 class="fas fa-star"><%= shop.reviews.average(:rate) %></h6></br>
-              <h6 class="fas fa-comment-dots"></i><%= shop.reviews.count %></h6>
+              <h6 class="fas fa-star">&nbsp;
+                <% if shop.reviews.average(:rate) == nil %>
+                0.0
+                <% else %>
+                <%= shop.reviews.average(:rate) %>
+                <% end %>
+              </h6></br>
+              <h6 class="fas fa-comment-dots">&emsp;<%= shop.reviews.count %></h6>
               </span>
             </span>
           <% end %>
