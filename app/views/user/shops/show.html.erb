@@ -11,7 +11,7 @@
   </div>
 
 
-  <div class="row pl-5 pr-5 pt-5">
+  <div class="row pl-5 pr-5 pt-2">
     <div class="col-lg-6 col-12">
       <%= attachment_image_tag @shop, :shop_image, :fill, 500, 500, format: 'jpeg' %>
     </div>
@@ -19,9 +19,15 @@
     <div class="col-lg-5 col-12 ml-3">
       <div class="row">
         <div class="col-lg-9 col-12">
-          <%= @shop.introduction %>
           <!--星評価-->
-          <div class="average-review-rating" data-score=<%= @shop.reviews.average(:rate) %>></div>
+          <h3 class="fas fa-star">&nbsp;
+            <% if @shop.reviews.average(:rate) == nil %>
+            0.0
+            <% else %>
+            <%= @shop.reviews.average(:rate) %>
+            <% end %>
+          </h3></br>
+          <%= @shop.introduction %>
         </div>
         <div class="col-lg-3 col-12">
           <p><%= link_to @user.name, user_path(@user.id) %>さん</p>
@@ -66,8 +72,8 @@
             <td>
           </tbody>
         </table>
-        <%= link_to '>>もっとみる', shop_reviews_path(@shop.id) %>
       <% end %>
+      <%= link_to '>>もっとみる', shop_reviews_path(@shop.id) %>
       <%= render 'user/reviews/form', shop: @shop, review: @review %>
 
     </div>

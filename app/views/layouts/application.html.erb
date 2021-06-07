@@ -13,10 +13,17 @@
 
   <body>
 
-   <%= render 'layouts/header' %>
+  <%= render 'layouts/header' %>
 
       <%= yield %>
-
+      
+  <% if user_signed_in? %>
+  <div class="new-post">
+    <%= link_to  new_shop_path do %>
+      <%= image_tag 'new-post.png', :size => '100x100' %>
+    <% end %>
+  <% end %>
+  </div>
 
 </body>
 

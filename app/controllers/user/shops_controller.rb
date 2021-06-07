@@ -21,7 +21,11 @@ class User::ShopsController < ApplicationController
   def create
     @shop = current_user.shops.new(shop_params)
     tag_list = params[:shop][:tag_name].split(/[[:blank:]]+/)
+    # review = Review.new
+    # review = @shop.reviews.new(review_params)
+    # review.user_id = current_user.id
     if @shop.save
+      # review.save
       @shop.save_tag(tag_list)
       redirect_to shops_path
     else

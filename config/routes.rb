@@ -23,19 +23,19 @@ Rails.application.routes.draw do
         get :followings, :followers
       end
     end
-  end
   
-  get 'user/quit_confirm' => 'users#quit_confirm'
-  patch 'user/quit' => 'users#quit'
-
-    resources 'relationships', only: [:create, :destroy]
-
-    resources 'tweets', only: [:index, :new, :create, :destroy]
-
-    resource 'contacts', only: [:new, :create] do
-      get 'thanks' => 'contacts#thanks'
-    end
   
+    get 'user/quit_confirm' => 'users#quit_confirm'
+    patch 'user/quit' => 'users#quit'
+  
+      resources 'relationships', only: [:create, :destroy]
+  
+      resources 'tweets', only: [:index, :new, :create, :destroy]
+  
+      resource 'contacts', only: [:new, :create] do
+        get 'thanks' => 'contacts#thanks'
+      end
+    
   end
 
 
