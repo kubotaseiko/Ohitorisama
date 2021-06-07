@@ -73,14 +73,6 @@ gem 'dotenv-rails'	#環境変数の管理
 gem "refile", require: "refile/rails", github: 'manfe/refile'	#画像用
 gem "refile-mini_magick"	#画像用
 
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-
-  # ここに移動
-  gem 'pry-byebug'
-  gem 'pry-rails'
-end
 
 gem 'bootstrap', '~> 4.5'	#CSS
 gem 'jquery-rails'	 #jQuery
@@ -95,3 +87,12 @@ group :production do
 end
 
 gem 'geocoder'
+
+group :development, :test do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
+  # ここに移動
+  gem 'pry-byebug'
+  gem 'pry-rails'
+end
