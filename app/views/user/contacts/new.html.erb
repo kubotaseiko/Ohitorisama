@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-8">
+      <div class="page-title">Contact</div>
+      
+      <%= form_with(model: @contact, local: true) do |f| %>
+        <ul class="pt-3">
+          <li><%= f.label :name, "お名前" %></li>
+          <li><%= f.text_field :name %></li>
+          <li><%= f.label :email, "mail address" %></li>
+          <li><%= f.email_field :email, autocomplete: "email" %></li>
+          <li><%= f.label :content, "お問い合わせ内容" %></li>
+          <li><%= f.text_field :content %></li>
+          <li><%= f.submit "送信" %></li>
+        </ul>
+      <% end %>
+      
+    </div>
+  </div>
+</div>

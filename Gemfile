@@ -68,8 +68,6 @@ gem 'devise'	#ユーザー登録用
 # gem 'omniauth-github'   	GitHub認証
 gem 'dotenv-rails'	#環境変数の管理
 
-# gem 'acts-as-taggable-on', '~> 6.0'	タグ付け
-
 gem "refile", require: "refile/rails", github: 'manfe/refile'	#画像用
 gem "refile-mini_magick"	#画像用
 
@@ -79,7 +77,7 @@ gem 'jquery-rails'	 #jQuery
 gem 'jp_prefecture'	#住所検索
 gem 'font-awesome-sass', '~> 5.13'	#アイコン用
 gem 'kaminari', '~> 0.17.0'	#ページ編集用
-# gem 'enum_help'	日本語翻訳
+gem 'enum_help'	#日本語翻訳
 # gem 'bullet'	N+1問題
 
 group :production do

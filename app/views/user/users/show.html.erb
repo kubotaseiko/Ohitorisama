@@ -1,62 +1,59 @@
 <div class="container">
-<%= attachment_image_tag @user, :profile_image, size: "100x100", fallback: "no_image.jpeg" %>
-<h1><%= @user.name %></h1>
-<a><%= @user.introduction %><a>
+  <div class="row">
+    <div class="col-md-6">
+      <%= attachment_image_tag @user, :profile_image, size: "100x100", fallback: "no_image.jpeg" %>
+      <h1><%= @user.name %></h1>
+      <a><%= @user.introduction %><a>
+    </div>
+    <div class="col-md-6">
+      <!--フォロー・フォロワー数-->
+      <%= render 'user/relationships/follow_button', user: @user %>
+    </div>
+  </div>
 
-<% if current_user.id == @user.id.to_i %>
-  <%= link_to '編集', edit_user_path(@user.id) %>
-<% end %>
-
-
-<!--フォロー・フォロワー数-->
-<%= render 'user/relationships/follow_button', user: @user %>
-
-
-<ul class="tab">
-  <li><a href="#user">投稿者の情報</a></li>
-  <li><a href="#bookmarks">bookmarks</a></li>
-  <li><a href="#review">その他のレビュー</a></li>
-</ul>
+  <% if current_user.id == @user.id.to_i %>
+    <%= link_to '編集', edit_user_path(@user.id) %>
+  <% end %>
 
 
-<div id="user" class="area">
+  <div class="row">
+    <div class="col-12">
+      <ul class="tab">
+        <li><%= link_to 'user', "#user"%></li>
+        <li><a href="#bookmarks">bookmarks</a></li>
+        <li><a href="#review">reviews</a></li>
+      </ul>
+    </div>
+  </div>
   
-  <div class="card-columns">
-    <% @shops.order('updated_at DESC').each do |shop| %>
-      <div class="card" style="width: 20rem;">
-        <%= attachment_image_tag shop, :shop_image, :fill, 200, 200, format: 'jpeg', class: "card-img-top" %>
-        <%= link_to shop.shop_name, shop_path(shop.id),class: "card-title" %>
-        <div class="average-review-rating" data-score=<%= shop.reviews.average(:rate) %>></div>
+
+  
+  <div id="user" class="area">
+    <div class="row"> 
+      <div class="tweet col-md-3">
+          <% if current_user.id == @user.id.to_i %>
+            <!--つぶやき投稿フォーム-->
+            <%= render 'user/tweets/post_tweet', tweet: @tweet %>
+          <% end %>
+          <!--つぶやき一覧-->
+          <%= render 'user/tweets/index', tweets: @tweets, tweet: @tweet %>
       </div>
-    <% end %>
-  </div>
-  
-  <div class="tweet">
-    <% if current_user.id == @user.id.to_i %>
-      <!--つぶやき投稿フォーム-->
-      <%= render 'user/tweets/post_tweet', tweet: @tweet %>
-    <% end %>
+      
+      <div class="col-md-9">
+        <%= render 'user/shops/index', shops: @shops %>
+      </div>
+    </div>
     
-    <!--つぶやき一覧-->
-    <%= render 'user/tweets/index', tweets: @tweets, tweet: @tweet %>
   </div>
-  
-</div>
 
+    <div id="bookmarks" class="area">
+      <%= render 'user/bookmarks/bookmark_list', bookmarks: @bookmarks %>
+    </div>
 
-<div id="bookmarks" class="area">
-  <%= render 'user/bookmarks/bookmark_list', bookmarks: @bookmarks %>
-</div>
-
-
-<div id="review" class="area">
-  review一覧
-</div>
-
-
-
-
-
+    <div id="review" class="area">
+      review一覧
+    </div>
+  </div>
 
 </div>
 
@@ -70,3 +67,8 @@
     }
   });
 </script>
+
+
+
+
+

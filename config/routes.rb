@@ -12,28 +12,32 @@ Rails.application.routes.draw do
       resource 'bookmarks', only: [:create, :destroy]
     end
 
-  get 'search' => 'shops#search'
+    get 'search' => 'shops#search'
 
-  resources :tags do
-  get 'shops', to: 'shops#tag_search'
-  end
-
-  resources 'users', only: [:show, :edit, :update] do
-    member do
-      get :followings, :followers
+    resources :tags do
+    get 'shops', to: 'shops#tag_search'
     end
-  end
+
+    resources 'users', only: [:show, :edit, :update] do
+      member do
+        get :followings, :followers
+      end
+    end
   
-  get 'user/quit_confirm' => 'users#quit_confirm'
-  patch 'user/quit' => 'users#quit'
+  
+    get 'user/quit_confirm' => 'users#quit_confirm'
+    patch 'user/quit' => 'users#quit'
+  
+      resources 'relationships', only: [:create, :destroy]
+  
+      resources 'tweets', only: [:index, :new, :create, :destroy]
+  
+      resource 'contacts', only: [:new, :create] do
+        get 'thanks' => 'contacts#thanks'
+      end
+    
+  end
 
-  resources 'relationships', only: [:create, :destroy]
-
-  resources 'tweets', only: [:index, :new, :create, :destroy]
-
-  resources 'contacts', only: [:new, :create]
-  get 'thanks' => 'contacts#thanks'
-end
 
 # ========= 管理者側(admin)のルーティング ================
   devise_for :admins, controllers: {

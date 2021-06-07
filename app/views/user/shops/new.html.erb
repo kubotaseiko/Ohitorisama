@@ -3,44 +3,61 @@
   <div class='row'>
 
     <div class='col-12 p-5'>
-      
+
       <div class="post-field">
-        
+
+      <ul>
       <%= form_with model: @shop, url:'/shops', local:true do |f| %>
-        <h6>店名</h6>
-        <%= f.text_field :shop_name %>
-        <h6>画像</h6>
-        <%= f.attachment_field :shop_image %>
-        <h6>お店紹介</h6>
-        <%= f.text_area :introduction %>
-        <h6>住所</h6>
-        <%= f.text_field :address %>
-        <h6>電話番号</h6>
-        <%= f.text_field :tell %>
-        <h6>定休日</h6>
-        <%= f.text_field :holiday %>
-        <h6>スペースを入力することで複数のタグを付けることができます。</h6>
-        <h6>例：居酒屋 コロナ対策</h6>
-        <%= f.text_field :tag_name %>
+
+        <li><%= f.label :shop_name, 'shop name' %></li>
+        <li><%= f.text_field :shop_name %></li>
+
+        <li><%= f.label :shop_image, 'image' %></li>
+        <li><%= f.attachment_field :shop_image %></li>
+
+        <li><%= f.label :introduction, '紹介文' %></li>
+        <li><%= f.text_area :introduction %></li>
+
+        <!--<li><%= f.label :address, '住所' %></li>-->
+        <!--<li><%= f.text_field :address %></li>-->
+
+        <li><%= f.label :tell, 'tell' %></li>
+        <li><%= f.text_field :tell %></li>
+
+        <li><%= f.label :holiday, '定休日' %></li>
+        <li><%= f.text_field :holiday %></li>
+
+        <li><%= f.label :tag_name, 'tag' %></li>
+        <li><%= f.text_field :tag_name %></li>
+        <p>
+          スペースを入力することで複数のタグを付けることができます。</br>
+          例：居酒屋 コロナ対策
+        </p>
         
-        <div id="rate-form">
-          <label>Rating</label>
-        </div>
-      
-        <%= f.submit '投稿' %>
+          <div id="rating-form">
+            <label>Rating</label>
+          </div>
+
+        <%= button_tag :method => :get, :class => "btn", onfocus: "this.blur();" do %>
+        <span class= "col btnripple">
+          <i class="fas fa-paper-plane">&nbsp;投稿する</i>
+        </span>
+        <% end %>
       <% end %>
       
+      </ul>
+
       </div>
-      
+
     </div>
-  
+
   </div>
 </div>
 
 <script>
-  $('#rate-form').raty({
+  $('#rating-form').raty({
     path: '/assets/',
-    scoreName: 'review[rate]'
+    scoreName: 'review[rating]'
   });
-  
 </script>
+
