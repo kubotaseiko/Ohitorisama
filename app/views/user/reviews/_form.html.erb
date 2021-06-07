@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
 
-  <%= form_with(model:[shop, review]) do |f| %>
+  <%= form_with(model:[shop, review], local: true) do |f| %>
       <%= f.text_area :review_text, rows:'8',placeholder: "review", size: "50" %>
         <div id="rate-form">
           <label>Rating</label>
@@ -15,5 +15,5 @@
     path: '/assets/',
     scoreName: 'review[rate]'
   });
-  
+
 </script>

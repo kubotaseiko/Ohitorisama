@@ -1,0 +1,3 @@
+$("#review_form").html("<%= j(render partial: 'user/reviews/form', locals: {shop: @shop, review: @review}) %>");
+$("textarea").val('')
+$(".review_count").html("<%= shop.reviews.count %>件");

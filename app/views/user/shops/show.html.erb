@@ -22,9 +22,9 @@
           <!--星評価-->
           <h3 class="fas fa-star">&nbsp;
             <% if @shop.reviews.average(:rate) == nil %>
-            0.0
+            評価なし
             <% else %>
-            <%= @shop.reviews.average(:rate) %>
+            <%= @shop.reviews.average(:rate).round(1) %>
             <% end %>
           </h3></br>
           <%= @shop.introduction %>
@@ -74,7 +74,9 @@
         </table>
       <% end %>
       <%= link_to '>>もっとみる', shop_reviews_path(@shop.id) %>
-      <%= render 'user/reviews/form', shop: @shop, review: @review %>
+      <div id='review_form'>
+        <%= render 'user/reviews/form', shop: @shop, review: @review %>
+      </div>
 
     </div>
     <div class="author-edit">

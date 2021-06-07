@@ -13,9 +13,9 @@
               <h4 class="fas fa-store">&nbsp;<%= shop.shop_name %></h4></br>
               <h6 class="fas fa-star">&nbsp;
                 <% if shop.reviews.average(:rate) == nil %>
-                0.0
+                評価なし
                 <% else %>
-                <%= shop.reviews.average(:rate) %>
+                <%= shop.reviews.average(:rate).round(1) %>
                 <% end %>
               </h6></br>
               <h6 class="fas fa-comment-dots">&emsp;<%= shop.reviews.count %></h6>

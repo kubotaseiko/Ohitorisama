@@ -33,10 +33,7 @@
           スペースを入力することで複数のタグを付けることができます。</br>
           例：居酒屋 コロナ対策
         </p>
-        
-          <div id="rating-form">
-            <label>Rating</label>
-          </div>
+
 
         <%= button_tag :method => :get, :class => "btn", onfocus: "this.blur();" do %>
         <span class= "col btnripple">
@@ -44,7 +41,7 @@
         </span>
         <% end %>
       <% end %>
-      
+
       </ul>
 
       </div>
@@ -53,11 +50,3 @@
 
   </div>
 </div>
-
-<script>
-  $('#rating-form').raty({
-    path: '/assets/',
-    scoreName: 'review[rating]'
-  });
-</script>
-
