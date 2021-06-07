@@ -7,7 +7,7 @@ class Shop < ApplicationRecord
 
   attachment :shop_image
 
-  # mapに使用
+  # GoogleMapに使用
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
 
@@ -29,7 +29,7 @@ class Shop < ApplicationRecord
       self.tags << new_shop_tag
     end
   end
-  
+
 
   def self.search(keyword)
     where(["shop_name like? OR address like?", "%#{keyword}%", "%#{keyword}%"])

@@ -1,97 +1,82 @@
-<div class='container' >
-  <%= render 'user/shops/shop_details_top', shop: @shop %>
+<div class='container'>
 
-  <!--星評価-->
-  <div class="average-review-rating" data-score=<%= @shop.reviews.average(:rate) %>></div>
-  <!--bookmarkボタン-->
-  <%= render 'user/bookmarks/bookmark_button', shop: @shop %>
-
-　<h5>おすすめしているユーザー</h5>
-  <%= attachment_image_tag @user, :profile_image, size: '50x50', fallback: 'no_image.jpg' %></td>
-  <%= link_to @user.name, user_path(@user.id) %>さん</td>
-
-
-<table>
-  <tr>
-    <th>紹介</th>
-    <td><%= @shop.introduction %></td>
-  </tr>
-  <tr>
-    <th>住所</th>
-    <td><%= @shop.address %></td>
-  </tr>
-  <tr>
-    <th>電話番号</th>
-    <td><%= @shop.tell %></td>
-  </tr>
-  <tr>
-    <th>定休日</th>
-    <td><%= @shop.holiday %></td>
-  </tr>
-</table>
+  <div cladd="col-12">
+    <!--地図の表示-->
+    <%= render 'user/shops/map', shop: @shop %>
+    <div class="shop-title">
+      <%= @shop.shop_name %>
+      <!--bookmarkボタン-->
+      <%= render 'user/bookmarks/bookmark_button', shop: @shop %>
+    </div>
+  </div>
 
 
-<!--地図の表示-->
+  <div class="row pl-5 pr-5 pt-5">
+    <div class="col-lg-6 col-12">
+      <%= attachment_image_tag @shop, :shop_image, :fill, 500, 500, format: 'jpeg' %>
+    </div>
 
-<div id="map"></div>
-・・・
+    <div class="col-lg-5 col-12 ml-3">
+      <div class="row">
+        <div class="col-lg-9 col-12">
+          <%= @shop.introduction %>
+          <!--星評価-->
+          <div class="average-review-rating" data-score=<%= @shop.reviews.average(:rate) %>></div>
+        </div>
+        <div class="col-lg-3 col-12">
+          <p><%= link_to @user.name, user_path(@user.id) %>さん</p>
+          <%= attachment_image_tag @user, :profile_image, size: '30x30', fallback: 'no_image.jpg' %>
+        </div>
+      </div>
 
-<style>
-#map{
-  height: 180px;
-  width:350px;
-}
-</style>
+      <div class='pt-3'>
+        <table>
+          <tr>
+            <th>住所</th>
+            <td><%= @shop.address %></td>
+          </tr>
+          <tr>
+            <th>電話番号</th>
+            <td><%= @shop.tell %></td>
+          </tr>
+          <tr>
+            <th>定休日</th>
+            <td><%= @shop.holiday %></td>
+          </tr>
+        </table>
+      </div>
 
-<script type="text/javascript">
-    function initMap() {
+      <!--review-->
+      <h5 class='pt-5'>Review(<%= @shop.reviews.count %>)</h5>
+      <% @shop.reviews.each do |review| %>
+        <table class="table table-sm">
+          <tbody>
+            <td style="width: 15%" class="text-cente" ><%= review.created_at.strftime('%m/%d') %></td>
+            <td style="width: 60%"><%= review.review_text %></td>
+            <td style="width: 15%"><i class="fas fa-star"></i><%= review.rate %></div><td>
+            <td style="width: 5%">
+              <%= attachment_image_tag @user, :profile_image, size: '20x20', fallback: 'no_image.jpg' %>
+            </td>
+            <td style="width: 5%">
+              <% if review.user == current_user %>
+                <%= link_to  shop_review_path(review.shop, review), method: :delete do %>
+                  <i class="fas fa-times-circle"></i>
+                <% end %>
+              <% end %>
+            <td>
+          </tbody>
+        </table>
+        <%= link_to '>>もっとみる', shop_reviews_path(@shop.id) %>
+      <% end %>
+      <%= render 'user/reviews/form', shop: @shop, review: @review %>
 
-        var test ={lat: <%= @shop.latitude %>, lng: <%= @shop.longitude %>};
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 15,
-            center: test
-        });
-        var transitLayer = new google.maps.TransitLayer();
-        transitLayer.setMap(map);
-
-        var contentString = '住所：<%= @shop.address %>';
-        var infowindow = new google.maps.InfoWindow({
-            content: contentString
-        });
-
-        var marker = new google.maps.Marker({
-            position:test,
-            map: map,
-            title: contentString
-        });
-
-        marker.addListener('click', function() {
-            infowindow.open(map, marker);
-        });
-    }
-</script>
-
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLEMAP'] %>&callback=initMap">
-</script>
-
-
-
-<% if current_user.id == @shop.user_id.to_i %>
-<%= link_to '編集', edit_shop_path(@shop.id) %>
-<%= link_to '削除', shop_path(@shop.id), method: :delete, "data-confirm" => "本当に消しますか？" %>
-<% end %>
-
-
+    </div>
+    <div class="author-edit">
+    <% if current_user.id == @shop.user_id.to_i %>
+      <%= link_to '編集', edit_shop_path(@shop.id) %>
+      <%= link_to '削除', shop_path(@shop.id), method: :delete, "data-confirm" => "本当に消しますか？" %>
+    <% end %>
+  </div>
 
 </div>
 
-<script>
-  $('.average-review-rating').raty({
-    readOnly: true,
-    path: '/assets/',
-    score: function() {
-      return $(this).attr('data-score')
-    }
-  });
-</script>

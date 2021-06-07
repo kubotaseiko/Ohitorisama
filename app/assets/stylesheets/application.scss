@@ -17,6 +17,13 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
+header {
+  height: 100px;
+  width: 100%;
+  background-image: url(img/header-image.png);
+  background-attachment: fixed;
+}
+
 /* リンクの色: 黒、下線付与 */
 a {
   color: #000;
@@ -31,4 +38,12 @@ a:hover {
 /* ナビゲーションバーの下線はなし */
 nav a {
   text-decoration: none;
+}
+
+// 新規投稿
+.new-post {
+position: fixed; /* 要素の位置を固定する */
+bottom: 20px; /* 基準の位置を画面の一番下に指定する */
+right: 50px; /* 基準の位置を画面の一番右に指定する */
+width: 100px; /* 幅を指定する */
 }

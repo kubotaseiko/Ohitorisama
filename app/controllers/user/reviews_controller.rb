@@ -6,7 +6,7 @@ class User::ReviewsController < ApplicationController
     review = @shop.reviews.new(review_params)
     review.user_id = current_user.id
     if review.save
-      redirect_to shop_reviews_path(@shop.id)
+      redirect_to shop_path(@shop.id)
     else
       redirect_to shop_path(@shop.id)
     end

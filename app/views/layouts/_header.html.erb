@@ -10,7 +10,6 @@
       <ul class="navbar-nav ml-auto">
         <li class:"nav-link text-light"><%= link_to ' mypege',user_path(current_user) %></li>
         <li class:"nav-link text-light ml-1"><%= link_to ' shops', shops_path %></li>
-        <li class:"nav-link text-light"><%= link_to ' new!', new_shop_path %></li>
         <li class:"nav-link text-light"><%= link_to ' logout', destroy_user_session_path, method: :delete %></li>
       <% else %>
         <li class:"nav-link text-light"><%= link_to ' Home', root_path  %></li>
