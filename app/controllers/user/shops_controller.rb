@@ -2,13 +2,16 @@ class User::ShopsController < ApplicationController
 
   def index
     @tag_list = Tag.all
-    @shops = Shop.all
+    @shops = Shop.all.page(params[:page]).reverse_order
+    @tweets = Tweet.all
+    @tweet = Tweet.new
   end
 
   def show
     @shop = Shop.find(params[:id])
     @shop_tags = @shop.tags
     @user = @shop.user
+    @review = Review.new
   end
 
   def new
@@ -62,7 +65,7 @@ class User::ShopsController < ApplicationController
   private
 
   def shop_params
-     params.require(:shop).permit(:shop_name, :shop_image, :introduction, :address, :tell, :holiday)
+     params.require(:shop).permit(:shop_name, :shop_image, :introduction, :address, :tell, :holiday, :latitude, :longitude)
   end
 
 end

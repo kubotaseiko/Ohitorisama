@@ -1,0 +1,57 @@
+<div class="row">
+
+  <% shops.each do |shop| %>
+  <div class="col-md-6 mb-2">
+    <div class="card" style="width: 25rem;">
+
+      <div class="card-header p-0">
+        <div class="zoomInText">
+          <%= link_to shop_path(shop.id) do %>
+           <span class="mask">
+              <%= attachment_image_tag shop, :shop_image, size: '200x200', format: 'jpeg', class: "card-img" %>
+              <span class="cap">
+              <h4 class="fas fa-store">&nbsp;<%= shop.shop_name %></h4></br>
+              <h6 class="fas fa-star">&nbsp;
+                <% if shop.reviews.average(:rate) == nil %>
+                0.0
+                <% else %>
+                <%= shop.reviews.average(:rate) %>
+                <% end %>
+              </h6></br>
+              <h6 class="fas fa-comment-dots">&emsp;<%= shop.reviews.count %></h6>
+              </span>
+            </span>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <div class="">
+          <%= link_to user_path(shop.user.id) do %>
+            <%= attachment_image_tag shop.user, :profile_image, size: '30x30', format: 'jpeg', fallback: "no_image.jpeg" %>
+          <% end %>
+        </div>
+        <!--tag-->
+        <div class='tags-button'>
+          <i class="fas fa-tags"></i>
+          <% shop.tags.each do |tag| %>
+            <%= link_to tag.tag_name, tag_shops_path(tag_id: tag.id), class: "btn btn-sm btn-outline-info" %>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+
+<script>
+  $('.average-review-rating').raty({
+    readOnly: true,
+    path: '/assets/',
+    score: function() {
+      return $(this).attr('data-score')
+    }
+  });
+</script>

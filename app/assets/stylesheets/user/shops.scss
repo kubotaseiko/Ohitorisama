@@ -1,3 +1,82 @@
 // Place all the styles related to the user/shops controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.shop-main-visual {
+  color: #fff;
+  width: 100%;
+  height: 200px;
+  background-image: image-url('main.jpg');
+  background-size: cover;
+  background-position: center;
+  text-align: right;
+  padding-right: 20px;
+  padding-top: 150px;
+}
+
+.shop-title {
+  width: 100%;
+  text-align: center;
+}
+
+.author-edit {
+  width: 100%;
+  text-align: right;
+}
+
+//====== shop詳細表示======
+
+.zoomInText{/*テキストの基点となる位置を定義*/
+	position: relative;
+}
+
+.zoomInText span.mask{
+	position: relative;
+	transition: .3s ease-in-out;/*移り変わる速さを変更したい場合はこの数値を変更*/
+	display: block;/*画像をくくるspanタグをブロック要素にする*/
+  line-height: 0;/*行の高さを0にする*/
+  overflow:hidden;/*拡大してはみ出る要素を隠す*/
+}
+
+.zoomInText:hover span.mask::before{/*hoverした時の変化*/
+	content:"";
+	position: absolute;
+	z-index:2;
+	top:10px;
+	left:10px;
+	width: calc(100% - 20px);
+  height: calc(100% - 20px);
+	background:rgba(0,0,0,0.5);/*背景色*/
+}
+
+.zoomInText img{
+	transform: scale(1);
+	filter: blur(0);
+	transition: .3s ease-in-out;/*移り変わる速さを変更したい場合はこの数値を変更*/
+}
+
+.zoomInText:hover img{/*hoverした時の変化*/
+	transform: scale(1.2);/*拡大の値を変更したい場合はこの数値を変更*/
+	filter: blur(2px);/*ぼかし具合を変更したい場合はこの数値を変更*/
+}
+
+.zoomInText span.cap{
+	opacity:0;
+	transition: .5s ease-in-out;/*移り変わる速さを変更したい場合はこの数値を変更*/
+	position: absolute;
+	z-index:3;/*テキストを前面に出す*/
+	top: 50%;
+  left: 50%;
+	transform: translate(-50%,-50%);
+	color: #fff;/*テキストの色を変えたい場合はここを修正*/
+  line-height: 1.5;/*行の高さを1.5にする*/
+}
+
+.zoomInText:hover span.cap{/*hoverした時の変化*/
+	opacity:1;
+}
+
+.card-img {
+    max-width: 100%;
+    flex-shrink:0;
+ }

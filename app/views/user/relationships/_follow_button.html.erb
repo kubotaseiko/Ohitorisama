@@ -1,12 +1,12 @@
-
-<% if current_user != user %>
-  <% if current_user.following?(user) %>
-    <%= link_to relationship_path(user.id), method: :delete do %>
-    フォローを外す
-    <% end %>
-  <% else %>
-    <%= link_to relationships_path(followed_id: user.id), method: :post do %>
-    フォローする
-    <% end %>
-  <% end %>
-<% end %>
+<div class='follow-link'>
+  <table>
+    <tr>
+      <th>follow</th>
+      <th>follower</th>
+    </tr>
+    <tr>
+      <td class="text-center"><%= link_to @user.following.count, followings_user_path(@user) %></td>
+      <td class="text-center"><%= link_to @user.followers.count, followers_user_path(@user) %></td>
+    </tr>
+  </table>
+</div>

@@ -1,15 +1,11 @@
 <% if user_signed_in? %>
 
   <%= form_with(model:[shop, review]) do |f| %>
-  <div class="row mx-auto w-50">
-    <div class="col mb-2 mt-5 text-center">
-      <%= f.text_area :review_text, rows:'5',placeholder: "review", size: "30" %>
+      <%= f.text_area :review_text, rows:'8',placeholder: "review", size: "50" %>
         <div id="rate-form">
           <label>Rating</label>
         </div>
        <%= f.submit "送信" %>
-    </div>
-  </div>
   <% end %>
 
 <% end %>
