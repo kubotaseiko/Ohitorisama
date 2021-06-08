@@ -1,12 +1,15 @@
 <div class='follow-link'>
-  <table>
-    <tr>
-      <th>follow</th>
-      <th>follower</th>
-    </tr>
-    <tr>
-      <td class="text-center"><%= link_to @user.following.count, followings_user_path(@user) %></td>
-      <td class="text-center"><%= link_to @user.followers.count, followers_user_path(@user) %></td>
-    </tr>
-  </table>
+
+  <% if current_user != user %>
+  <% if current_user.following?(user) %>
+    <%= link_to relationship_path(user.id), method: :DELETE do  %>
+    <div class="btn btn-outline-dark btn-sm">フォローを外す</div>
+    <% end %>
+  <% else %>
+    <%= link_to relationships_path(followed_id: user.id), method: :POST do %>
+    <div class="btn btn-dark btn-sm">フォロー</div>
+    <% end %>
+  <% end %>
+<% end %>
+  
 </div>

@@ -17,11 +17,41 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
-header {
-  height: 100px;
+.top-image {
   width: 100%;
-  background-image: url(img/header-image.png);
+  height: 800px;
+  background-image: image-url('top-image.jpg');
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  padding-top: 300px;
+  margin-bottom: 0;
+}
+
+
+div {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+header {
+  height: 50px;
+  width: 100%;
+  background-color: #FFF;
+  opacity: 0.8;
+  // background-image: url(img/header-image.png);
   background-attachment: fixed;
+}
+
+footer {
+  height: 50px;
+  width: 100%;
+  background-color: #FFF;
+  opacity: 1;
+}
+
+.footer-area{
+  height: 50px;
+  width: 100%;
 }
 
 .page-title {
@@ -50,8 +80,22 @@ nav a {
 
 // 新規投稿
 .new-post {
-position: fixed; /* 要素の位置を固定する */
-bottom: 20px; /* 基準の位置を画面の一番下に指定する */
-right: 50px; /* 基準の位置を画面の一番右に指定する */
-width: 100px; /* 幅を指定する */
+  position: fixed; /* 要素の位置を固定する */
+  bottom: 20px; /* 基準の位置を画面の一番下に指定する */
+  right: 50px; /* 基準の位置を画面の一番右に指定する */
+  width: 100px; /* 幅を指定する */
+}
+
+// form
+div.form-area {
+    margin-top: 30px;
+    padding: 8px;
+    border: 1px solid #aaa;
+    border-radius: .25rem;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.tag-style {
+
 }

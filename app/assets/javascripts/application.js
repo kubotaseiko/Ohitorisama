@@ -48,7 +48,7 @@ $('.tab a').on('click', function() {
 });
 
 // 上記の動きをページが読み込まれたらすぐに動かす
-$(window).on('load', function () {
+$(window).on('turbolinks:load', function () {
     $('.tab li:first-of-type').addClass("active"); //最初のliにactiveクラスを追加
     $('.area:first-of-type').addClass("is-active"); //最初の.areaにis-activeクラスを追加
   var hashName = location.hash; //リンク元の指定されたURLのハッシュタグを取得

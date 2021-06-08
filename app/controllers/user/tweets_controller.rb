@@ -2,23 +2,20 @@ class User::TweetsController < ApplicationController
 
   def create
     @shop = Shop.new
-    @tweet = Tweet.new(tweet_params)
-    @tweet.user_id = current_user.id
-    if @tweet.save
-      redirect_to tweets_path
-    else
-      render 'index'
-    end
+    tweet = Tweet.new(tweet_params)
+    tweet.user_id = current_user.id
+    tweet.save
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
     tweet = Tweet.find(params[:id])
     tweet.destroy
-    redirect_to tweets_path
+    redirect_back(fallback_location: root_path)
   end
 
   def tweet_params
-     params.permit(:tweet)
+    params.require(:tweet).permit(:tweet)
   end
-
+  
 end

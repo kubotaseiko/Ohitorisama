@@ -50,8 +50,10 @@ class User::ShopsController < ApplicationController
 
   def search
     @tag_list = Tag.all
-    @shops = Shop.search(params[:keyword])
+    @shops = Shop.search(params[:keyword]).page(params[:page]).reverse_order
     @keyword = params[:keyword]
+    @tweets = Tweet.all
+    @tweet = Tweet.new
     render 'index'
   end
 

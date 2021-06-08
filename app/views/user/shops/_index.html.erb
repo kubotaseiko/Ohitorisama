@@ -10,12 +10,12 @@
            <span class="mask">
               <%= attachment_image_tag shop, :shop_image, size: '200x200', format: 'jpeg', class: "card-img" %>
               <span class="cap">
-              <h4 class="fas fa-store">&nbsp;<%= shop.shop_name %></h4></br>
+              <h4 class="shop-name"><%= shop.shop_name %></h4></br>
               <h6 class="fas fa-star">&nbsp;
                 <% if shop.reviews.average(:rate) == nil %>
-                評価なし
+                  評価なし
                 <% else %>
-                <%= shop.reviews.average(:rate).round(1) %>
+                  <%= shop.reviews.average(:rate).round(1) %>
                 <% end %>
               </h6></br>
               <h6 class="fas fa-comment-dots">&emsp;<%= shop.reviews.count %></h6>
@@ -25,21 +25,21 @@
         </div>
       </div>
 
-      <div class="card-body">
-        <div class="">
-          <%= link_to user_path(shop.user.id) do %>
-            <%= attachment_image_tag shop.user, :profile_image, size: '30x30', format: 'jpeg', fallback: "no_image.jpeg" %>
-          <% end %>
-        </div>
+      <!--<div class="card-body">-->
+        <!--<div class="">-->
+        <!--  <%= link_to user_path(shop.user.id) do %>-->
+        <!--    <%= attachment_image_tag shop.user, :profile_image, size: '30x30', format: 'jpeg', fallback: "no_image.jpeg", class: "rounded-circle" %>-->
+        <!--  <% end %>-->
+        <!--</div>-->
         <!--tag-->
-        <div class='tags-button'>
-          <i class="fas fa-tags"></i>
-          <% shop.tags.each do |tag| %>
-            <%= link_to tag.tag_name, tag_shops_path(tag_id: tag.id), class: "btn btn-sm btn-outline-info" %>
-          <% end %>
-        </div>
-
-      </div>
+      <!--  <div class='tags-button'>-->
+      <!--    <i class="fas fa-tags"></i>-->
+      <!--    <% shop.tags.each do |tag| %>-->
+      <!--      <%= link_to tag.tag_name, tag_shops_path(tag_id: tag.id), class: "tag-style" %>-->
+      <!--    <% end %>-->
+      <!--  </div>-->
+      <!--</div>-->
+      
     </div>
   </div>
   <% end %>

@@ -1,26 +1,26 @@
-<div class='container'>
 
-  <div cladd="col-12">
-    <!--地図の表示-->
-    <%= render 'user/shops/map', shop: @shop %>
-    <div class="shop-title">
-      <%= @shop.shop_name %>
-      <!--bookmarkボタン-->
-      <%= render 'user/bookmarks/bookmark_button', shop: @shop %>
-    </div>
+<div class='container'>
+    <div cladd="col-12 mt-5">
+      <!--地図の表示-->
+      <%= render 'user/shops/map', shop: @shop %>
   </div>
 
 
-  <div class="row pl-5 pr-5 pt-2">
-    <div class="col-lg-6 col-12">
-      <%= attachment_image_tag @shop, :shop_image, :fill, 500, 500, format: 'jpeg' %>
+  <div class="row pl-4 pt-5">
+    <div class="col-lg-5 col-12">
+      <%= attachment_image_tag @shop, :shop_image, :fill, 400, 400, format: 'jpeg', class: 'rounded' %>
+      <div class="shop-title">
+        <%= @shop.shop_name %>
+        <!--bookmarkボタン-->
+        <%= render 'user/bookmarks/bookmark_button', shop: @shop %>
+      </div>
     </div>
 
-    <div class="col-lg-5 col-12 ml-3">
+    <div class="col-lg-7 col-12">
       <div class="row">
         <div class="col-lg-9 col-12">
           <!--星評価-->
-          <h3 class="fas fa-star">&nbsp;
+          <h3 class="far fa-star mt-3">&nbsp;
             <% if @shop.reviews.average(:rate) == nil %>
             評価なし
             <% else %>
@@ -30,19 +30,20 @@
           <%= @shop.introduction %>
         </div>
         <div class="col-lg-3 col-12">
-          <p><%= link_to @user.name, user_path(@user.id) %>さん</p>
-          <%= attachment_image_tag @user, :profile_image, size: '30x30', fallback: 'no_image.jpg' %>
+          <%= link_to user_path(@user.id) do %>
+            <%= attachment_image_tag @user, :profile_image, size: '80x80', fallback: 'no_image.jpg', class: "rounded-circle" %>
+          <% end %>
         </div>
       </div>
 
-      <div class='pt-3'>
+      <div class='m-5'>
         <table>
           <tr>
-            <th>住所</th>
-            <td><%= @shop.address %></td>
+            <th style="width: 20%">住所</th>
+            <td style="width: 80%"><%= @shop.address %></td>
           </tr>
           <tr>
-            <th>電話番号</th>
+            <th>Tel</th>
             <td><%= @shop.tell %></td>
           </tr>
           <tr>
@@ -53,15 +54,14 @@
       </div>
 
       <!--review-->
-      <h5 class='pt-5'>Review(<%= @shop.reviews.count %>)</h5>
       <% @shop.reviews.each do |review| %>
         <table class="table table-sm">
           <tbody>
             <td style="width: 15%" class="text-cente" ><%= review.created_at.strftime('%m/%d') %></td>
             <td style="width: 60%"><%= review.review_text %></td>
-            <td style="width: 15%"><i class="fas fa-star"></i><%= review.rate %></div><td>
+            <td style="width: 15%"><i class="far fa-star"></i>&nbsp;<%= review.rate %></div><td>
             <td style="width: 5%">
-              <%= attachment_image_tag @user, :profile_image, size: '20x20', fallback: 'no_image.jpg' %>
+              <%= attachment_image_tag @user, :profile_image, size: '30x30', fallback: 'no_image.jpg', class: "rounded-circle" %>
             </td>
             <td style="width: 5%">
               <% if review.user == current_user %>
@@ -69,22 +69,24 @@
                   <i class="fas fa-times-circle"></i>
                 <% end %>
               <% end %>
-            <td>
+            </td>
           </tbody>
         </table>
       <% end %>
-      <%= link_to '>>もっとみる', shop_reviews_path(@shop.id) %>
+      <%= link_to '>>もっとみる', shop_reviews_path(@shop.id), class: 'text-right' %>
       <div id='review_form'>
         <%= render 'user/reviews/form', shop: @shop, review: @review %>
       </div>
 
     </div>
+  </div>
+
     <div class="author-edit">
     <% if current_user.id == @shop.user_id.to_i %>
       <%= link_to '編集', edit_shop_path(@shop.id) %>
       <%= link_to '削除', shop_path(@shop.id), method: :delete, "data-confirm" => "本当に消しますか？" %>
     <% end %>
-  </div>
+    </div>
 
 </div>
 

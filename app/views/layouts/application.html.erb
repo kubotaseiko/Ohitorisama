@@ -9,13 +9,19 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://kit.fontawesome.com/4c89741d8a.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Modaal/0.4.4/css/modaal.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap" rel="stylesheet">
   </head>
 
   <body>
 
-  <%= render 'layouts/header' %>
+  <% if admin_signed_in? %>
+    <%= render "layouts/admin_header" %>
+  <% else %>
+    <%= render "layouts/header" %>
+  <% end %>
 
-      <%= yield %>
+  <%= yield %>
       
   <% if user_signed_in? %>
   <div class="new-post">
@@ -26,5 +32,7 @@
   </div>
 
 </body>
+<div class="footer-area">
+<%= render "layouts/footer" %>
 
 </html>

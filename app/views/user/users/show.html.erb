@@ -1,19 +1,32 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
-      <%= attachment_image_tag @user, :profile_image, size: "100x100", fallback: "no_image.jpeg" %>
+    <div class="col-md-5 m-5">
+      <%= attachment_image_tag @user, :profile_image, size: "100x100", fallback: "no_image.jpeg", class: 'rounded-circle' %>
       <h1><%= @user.name %></h1>
       <a><%= @user.introduction %><a>
-    </div>
-    <div class="col-md-6">
-      <!--フォロー・フォロワー数-->
+      <% if current_user.id == @user.id.to_i %>
+        <%= link_to '編集', edit_user_path(@user.id), class: "btn btn-outline-dark btn-sm" %>
+      <% end %>
+      <!--フォローボタン-->
       <%= render 'user/relationships/follow_button', user: @user %>
+    </div>
+    <div class="col-md-3 mt-5">
+      <!--フォロー・フォロワー数-->
+      <div class="follow-link">
+        <table>
+          <tr>
+            <th>follow</th>
+            <th>follower</th>
+          </tr>
+          <tr>
+            <td class="text-center"><%= link_to @user.following.count, followings_user_path(@user) %></td>
+            <td class="text-center"><%= link_to @user.followers.count, followers_user_path(@user) %></td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 
-  <% if current_user.id == @user.id.to_i %>
-    <%= link_to '編集', edit_user_path(@user.id) %>
-  <% end %>
 
 
   <div class="row">
@@ -25,25 +38,25 @@
       </ul>
     </div>
   </div>
-  
 
-  
+
+
   <div id="user" class="area">
-    <div class="row"> 
+    <div class="row">
       <div class="tweet col-md-3">
           <% if current_user.id == @user.id.to_i %>
             <!--つぶやき投稿フォーム-->
             <%= render 'user/tweets/post_tweet', tweet: @tweet %>
           <% end %>
-          <!--つぶやき一覧-->
-          <%= render 'user/tweets/index', tweets: @tweets, tweet: @tweet %>
+            <!--つぶやき一覧-->
+            <%= render 'user/tweets/index', tweets: @tweets, tweet: @tweet %>
       </div>
-      
+
       <div class="col-md-9">
         <%= render 'user/shops/index', shops: @shops %>
       </div>
     </div>
-    
+
   </div>
 
     <div id="bookmarks" class="area">

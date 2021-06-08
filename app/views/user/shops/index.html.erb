@@ -1,39 +1,41 @@
-<div class='container'>
 
-  <div class'row'>
-    <div class='shop-main-visual'>
-      <div class="search-form">
-        <%= form_with url: search_path, method: :get, local: true do |f| %>
-          <%= f.text_field :keyword, value: @keyword %>
-          <button type="submit" class="search-btn">
-            <i class="fas fa-search" aria-hidden="true"></i>
-          </button>
-        <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-12 mt-5">
+      <%= render 'user/shops/index', shops: @shops %>
+      <div class="text-center mt-5">
+      <%= form_with url: search_path, method: :get, local: true do |f| %>
+        <%= f.text_field :keyword, value: @keyword %>
+        <button type="submit" class="search-btn">
+          <i class="fas fa-search" aria-hidden="true"></i>
+        </button>
+      <% end %>
       </div>
+      <div class="col-5 "><%= paginate @shops %></div>
     </div>
   </div>
-
 
   <div class="row">
-    <div class="col-lg-9 col-xs-12 mt-4">
-      <%= render 'user/shops/index', shops: @shops %>
-    </div>
-    <div class="col-lg-3 col-xs-12 mt-5">
-      <h5 class="fas fa-tags">&nbsp;tag</h5>
-      <div class="tag-style">
-        <% @tag_list.each do |list| %>
-          <%= link_to list.tag_name, tag_shops_path(tag_id: list.id), class: "btn btn-sm btn-outline-info" %>
-        <% end %>
-      </div>
-
-      <div class='tweet-area mt-4'>
-        <%= render 'user/tweets/post_tweet', tweet: @tweet %>
-        <%= render 'user/tweets/index', tweets: @tweets %>
+    <div class="col-md-8 mt-5 offset-md-2 text-center">
+        <h5 class="fas fa-tags ">&nbsp;tag</h5>
+        <div class="tag-style p-3">
+          <% @tag_list.each do |list| %>
+            <%= link_to list.tag_name, tag_shops_path(tag_id: list.id), class: "btn btn-outline-dark btn-sm" %>
+          <% end %>
       </div>
     </div>
-    <%= paginate @shops %>
   </div>
 
+  <div class="row">
+    <% if user_signed_in? %>
+      <div class="mx-auto w-75 mt-5 text-center">
+        <div class='tweet-area mt-2'>
+          <%= render 'user/tweets/post_tweet', tweet: Tweet.new %>
+          <%= render 'user/tweets/index', tweets: @tweets %>
+        </div>
+      </div>
+    <% end %>
 
 
+  </div>
 </div>

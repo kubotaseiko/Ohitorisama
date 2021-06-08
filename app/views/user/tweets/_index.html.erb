@@ -1,14 +1,15 @@
-<div>
 <% tweets.order('updated_at DESC').each do |tweet|  %>
-  <div>
-  <%= attachment_image_tag tweet.user, :profile_image, size: '25x25', fallback: 'no_image.jpg' %>
-  <%= tweet.user.name %>さん
-  </div>
-  <div>
-  <%= tweet.tweet %>
-  <% if current_user.id == tweet.user_id.to_i %>
-  <%= link_to '削除する', '/tweets', method: :delete, "data-confirm" => "本当に消しますか？" %>
-  <% end %>
-  </div>
+  <table class="table table-sm">
+    <td style="width: 20%" class="text-cente">
+      <%= attachment_image_tag tweet.user, :profile_image, size: '40x40', fallback: 'no_image.jpg', class: 'rounded-circle' %></br>
+      <%= tweet.user.name %>さん
+    <td style="width: 75%"><%= tweet.tweet %></td>
+    <td style="width: 5%">
+      <% if current_user.id == tweet.user_id.to_i %>
+        <%= link_to tweet_path(tweet.id), method: :delete, "data-confirm" => "本当に消しますか？" do %>
+          <i class="fas fa-times-circle"></i>
+        <% end %>
+      <% end %>
+    </td>
+  </table>
 <% end %>
-</div>
