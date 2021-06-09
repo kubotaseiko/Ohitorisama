@@ -36,6 +36,8 @@ Rails.application.routes.draw do
       get 'thanks' => 'contacts#thanks'
     end
 
+    resources :notifications, only: :index
+
   end
 
 
