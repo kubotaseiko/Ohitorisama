@@ -7,6 +7,9 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
           <li class="nav-link">
+            <%= render 'user/partial/circle' %>
+          </li>
+          <li class="nav-link">
             <%= link_to 'MyPage',user_path(current_user) %>
           </li>
           <li class="nav-link">

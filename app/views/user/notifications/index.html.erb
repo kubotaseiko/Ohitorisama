@@ -1,0 +1,13 @@
+<div class='container'>
+  <div class="row g-3">
+    <div class="form-area col-lg-6 p-5 offset-md-3">
+      <% notifications = @notifications.where.not(visitor_id: current_user.id) %>
+      <% if notifications.exists? %>
+        <%= render notifications %>
+        <%= paginate notifications %>
+      <% else %>
+        通知はありません
+      <% end %>
+    </div>
+  </div>
+</div>

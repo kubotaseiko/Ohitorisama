@@ -1,0 +1,39 @@
+<% visitor = notification.visitor %>
+<% visited = notification.visited %>
+<div class='.col-md-6.mx-auto'>
+  <div class='form-inline'>
+    <li>
+    <span>
+      <%= link_to user_path(visitor) do %>
+        <%= attachment_image_tag visitor, :profile_image, size: '20x20', fallback: 'no_image.jpg', class: "icon_mini" %>
+        <%= visitor.name %>さんが
+      <% end %>
+    </span>
+      <% case notification.action %>
+      <% when 'follow' then %>
+        あなたをフォローしました
+      <% when 'bookmark' then %>
+        <%= link_to 'あなたの投稿', notification.shop, style: "font-weight: bold;" %>
+        をbookmarkしました
+      <% when 'review' then %>
+        <% if notification.shop.user_id == visited.id %>
+          <%= link_to "あなたの投稿", notification.shop, style: "font-weight: bold;" %>
+        <% else %>
+          <span>
+            <%= link_to shop_path(notification.shop) do %>
+              <%= attachment_image_tag visitor, :profile_image, size: '20x20', fallback: 'no_image.jpg', class: "icon_mini" %>
+              <%= notification.shop.user.name + 'さんの投稿' %>
+            <% end %>
+            のレビューを投稿しました
+            <p class="text-muted mb-0">
+              <%= Review.find_by(id: notification.review_id)&.review %>
+            </p>
+          </span>
+        <% end %>
+      <% end %>
+    <span class="small text-muted text-right">
+      &thinsp;<%= time_ago_in_words(notification.created_at).upcase %>前
+    </span>
+  </li>
+  </div>
+</div>
