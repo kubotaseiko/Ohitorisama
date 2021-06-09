@@ -3,17 +3,16 @@
     <div cladd="col-12 mt-5">
       <!--地図の表示-->
       <%= render 'user/shops/map', shop: @shop %>
-  </div>
- <%= @shop.latitude %>
- <%= @shop.longitude %>
-  <div class="row pl-4 pt-5">
-    <div class="col-lg-5 col-12">
-      <%= attachment_image_tag @shop, :shop_image, :fill, 400, 400, format: 'jpeg', class: 'rounded' %>
       <div class="shop-title">
         <%= @shop.shop_name %>
         <!--bookmarkボタン-->
         <%= render 'user/bookmarks/bookmark_button', shop: @shop %>
       </div>
+  </div>
+
+  <div class="row pl-4 pt-5">
+    <div class="col-lg-5 col-12">
+      <%= attachment_image_tag @shop, :shop_image, :fill, 400, 400, format: 'jpeg', class: 'rounded' %>
     </div>
 
     <div class="col-lg-7 col-12">

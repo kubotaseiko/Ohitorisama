@@ -14,6 +14,8 @@ class User::TweetsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+private
+
   def tweet_params
     params.require(:tweet).permit(:tweet)
   end
