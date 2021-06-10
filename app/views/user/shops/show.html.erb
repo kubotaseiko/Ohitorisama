@@ -20,10 +20,10 @@
         <div class="col-lg-9 col-12">
           <!--星評価-->
           <h3 class="far fa-star mt-3">&nbsp;
-            <% if @shop.reviews.average(:rate) == nil %>
+            <% if @shop.rate_average == nil %>
             評価なし
             <% else %>
-            <%= @shop.reviews.average(:rate).round(1) %>
+            <%= @shop.rate_average.round(1) %>
             <% end %>
           </h3></br>
           <%= @shop.introduction %>
