@@ -2,13 +2,13 @@ class User::ShopsController < ApplicationController
 
   def index
     @tag_list = Tag.includes(:tagmaps).all
-    @shops = Shop.includes(:user).all.page(params[:page]).reverse_order
+    @shops = Shop.includes(:reviews).all.page(params[:page]).reverse_order
     @tweets = Tweet.includes(:user).all
     @tweet = Tweet.new
   end
 
   def show
-    @shop = Shop.find(params[:id])
+    @shop = Shop.includes(reviews: :user).find(params[:id])
     @shop_tags = @shop.tags
     @user = @shop.user
     @review = Review.new

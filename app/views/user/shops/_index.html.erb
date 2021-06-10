@@ -13,13 +13,13 @@
               <span class="cap">
               <h4 class="shop-name"><%= shop.shop_name %></h4></br>
               <h6 class="fas fa-star">&nbsp;
-                <% if shop.reviews.average(:rate) == nil %>
+                <% if shop.rate_average == nil %>
                   評価なし
                 <% else %>
-                  <%= shop.reviews.average(:rate).round(1) %>
+                  <%= shop.rate_average.round(1) %>
                 <% end %>
               </h6></br>
-              <h6 class="fas fa-comment-dots">&emsp;<%= shop.reviews.count %></h6>
+              <h6 class="fas fa-comment-dots">&emsp;<%= shop.reviews.size %></h6>
               </span>
             </span>
           <% end %>

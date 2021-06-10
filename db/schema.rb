@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_09_051545) do
+ActiveRecord::Schema.define(version: 2021_06_10_095943) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 2021_06_09_051545) do
     t.datetime "updated_at", null: false
     t.float "latitude"
     t.float "longitude"
+    t.float "rate_average"
   end
 
   create_table "tagmaps", force: :cascade do |t|

@@ -54,7 +54,7 @@
 
       <!--review-->
       <%= link_to '>>投稿する', shop_reviews_path(@shop.id), class: 'text-right' %>
-      <% @shop.reviews.includes(:shop).each do |review| %>
+      <% @shop.reviews.each do |review| %>
         <table class="table table-sm">
           <tbody>
             <td style="width: 15%" class="text-cente" ><%= review.created_at.strftime('%m/%d') %></td>
