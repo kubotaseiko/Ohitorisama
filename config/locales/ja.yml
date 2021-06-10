@@ -35,3 +35,19 @@ ja:
       over_x_years:
         one:   "1年以上"
         other: "%{count}年以上"
+  activerecord:
+    attributes:
+      review:
+        review_text: 'レビュー'
+        rate: '★'
+      contact:
+        name: "お名前"
+        email: "メールアドレス"
+        content: "お問い合わせ内容"
+      shop:
+        shop_name: 'お店の名前'
+        shop_image: '写真'
+      　address: '住所'
+      user:
+        name: 'アカウント名'
+        introduction: '自己紹介文'

@@ -5,6 +5,7 @@ class User::TweetsController < ApplicationController
     tweet = Tweet.new(tweet_params)
     tweet.user_id = current_user.id
     tweet.save
+    flash[:notice] = "投稿しました"
     redirect_back(fallback_location: root_path)
   end
 
@@ -19,5 +20,5 @@ private
   def tweet_params
     params.require(:tweet).permit(:tweet)
   end
-  
+
 end

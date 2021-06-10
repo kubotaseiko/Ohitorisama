@@ -1,9 +1,9 @@
 class User::ShopsController < ApplicationController
 
   def index
-    @tag_list = Tag.all
-    @shops = Shop.all.page(params[:page]).reverse_order
-    @tweets = Tweet.all
+    @tag_list = Tag.includes(:tagmaps).all
+    @shops = Shop.includes(:user).all.page(params[:page]).reverse_order
+    @tweets = Tweet.includes(:user).all
     @tweet = Tweet.new
   end
 
@@ -49,18 +49,18 @@ class User::ShopsController < ApplicationController
   end
 
   def search
-    @tag_list = Tag.all
+    @tag_list = Tag.includes(:tagmaps).all
     @shops = Shop.search(params[:keyword]).page(params[:page]).reverse_order
     @keyword = params[:keyword]
-    @tweets = Tweet.all
+    @tweets = Tweet.includes(:user).all
     @tweet = Tweet.new
     render 'index'
   end
 
   def tag_search
-    @tag_list = Tag.all
+    @tag_list = Tag.includes(:tagmaps).all
     @tag = Tag.find(params[:tag_id])
-    @shops = @tag.shops.all
+    @shops = @tag.shops.includes(:tagmaps).all
   end
 
 

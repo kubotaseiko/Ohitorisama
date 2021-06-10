@@ -1,7 +1,7 @@
 <div class='container'>
 
 <h2>投稿一覧</h2>
-　
+
 <% @tag_list.each do |list| %>
   <%= link_to list.tag_name, tag_shops_path(tag_id: list.id) %>
   <%= "(#{list.shops.count})" %>

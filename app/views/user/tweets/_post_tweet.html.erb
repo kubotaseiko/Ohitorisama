@@ -1,7 +1,15 @@
 <div class="">
-<h5 class="fas fa-comments">tweet</h5>
-<%= form_with model: tweet, url:'/tweets', local:true do |f| %>
-  <%= f.text_area :tweet %>
-  <%= f.submit 'つぶやく' %>
-<% end %>
+  <h5 class="fas fa-comments">tweet</h5>
+  <div class='errors-area p-2'>
+    <% if tweet.errors.any? %>
+      <%= tweet.errors.count %>件のエラーが発生しました</br>
+      <% tweet.errors.full_messages.each do |message| %>
+        <li>※&nbsp;<%= message %></li>
+      <% end %>
+    <% end %>
+  </div>
+  <%= form_with model: tweet, url:'/tweets', local:true do |f| %>
+    <%= f.text_area :tweet %>
+    <%= f.submit 'つぶやく' %>
+  <% end %>
 </div>

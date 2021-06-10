@@ -53,7 +53,8 @@
       </div>
 
       <!--review-->
-      <% @shop.reviews.each do |review| %>
+      <%= link_to '>>投稿する', shop_reviews_path(@shop.id), class: 'text-right' %>
+      <% @shop.reviews.includes(:shop).each do |review| %>
         <table class="table table-sm">
           <tbody>
             <td style="width: 15%" class="text-cente" ><%= review.created_at.strftime('%m/%d') %></td>
@@ -73,9 +74,9 @@
         </table>
       <% end %>
       <%= link_to '>>もっとみる', shop_reviews_path(@shop.id), class: 'text-right' %>
-      <div id='review_form'>
-        <%= render 'user/reviews/form', shop: @shop, review: @review %>
-      </div>
+      <!--<div id='review_form'>-->
+      <!--  <%= render 'user/reviews/form', shop: @shop, review: @review %>-->
+      <!--</div>-->
 
     </div>
   </div>
@@ -86,6 +87,5 @@
       <%= link_to '削除', shop_path(@shop.id), method: :delete, "data-confirm" => "本当に消しますか？" %>
     <% end %>
     </div>
-    
-</div>
 
+</div>

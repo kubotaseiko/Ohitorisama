@@ -4,17 +4,26 @@
 
       <div class="page-title">Contact</div>
 
-      <%= form_with(model: @contact, local: true) do |f| %>
-        <ul class="pt-3">
-          <li><%= f.label :name, "お名前" %></li>
-          <li><%= f.text_field :name %></li>
-          <li><%= f.label :email, "mail address" %></li>
-          <li><%= f.email_field :email, autocomplete: "email" %></li>
-          <li><%= f.label :content, "お問い合わせ内容" %></li>
-          <li><%= f.text_area :content, rows:5 %></li>
-          <li><%= f.submit "送信" %></li>
-        </ul>
-      <% end %>
+        <div class='errors-area p-2'>
+          <% if @contact.errors.any? %>
+            <%= @contact.errors.count %>件のエラーが発生しました</br>
+            <% @contact.errors.full_messages.each do |message| %>
+              <li>※&nbsp;<%= message %></li>
+            <% end %>
+          <% end %>
+        </div>
+
+        <%= form_with(model: @contact, local: true) do |f| %>
+          <ul class="pt-3">
+            <li><%= f.label :name, "お名前 ※" %></li>
+            <li><%= f.text_field :name %></li>
+            <li><%= f.label :email, "メールアドレス ※" %></li>
+            <li><%= f.email_field :email, autocomplete: "email" %></li>
+            <li><%= f.label :content, "お問い合わせ内容 ※" %></li>
+            <li><%= f.text_area :content, rows:5 %></li>
+            <li><%= f.submit "送信" %></li>
+          </ul>
+        <% end %>
 
     </div>
   </div>

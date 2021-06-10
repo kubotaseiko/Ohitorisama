@@ -2,8 +2,8 @@ class User::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @shops = @user.shops.all
-    @bookmarks = Bookmark.where(user_id: current_user.id)
+    @shops = @user.shops.includes(:user).all
+    @bookmarks = Bookmark.includes(shop: :user).where(user_id: current_user.id)
     @tweet = Tweet.new
     @tweets = Tweet.where(user_id: @user.following).or(Tweet.where(user_id:  @user.id))
   end
@@ -14,8 +14,11 @@ class User::UsersController < ApplicationController
 
   def update
       @user = User.find(params[:id])
-      @user.update(user_params)
-      redirect_to user_path(@user.id)
+      if @user.update(user_params)
+        redirect_to user_path(@user.id)
+      else
+        render 'edit'
+      end
   end
 
   def quit_confirm

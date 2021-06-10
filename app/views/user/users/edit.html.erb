@@ -1,20 +1,45 @@
-<div class="container">
+<div class='container'>
+  <div class="row g-3 mt-5">
+    <div class="form-area col-lg-6 p-5 offset-lg-3 col-md-12 ">
 
-    <h1>編集</h1>
+      <div class='mb-5 float-right'>
+        <%= link_to '退会する', user_quit_confirm_path, class: "btn btn-outline-dark btn-sm"  %>
+      </div>
 
-<%= form_with model: @user, local:true do |f| %>
-  <h4>アカウント名</h4>
-  <%= f.text_field :name %>
-  <h4>プロフィール画像</h4>
-  <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></br>
-  <%= f.attachment_field :profile_image %>
-  <h4>紹介文</h4>
-  <%= f.text_area :introduction %>
+      <h5>アカウント情報</h5>
 
-  <%= f.submit '投稿' %>
-<% end %>
+      <div class='errors-area p-2'>
+        <% if @user.errors.any? %>
+          <%= @user.errors.count %>件のエラーが発生しました</br>
+          <% @user.errors.full_messages.each do |message| %>
+            <li>※&nbsp;<%= message %></li>
+          <% end %>
+        <% end %>
+      </div>
 
-<%= link_to '退会する', user_quit_confirm_path %>
+      <%= form_with model: @user, local:true do |f| %>
+
+        <div class="field form-group">
+          <%= f.label :'アカウント名' %><br />
+          <%= f.text_field :name %>
+        </div>
+
+        <div class="field form-group">
+          <%= f.label :'プロフィール画像' %><br />
+          <%= attachment_image_tag @user, :profile_image, :fill, 80, 80, fallback: "no_image.jpg", class: "rounded-circle" %></br>
+          </br>
+          <%= f.attachment_field :profile_image %>
+        </div>
+
+        <div class="field form-group">
+          <%= f.label :'自己紹介文' %><br />
+          <%= f.text_area :introduction %>
+        </div>
+
+        <%= f.submit '投稿' %>
+      <% end %>
 
 
+    </div>
+  </div>
 </div>

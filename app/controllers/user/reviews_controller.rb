@@ -2,14 +2,13 @@ class User::ReviewsController < ApplicationController
 
   def create
     @shop = Shop.find(params[:shop_id])
-    @review = Review.new
-    review = @shop.reviews.new(review_params)
-    review.user_id = current_user.id
-    if review.save
+    @review = @shop.reviews.new(review_params)
+    @review.user_id = current_user.id
+    if @review.save
       @shop.create_notification_review!(current_user, @review.id)
-      redirect_to shop_path(@shop.id)
+      redirect_to shop_reviews_path(@shop.id)
     else
-      redirect_to shop_path(@shop.id)
+      render :index
     end
   end
 

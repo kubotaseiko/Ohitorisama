@@ -1,3 +1,11 @@
+<div class='errors-area p-2'>
+  <% if review.errors.any? %>
+    <%= review.errors.count %>件のエラーが発生しました</br>
+    <% review.errors.full_messages.each do |message| %>
+      <li>※&nbsp;<%= message %></li>
+    <% end %>
+  <% end %>
+</div>
 <% if user_signed_in? %>
 
   <%= form_with(model:[shop, review], local: true) do |f| %>

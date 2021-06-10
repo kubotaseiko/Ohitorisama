@@ -24,10 +24,22 @@ class User < ApplicationRecord
 
   attachment :profile_image
 
-  validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
+
+  # =============バリデーション=============
+  validates :name, presence: true, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :introduction, length: { maximum: 50 }
 
-  # フォロー関連
+  # =============ログイン関連=============
+  # 退会後のログインを禁止(deviseメソッド)
+  def active_for_authentication?
+    super && (self.is_valid == true)
+  end
+  # メールアドレスをすべて小文字にする
+  def downcase_email
+    self.email = email.downcase
+  end
+
+  # =============フォロー関連=============
   def follow(other_user)
     active_relationships.create(followed_id: other_user.id)
   end
@@ -40,15 +52,7 @@ class User < ApplicationRecord
    following.include?(other_user)
   end
 
-  # 退会後のログインを禁止(deviseメソッド)
-  def active_for_authentication?
-    super && (self.is_valid == true)
-  end
-  # メールアドレスをすべて小文字にする
-  def downcase_email
-    self.email = email.downcase
-  end
-  
+  # =============通知機能=============
   def create_notification_follow!(current_user)
     temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
     if temp.blank?
