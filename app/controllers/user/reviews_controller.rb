@@ -7,7 +7,7 @@ class User::ReviewsController < ApplicationController
     if @review.save
       @shop.create_notification_review!(current_user, @review.id)
       @shop.rate_average = Review.where(shop_id: @shop.id).average(:rate)
-      @shop.save!
+      @shop.save
       redirect_to shop_reviews_path(@shop.id)
     else
       render :index
