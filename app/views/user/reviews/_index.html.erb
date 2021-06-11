@@ -1,6 +1,6 @@
 <h2>Review</h2>
 <p class='review_count'><%= shop.reviews.count %>件</p>
-<% shop.reviews.includes(:shop).each do |review| %>
+<% shop.reviews.includes(:user).each do |review| %>
   <table class="table table-sm">
     <tbody>
       <td style="width: 20%" class="text-cente" ><%= review.created_at.strftime('%Y/%m/%d') %></td>

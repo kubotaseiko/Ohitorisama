@@ -5,8 +5,7 @@ class User::BookmarksController < ApplicationController
     @shop = Shop.find(params[:shop_id])
     bookmark = @shop.bookmarks.new(user_id: current_user.id)
     if bookmark.save
-      shop.create_notification_bookmark!(current_user)
-      redirect_to request.referer
+      @shop.create_notification_bookmark!(current_user)
     else
       redirect_to request.referer
     end
@@ -17,7 +16,6 @@ class User::BookmarksController < ApplicationController
     bookmark = @shop.bookmarks.find_by(user_id: current_user.id)
     if bookmark.present?
         bookmark.destroy
-        redirect_to request.referer
     else
         redirect_to request.referer
     end

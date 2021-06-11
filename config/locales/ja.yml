@@ -41,7 +41,7 @@ ja:
         review_text: 'レビュー'
         rate: '★'
       contact:
-        name: "お名前"
+        name: "アカウント名"
         email: "メールアドレス"
         content: "お問い合わせ内容"
       shop:

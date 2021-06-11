@@ -1,5 +1,10 @@
 class User::ShopsController < ApplicationController
+  # before_action :set_shop
+ 
+  # def set_shop
+  # end
 
+ 
   def index
     @tag_list = Tag.includes(:tagmaps).all
     @shops = Shop.includes(:reviews).all.page(params[:page]).reverse_order
@@ -9,7 +14,7 @@ class User::ShopsController < ApplicationController
   end
 
   def show
-    @shop = Shop.includes(reviews: :user).find(params[:id])
+    @shop = Shop.includes(:user, reviews: :user).find(params[:id])
     @shop_tags = @shop.tags
     @user = @shop.user
     @review = Review.new
@@ -82,6 +87,8 @@ class User::ShopsController < ApplicationController
     @tag = Tag.find(params[:tag_id])
     @shops = @tag.shops.includes(:tagmaps).all
   end
+
+
 
 
   private

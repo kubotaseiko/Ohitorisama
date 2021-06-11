@@ -6,7 +6,9 @@
       <div class="shop-title">
         <%= @shop.shop_name %>
         <!--bookmarkボタン-->
-        <%= render 'user/bookmarks/bookmark_button', shop: @shop %>
+        <span id='bookmark_btn'>
+          <%= render 'user/bookmarks/bookmark_button', shop: @shop %>
+        </span>
       </div>
   </div>
 
@@ -57,7 +59,7 @@
       <%= link_to shop_reviews_path(@shop.id), class: 'text-right' do %>
         <i class="fas fa-paper-plane test-right">&nbsp;レビューする</i>
       <% end %>
-      <% @shop.reviews.limit(3).each do |review| %>
+      <% @shop.reviews.includes(:user).limit(3).each do |review| %>
         <table class="table table-sm">
           <tbody>
             <td style="width: 15%" class="text-cente" ><%= review.created_at.strftime('%m/%d') %></td>
@@ -76,7 +78,7 @@
           </tbody>
         </table>
       <% end %>
-      
+
       <% if @shop.reviews.size > 3%>
       <%= link_to '>>もっとみる', shop_reviews_path(@shop.id), class: 'text-right' %>
       <% end %>
