@@ -5,6 +5,7 @@ class User::ShopsController < ApplicationController
     @shops = Shop.includes(:reviews).all.page(params[:page]).reverse_order
     @tweets = Tweet.includes(:user).all
     @tweet = Tweet.new
+
   end
 
   def show
@@ -49,13 +50,32 @@ class User::ShopsController < ApplicationController
   end
 
   def search
-    @tag_list = Tag.includes(:tagmaps).all
     @shops = Shop.search(params[:keyword]).page(params[:page]).reverse_order
-    @keyword = params[:keyword]
+
+    @tag_list = Tag.includes(:tagmaps).all
     @tweets = Tweet.includes(:user).all
     @tweet = Tweet.new
     render 'index'
   end
+
+  def rank
+    @shops = Shop.all.includes(:reviews).order(rate_average: 'asc').page(params[:page]).reverse_order
+    @tag_list = Tag.includes(:tagmaps).all
+    @tweets = Tweet.includes(:user).all
+    @tweet = Tweet.new
+    render 'index'
+  end
+
+  def hot
+    @shops = Shop.joins(:reviews).where(created_at: Date.today.ago(7.days)..Date.today).group(:id).order("count(*) asc").page(params[:page]).reverse_order
+
+    @tag_list = Tag.includes(:tagmaps).all
+    @tweets = Tweet.includes(:user).all
+    @tweet = Tweet.new
+    render 'index'
+
+  end
+
 
   def tag_search
     @tag_list = Tag.includes(:tagmaps).all

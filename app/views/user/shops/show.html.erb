@@ -11,11 +11,11 @@
   </div>
 
   <div class="row pl-4 pt-5">
-    <div class="col-lg-5 col-12">
+    <div class="col-lg-5 col-md-12">
       <%= attachment_image_tag @shop, :shop_image, :fill, 400, 400, format: 'jpeg', class: 'rounded' %>
     </div>
 
-    <div class="col-lg-7 col-12">
+    <div class="col-lg-7 col-md-12">
       <div class="row">
         <div class="col-lg-9 col-12">
           <!--星評価-->
@@ -53,8 +53,11 @@
       </div>
 
       <!--review-->
-      <%= link_to '>>投稿する', shop_reviews_path(@shop.id), class: 'text-right' %>
-      <% @shop.reviews.each do |review| %>
+      全 <%= @shop.reviews.count %> 件
+      <%= link_to shop_reviews_path(@shop.id), class: 'text-right' do %>
+        <i class="fas fa-paper-plane test-right">&nbsp;レビューする</i>
+      <% end %>
+      <% @shop.reviews.limit(3).each do |review| %>
         <table class="table table-sm">
           <tbody>
             <td style="width: 15%" class="text-cente" ><%= review.created_at.strftime('%m/%d') %></td>
@@ -73,11 +76,10 @@
           </tbody>
         </table>
       <% end %>
+      
+      <% if @shop.reviews.size > 3%>
       <%= link_to '>>もっとみる', shop_reviews_path(@shop.id), class: 'text-right' %>
-      <!--<div id='review_form'>-->
-      <!--  <%= render 'user/reviews/form', shop: @shop, review: @review %>-->
-      <!--</div>-->
-
+      <% end %>
     </div>
   </div>
 

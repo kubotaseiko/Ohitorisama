@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     end
 
     get 'search' => 'shops#search'
+    get 'rank'=> 'shops#rank'
+    get 'hot'=> 'shops#hot'
 
     resources :tags do
     get 'shops', to: 'shops#tag_search'

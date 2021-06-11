@@ -34,9 +34,9 @@ class Shop < ApplicationRecord
       self.tags << new_shop_tag
     end
   end
-  
+
   # =============rate_average=============
-  
+ 
   # =============検索機能=============
   def self.search(keyword)
     where(["shop_name like? OR address like?", "%#{keyword}%", "%#{keyword}%"])
