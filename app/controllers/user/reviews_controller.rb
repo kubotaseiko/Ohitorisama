@@ -1,19 +1,5 @@
 class User::ReviewsController < ApplicationController
 
-  def create
-    @shop = Shop.find(params[:shop_id])
-    @review = @shop.reviews.new(review_params)
-    @review.user_id = current_user.id
-    if @review.save
-      @shop.create_notification_review!(current_user, @review.id)
-      @shop.rate_average = Review.where(shop_id: @shop.id).average(:rate)
-      @shop.save
-      redirect_to shop_reviews_path(@shop.id)
-    else
-      render :index
-    end
-  end
-
   def index
     @shop = Shop.find(params[:shop_id])
     @review = Review.new
@@ -24,11 +10,22 @@ class User::ReviewsController < ApplicationController
     end
   end
 
+  def create
+    @shop = Shop.find(params[:shop_id])
+    @review = @shop.reviews.new(review_params)
+    @review.user_id = current_user.id
+    if @review.save
+      @shop.create_notification_review!(current_user, @review.id)
+      @shop.rate_average = Review.where(shop_id: @shop.id).average(:rate)
+      @shop.save
+    end
+  end
+
+
   def destroy
     @shop = Shop.find(params[:shop_id])
     @review = Review.find(params[:id])
     @review.destroy
-    redirect_to shop_reviews_path(@shop.id)
   end
 
   private

@@ -1,6 +1,6 @@
 <div class='container'>
-  <div class="row g-3">
-    <div class="form-area col-lg-6 p-5 offset-md-3">
+  <div class="row justify-content-center">
+    <div class="form-area col-lg-6 col-md-12 p-5 m-5">
 
     <div class='col-12 p-5'>
 
@@ -14,40 +14,40 @@
           <% end %>
         </div>
         <%= form_with model: @shop, url:'/shops', local:true do |f| %>
-  
+
           <div class="field form-group">
             <%= f.label :shop_name, 'お店の名前 ※' %></br>
             <%= f.text_field :shop_name %>
           </div>
-  
+
           <div class="field form-group">
             <%= f.label :shop_image, '写真 ※' %></br>
             <%= f.attachment_field :shop_image %>
           </div>
-  
+
           <div class="field form-group">
             <%= f.label :introduction, '紹介文 ※' %></br>
             <%= f.text_area :introduction, rows:3 %>
           </div>
-  
-  
+
+
           <div class="field form-group">
             <%= f.label :address, '住所 ※' %></br>
             <%= f.text_field :address %>
           </div>
-  
+
           <div>以下、お分かりであれば、ご入力ください</div></br>
-  
+
           <div class="field form-group">
             <%= f.label :tell, 'tell' %></br>
             <%= f.text_field :tell %>
           </div>
-  
+
           <div class="field form-group">
             <%= f.label :holiday, '定休日' %></br>
             <%= f.text_field :holiday %>
           </div>
-  
+
           <div class="field form-group">
             <%= f.label :tag_name, 'tag' %></br>
             <%= f.text_field :tag_name, placeholder: "例：カフェ コロナ対策" %>
@@ -56,8 +56,8 @@
               複数のタグを付けることができます。
             </p>
           </div>
-  
-  
+
+
           <%= button_tag :method => :get, :class => "btn", onfocus: "this.blur();" do %>
           <span class= "col btnripple">
             <i class="fas fa-paper-plane">&nbsp;投稿する</i>

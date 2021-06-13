@@ -1,3 +1,2 @@
 $("#review_area").html("<%= j(render 'user/reviews/index', shop: @shop, review: @review) %>");
-$("textarea").val('')
 $(".review_count").html("<%= @shop.reviews.count %>件");

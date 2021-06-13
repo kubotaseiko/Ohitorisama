@@ -1,10 +1,10 @@
 class User::ShopsController < ApplicationController
   # before_action :set_shop
- 
+
   # def set_shop
   # end
 
- 
+
   def index
     @tag_list = Tag.includes(:tagmaps).all
     @shops = Shop.includes(:reviews).all.page(params[:page]).reverse_order

@@ -1,29 +1,29 @@
 <div class="container">
+  <div class='rou'>
+  <div class="col-sm-8">
+    <h3><%= @shop.shop_name %>のレビュー</h3>
+    <h3 class="far fa-star mt-3">
+      &nbsp;
+      <% if @shop.rate_average == nil %>
+      評価なし
+      <% else %>
+      <%= @shop.rate_average.round(1) %>
+      <% end %>
+    </h3></br>
+      <div class="average-review-rating" data-score=<%= @average_review %>></div>
+    <div class="review_count"><%= @shop.reviews.count %> Reviews</div>
+    <p><%= @shop.introduction %></p>
+  </div>
+  
+  
+    <div id='review_area'>
+      <%= render 'user/reviews/index', shop: @shop, review: @review %>
+    </div>
+    
+    <div id='review_form'>
 
-<div class="col-sm-8">
-  <h2><%= @shop.shop_name %></h2>
-  <h3>image</h3>
-  <h2>Average Rating</h2>
-  <div class="average-review-rating" data-score=<%= @average_review %>></div>
-  <span>Based on <%= @shop.reviews.count %> Reviews</span>
-  <p><%= @shop.introduction %></p>
+    <%= render 'user/reviews/form', shop: @shop, review: @review %>
+    </div>
+  </div>
 </div>
 
-
-  <div id='review_area'>
-    <%= render 'user/reviews/index', shop: @shop, review: @review %>
-  </div>
-  <div id='review_form'>
-  <%= render 'user/reviews/form', shop: @shop, review: @review %>
-  </div>
-</div>
-
-<script>
-  $('#rate-form').raty({}).empty();
-  $('#rate-form').raty({
-    path: '/assets/',
-    scoreName: 'review[rate]',
-    half: true,
-  });
-
-</script>
