@@ -2,10 +2,10 @@ class User::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @shops = @user.shops.includes(:reviews).all
+    @shops = @user.shops.includes(:reviews).all.page(params[:page]).per(6)
     @bookmarks = Bookmark.includes(:shop,shop: :user).where(user_id: current_user.id)
     @tweet = Tweet.new
-    @tweets = Tweet.where(user_id: @user.following).or(Tweet.where(user_id:  @user.id))
+    @tweets = Tweet.where(user_id: @user.following).or(Tweet.where(user_id:  @user.id)).page(params[:page]).per(10)
   end
 
   def edit
