@@ -6,6 +6,7 @@ class User::UsersController < ApplicationController
     @bookmarks = Bookmark.includes(:shop,shop: :user).where(user_id: current_user.id)
     @tweet = Tweet.new
     @tweets = Tweet.where(user_id: @user.following).or(Tweet.where(user_id:  @user.id)).page(params[:page]).per(10)
+    @reviews = Review.includes(:user, :shop).where(user_id: @user).page(params[:page]).per(5)
   end
 
   def edit

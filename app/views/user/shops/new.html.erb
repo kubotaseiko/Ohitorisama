@@ -1,8 +1,8 @@
 <div class='container'>
-  <div class="row justify-content-center">
-    <div class="form-area col-lg-6 col-md-12 p-5 m-5">
+  <div class="row g-3 mt-5">
+    <div class="form-area col-lg-6 p-5 offset-md-3">
 
-    <div class='col-12 p-5'>
+      <div class="page-title">New Post</div>
 
       <div class="post-field">
         <div class='errors-area p-2'>
@@ -17,57 +17,60 @@
 
           <div class="field form-group">
             <%= f.label :shop_name, 'お店の名前 ※' %></br>
-            <%= f.text_field :shop_name %>
+            <%= f.text_field :shop_name, class: "form-control" %>
           </div>
 
           <div class="field form-group">
             <%= f.label :shop_image, '写真 ※' %></br>
-            <%= f.attachment_field :shop_image %>
+            <%= f.attachment_field :shop_image, class: "form-control" %>
           </div>
 
           <div class="field form-group">
             <%= f.label :introduction, '紹介文 ※' %></br>
-            <%= f.text_area :introduction, rows:3 %>
+            <%= f.text_area :introduction, rows:3, class: "form-control" %>
           </div>
 
 
           <div class="field form-group">
             <%= f.label :address, '住所 ※' %></br>
-            <%= f.text_field :address %>
+            <%= f.text_field :address, class: "form-control" %>
           </div>
 
           <div>以下、お分かりであれば、ご入力ください</div></br>
 
           <div class="field form-group">
-            <%= f.label :tell, 'tell' %></br>
-            <%= f.text_field :tell %>
+            <%= f.label :tell, '電話番号' %></br>
+            <%= f.text_field :tell, class: "form-control" %>
           </div>
 
           <div class="field form-group">
             <%= f.label :holiday, '定休日' %></br>
-            <%= f.text_field :holiday %>
+            <%= f.text_field :holiday, class: "form-control" %>
           </div>
 
           <div class="field form-group">
-            <%= f.label :tag_name, 'tag' %></br>
-            <%= f.text_field :tag_name, placeholder: "例：カフェ コロナ対策" %>
+            <%= f.label :tag_name, 'タグ付け' %></br>
+            <%= f.text_field :tag_name, placeholder: "例：カフェ コロナ対策", class: "form-control" %>
             <p>
               スペースを入力することで</br>
               複数のタグを付けることができます。
             </p>
           </div>
 
+          <div class='mt-2 mb-2'>
+            ※ 必須項目
+          </div>
 
-          <%= button_tag :method => :get, :class => "btn", onfocus: "this.blur();" do %>
-          <span class= "col btnripple">
-            <i class="fas fa-paper-plane">&nbsp;投稿する</i>
-          </span>
-          <% end %>
+          <div class='text-center'>
+            <%= button_tag :method => :get, :class => "btn", onfocus: "this.blur();" do %>
+              <span class= "col btnripple">
+                <i class="fas fa-paper-plane">&nbsp;投稿する</i>
+              </span>
+            <% end %>
+          </div>
         <% end %>
-
       </div>
 
     </div>
-
   </div>
 </div>

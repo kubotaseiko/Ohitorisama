@@ -1,11 +1,14 @@
 <div class="jumbotron top-image field" style="width:100%;">
-  <div class="search-form">
-    <div class="mb-3">！！！検索！！！</div>
-    <%= form_with url: search_path, method: :get, local: true do |f| %>
-      <%= f.text_field :keyword, value: @keyword %>
-      <button type="submit" class="search-btn">
-        <i class="fas fa-search" aria-hidden="true"></i>
-      </button>
-    <% end %>
+  <div class="container">
+    <div class="row">
+      <div class="col-auto search-form m-auto form-inline">
+        <%= form_with url: search_path, method: :get, local: true do |f| %>
+          <%= f.text_field :keyword, value: @keyword, placeholder: "店名や住所で検索！", class: "form-control form-control-sm" %>
+          <button type="submit" class="btn btn-outline-success btn-sm">
+            <i class="fas fa-search" aria-hidden="true"></i>
+          </button>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

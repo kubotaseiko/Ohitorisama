@@ -1,4 +1,3 @@
-<div class="">
   <h5 class="fas fa-comments">tweet</h5>
   <div class='errors-area p-2'>
     <% if tweet.errors.any? %>
@@ -8,8 +7,11 @@
       <% end %>
     <% end %>
   </div>
-  <%= form_with model: tweet, url:'/tweets', local:true do |f| %>
-    <%= f.text_area :tweet %>
-    <%= f.submit 'つぶやく' %>
-  <% end %>
-</div>
+  <div class='text-center'>
+    <%= form_with model: tweet, url:'/tweets', local:true do |f| %>
+      <%= f.text_area :tweet, class: "form-control", class: 'w-75' %>
+      <%= button_tag :method => :get, :class => "btn", onfocus: "this.blur();" do %>
+        <i class="fas fa-paper-plane">つぶやく</i>
+      <% end %>
+    <% end %>
+  </div>

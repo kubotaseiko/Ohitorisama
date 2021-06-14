@@ -17,6 +17,7 @@
   
   
     <div id='review_area'>
+      <h5>Review ( <%= @shop.reviews.count %>件 )</h5>
       <%= render 'user/reviews/index', shop: @shop, review: @review %>
     </div>
     
