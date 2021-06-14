@@ -1,0 +1,24 @@
+<div class='container'>
+  <div class="row">
+    <div class="col-sm-8 m-5">
+      <h3>Contacts</h3>
+      <table>
+        <tr>
+        <th style="width: 30%">お名前</th>
+        <th style="width: 30%">内容</th>
+        <th style="width: 30%">受信日</th>
+        <th style="width: 10%">対応</th>
+        </tr>
+        <% @contacts.each do |contact| %>
+          <tr>
+          <td><%= contact.name %>様</td>
+          <td><%= contact.content %></td>
+          <td><%= contact.created_at %></td>
+          <td>考える</td>
+          </tr>
+        <% end %>
+      </table>
+      <%= paginate @contacts %>
+    </div>
+  </div>
+</div>
