@@ -3,6 +3,7 @@ class User::ReviewsController < ApplicationController
   def index
     @shop = Shop.find(params[:shop_id])
     @review = Review.new
+    @reviews = @shop.reviews
     if @shop.reviews.blank?
       @average_review = 0
     else

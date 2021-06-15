@@ -9,7 +9,7 @@ $(window).on 'scroll', ->
   if (scrollHeight - scrollPosition) / scrollHeight <= 0.05
     # スクロールの位置が下部5%の範囲に来た場合
     $('.jscroll').jscroll
-      contentSelector: '.review-list'
+      contentSelector: '.scroll-list'
       nextSelector: 'span.next:last a'
     return
   return

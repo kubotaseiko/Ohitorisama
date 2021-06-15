@@ -5,6 +5,7 @@ class User::ShopsController < ApplicationController
     @tag_list = Tag.includes(:tagmaps).all
     @tweets = Tweet.includes(:user).all
     @tweet = Tweet.new
+    @mytweets = Tweet.where(user_id: current_user.following).or(Tweet.where(user_id: current_user.id))
   end
 
 
@@ -44,7 +45,9 @@ class User::ShopsController < ApplicationController
 
   def update
     shop = Shop.find(params[:id])
+    tag_list = params[:shop][:tag_name].split(/[[:blank:]]+/)
     if shop.update(shop_params)
+      shop.save_tag(tag_list)
       redirect_to shop_path(shop.id)
     else
       render 'edit'
@@ -85,7 +88,7 @@ class User::ShopsController < ApplicationController
   private
 
   def shop_params
-     params.require(:shop).permit(:shop_name, :shop_image, :introduction, :address, :tell, :holiday, :latitude, :longitude)
+     params.require(:shop).permit(:shop_name, :shop_image, :introduction, :address, :tell, :holiday, :latitude, :longitude, :business_hours)
   end
 
 end

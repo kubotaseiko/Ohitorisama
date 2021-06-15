@@ -42,7 +42,7 @@ $(window).on('scroll', function() {
     scrollPosition = $(window).height() + $(window).scrollTop();
     if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.05) {
           $('.jscroll').jscroll({
-            contentSelector: '.review-list',
+            contentSelector: '.scroll-list',
             nextSelector: 'span.next:last a'
           });
     }

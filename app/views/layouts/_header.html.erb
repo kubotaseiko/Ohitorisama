@@ -14,7 +14,7 @@
             </button>
           <% end %>
         </div>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <div id="sp-menu" class="collapse navbar-collapse hidden-xs" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
             <li class="nav-link">
               <%= render 'user/partial/circle' %>
@@ -44,6 +44,15 @@
           </ul>
         </div>
       <% end %>
+
+    <div id="hm-icon" class="">
+      <a class="menu-trigger" href="#">
+        <span></span>
+        <span></span>
+        <span></span>
+      </a>
+    </div>
+
     </div>
   </nav>
 </header>

@@ -5,20 +5,23 @@
       <%= render 'user/shops/map', shop: @shop %>
       <div class="shop-title">
         <%= @shop.shop_name %>
-        <!--bookmarkボタン-->
-        <span id='bookmark_btn'>
-          <%= render 'user/bookmarks/bookmark_button', shop: @shop %>
-        </span>
       </div>
   </div>
 
   <div class="row pl-4 pt-5">
     <div class="col-lg-5 col-md-12">
-      <%= attachment_image_tag @shop, :shop_image, :fill, 400, 400, format: 'jpeg', class: 'rounded' %>
+      <div class="card">
+        <%= attachment_image_tag @shop, :shop_image, :fill, 400, 400, format: 'jpeg', class: 'rounded' %>
+        <div class="card-img-overlay text-right">
+          <h1 id='bookmark_btn'>
+            <%= render 'user/bookmarks/bookmark_button', shop: @shop %>
+          </h1>
+        </div>
+      </div>
       <% @shop.tags.each do |tag| %>
-        <%= link_to tag.tag_name, tag_shops_path(tag_id: tag.id), class: "btn btn-outline-dark btn-sm mt-3" %>
+        <%= link_to tag.tag_name, tag_shops_path(tag_id: tag.id), class: "btn btn-outline-success btn-sm mt-3" %>
       <% end %>
-      
+
     </div>
 
     <div class="col-lg-7 col-md-12">
@@ -32,24 +35,32 @@
             <%= @shop.rate_average.round(1) %>
             <% end %>
           </h3></br>
-          <%= @shop.introduction %>
         </div>
-        <div class="col-lg-3 col-12">
+        <div class="col-lg-8 col-10">
+          <div class="border border-secondary p-3 mt-3">
+            <%= @shop.introduction %>
+          </div>
+        </div>
+        <div class="col-lg-4 col-2 mt-3">
           <%= link_to user_path(@user.id), data: {"turbolinks" => false} do %>
             <%= attachment_image_tag @user, :profile_image, size: '80x80', fallback: 'no_image.jpg', class: "rounded-circle" %>
           <% end %>
         </div>
       </div>
 
-      <div class='m-5'>
-        <table>
+      <div class="m-4">
+        <table class='table'>
           <tr>
-            <th style="width: 20%">住所</th>
-            <td style="width: 80%"><%= @shop.address %></td>
+            <th style="width: 30%">住所</th>
+            <td style="width: 70%"><%= @shop.address %></td>
           </tr>
           <tr>
             <th>Tel</th>
             <td><%= @shop.tell %></td>
+          </tr>
+          <tr>
+            <th>営業時間</th>
+            <td><%= @shop.business_hours %></td>
           </tr>
           <tr>
             <th>定休日</th>
@@ -59,10 +70,20 @@
       </div>
 
       <!--review-->
-      全 <%= @shop.reviews.count %> 件
-      <%= link_to shop_reviews_path(@shop.id), class: 'text-right' do %>
-        <i class="fas fa-paper-plane test-right">&nbsp;レビューする</i>
+      <% if current_user.id != @shop.user_id.to_i %>
+        <div class="col-12 text-center mb-5">
+          <%= link_to shop_reviews_path(@shop.id) do %>
+            <i class="fas fa-paper-plane btn btn-outline-success">&nbsp;レビューする</i>
+          <% end %>
+        </div>
       <% end %>
+      <div class="author-edit">
+      <% if current_user.id == @shop.user_id.to_i %>
+        <%= link_to '編集', edit_shop_path(@shop.id), class: "btn btn-sm btn-outline-secondary" %>
+        <%= link_to '削除', shop_path(@shop.id), method: :delete, remote: true, "data-confirm" => "本当に消しますか？", class: "btn btn-sm btn-outline-secondary" %>
+      <% end %>
+      </div>
+      全 <%= @shop.reviews.count %> 件
       <% @shop.reviews.includes(:user).limit(3).each do |review| %>
         <table class="table table-sm">
           <tbody>
@@ -89,11 +110,5 @@
     </div>
   </div>
 
-    <div class="author-edit">
-    <% if current_user.id == @shop.user_id.to_i %>
-      <%= link_to '編集', edit_shop_path(@shop.id) %>
-      <%= link_to '削除', shop_path(@shop.id), method: :delete, remote: true, "data-confirm" => "本当に消しますか？" %>
-    <% end %>
-    </div>
 
 </div>

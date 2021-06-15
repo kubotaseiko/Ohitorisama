@@ -3,7 +3,7 @@
     <div class="form-area p-5 col-md-9 col-12 m-auto">
       <%= link_to '>>Shops一覧', shops_path %>
 
-      <h4 class="mt-3 mb-5 text-center">タグが[<%= "#{@tag.tag_name}" %>]の投稿一覧</h4>
+      <h4 class="mt-3 mb-5 text-center">[<%= "#{@tag.tag_name}" %>]の投稿一覧</h4>
 
       <table class="table table-sm">
           <% @shops.each do |shop| %>

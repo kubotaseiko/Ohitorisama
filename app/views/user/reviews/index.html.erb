@@ -1,29 +1,31 @@
-<div class="container">
-  <div class='rou'>
-  <div class="col-sm-8">
-    <h3><%= @shop.shop_name %>のレビュー</h3>
-    <h3 class="far fa-star mt-3">
-      &nbsp;
-      <% if @shop.rate_average == nil %>
-      評価なし
-      <% else %>
-      <%= @shop.rate_average.round(1) %>
-      <% end %>
-    </h3></br>
-      <div class="average-review-rating" data-score=<%= @average_review %>></div>
-    <div class="review_count"><%= @shop.reviews.count %> Reviews</div>
-    <p><%= @shop.introduction %></p>
-  </div>
-  
-  
-    <div id='review_area'>
-      <h5>Review ( <%= @shop.reviews.count %>件 )</h5>
-      <%= render 'user/reviews/index', shop: @shop, review: @review %>
-    </div>
-    
-    <div id='review_form'>
+<div class='container'>
+  <div class="row mt-5">
+    <div class="form-area col-lg-10 offset-lg-1 p-5 col-md-12 text-center">
+      <div class="col-12">
+        <h3 ><%= @shop.shop_name %>のレビュー</h3>
+        <h5 class="far fa-star mt-3">
+          &nbsp;
+          <% if @shop.rate_average == nil %>
+          評価なし
+          <% else %>
+          <%= @shop.rate_average.round(1) %>
+          <% end %>
+        </h5></br>
+        <div class="average-review-rating" data-score=<%= @average_review %>></div>
+        <div class="col-8 mx-auto">
+          <div class="border border-secondary p-3 m-2"><%= @shop.introduction %></div>
+        </div>
+      </div>
 
-    <%= render 'user/reviews/form', shop: @shop, review: @review %>
+
+      <h5 class='mt-5 p-5'>Review ( <%= @shop.reviews.count %>件 )</h5>
+      <div id='review_area'>
+        <%= render 'user/reviews/index', reviews: @reviews %>
+      </div>
+
+      <div id='review_form' class="w-75 mx-auto">
+        <%= render 'user/reviews/form', shop: @shop, review: @review %>
+      </div>
     </div>
   </div>
 </div>

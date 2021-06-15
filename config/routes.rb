@@ -32,7 +32,7 @@ Rails.application.routes.draw do
 
     resources 'relationships', only: [:create, :destroy]
 
-    resources 'tweets', only: [:create, :destroy]
+    resources 'tweets', only: [:create, :destroy, :new]
 
     resource 'contacts', only: [:new, :create] do
       get 'thanks' => 'contacts#thanks'

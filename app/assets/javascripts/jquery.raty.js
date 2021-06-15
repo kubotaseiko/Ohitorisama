@@ -9,6 +9,18 @@
  *
  */
 
+$(function() {
+  $('.menu-trigger').on('click', function(event) {
+    $(this).toggleClass('active');
+    $('#sp-menu').fadeToggle();
+    event.preventDefault();
+  });
+});
+
+
+
+
+
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['jquery'], factory);
