@@ -15,6 +15,10 @@
   <div class="row pl-4 pt-5">
     <div class="col-lg-5 col-md-12">
       <%= attachment_image_tag @shop, :shop_image, :fill, 400, 400, format: 'jpeg', class: 'rounded' %>
+      <% @shop.tags.each do |tag| %>
+        <%= link_to tag.tag_name, tag_shops_path(tag_id: tag.id), class: "btn btn-outline-dark btn-sm mt-3" %>
+      <% end %>
+      
     </div>
 
     <div class="col-lg-7 col-md-12">
@@ -31,7 +35,7 @@
           <%= @shop.introduction %>
         </div>
         <div class="col-lg-3 col-12">
-          <%= link_to user_path(@user.id) do %>
+          <%= link_to user_path(@user.id), data: {"turbolinks" => false} do %>
             <%= attachment_image_tag @user, :profile_image, size: '80x80', fallback: 'no_image.jpg', class: "rounded-circle" %>
           <% end %>
         </div>

@@ -1,4 +1,3 @@
-  <h5 class="fas fa-comments">tweet</h5>
   <div class='errors-area p-2'>
     <% if tweet.errors.any? %>
       <%= tweet.errors.count %>件のエラーが発生しました</br>
@@ -7,9 +6,9 @@
       <% end %>
     <% end %>
   </div>
-  <div class='text-center'>
+  <div class='form-inline'>
     <%= form_with model: tweet, url:'/tweets', local:true do |f| %>
-      <%= f.text_area :tweet, class: "form-control", class: 'w-75' %>
+      <%= f.text_area :tweet, class: "form-control", class: 'form-control form-control-sm' %>
       <%= button_tag :method => :get, :class => "btn", onfocus: "this.blur();" do %>
         <i class="fas fa-paper-plane">つぶやく</i>
       <% end %>

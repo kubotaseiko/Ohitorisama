@@ -1,3 +1,13 @@
-<div class="container">
-  <%= link_to '退会する', user_quit_path, method: :PATCH, data: {confirm: "本当に退会してもよろしいですか？"} %>
+<div class='container'>
+  <div class="row g-3 mt-5">
+    <div class="form-area col-lg-6 p-5 offset-md-3">
+      <h5>本当に退会しますか？</h5>
+      <h6 class="text-center mt-5">
+      <%= link_to '退会する', user_quit_path, method: :PATCH, data: {confirm: "本当に退会してもよろしいですか？"} %>
+      &nbsp;・&nbsp;
+      <%= link_to '退会しない', shops_path %>
+      </h6>
+      
+    </div>
+  </div>
 </div>

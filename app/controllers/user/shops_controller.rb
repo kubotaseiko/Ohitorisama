@@ -3,7 +3,7 @@ class User::ShopsController < ApplicationController
 
   def set_tweet
     @tag_list = Tag.includes(:tagmaps).all
-    @tweets = Tweet.includes(:user).all.page(params[:page]).per(5)
+    @tweets = Tweet.includes(:user).all
     @tweet = Tweet.new
   end
 
@@ -11,7 +11,7 @@ class User::ShopsController < ApplicationController
   def index
     @tag_list = Tag.includes(:tagmaps).all
     @shops = Shop.includes(:reviews).all.page(params[:page]).reverse_order
-    @tweets = Tweet.includes(:user).all.page(params[:page]).per(5)
+    @tweets = Tweet.includes(:user).all
     @tweet = Tweet.new
 
   end

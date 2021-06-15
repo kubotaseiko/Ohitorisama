@@ -1,17 +1,35 @@
-<div class="container">
-  <h2>フォロワー</h2>
-  <% if @user.followers.length > 0 %>
-    <% @user.followers.each do |user| %>
-      <%= attachment_image_tag user, :profile_image, size: "100x100", fallback: "no_image.jpeg" %>
-      <%= link_to user.name, user_path(user.id) %>
-    <% end %>
-  <% else %>
-    <% if @user == current_user %>
-      たくさんレビューして、フォロワーを増やそう！</br>
-      <%= link_to 'お店紹介一覧を見る', shops_path %>
-    <% else %>
-      ユーザーがいません
-    <% end %>
-  <% end %>
-  
+<div class='container'>
+  <div class="row g-3 mt-5">
+    <div class="form-area col-md-8 col-12 m-auto p-5">
+      <h2 class="text-center mb-5">フォロワー</h2>
+      <% if @user.followers.length > 0 %>
+        <table class="table table-sm w-75 m-auto">
+          <% @user.followers.each do |user| %>
+            <tr>
+              <td class="text-center" style="width: 15%;">
+              <%= link_to user_path(user.id), data: {"turbolinks" => false} do %>
+                 <%= attachment_image_tag user, :profile_image, size: "40x40", fallback: "no_image.jpeg" %>
+              <% end %>
+              </td>
+              <td  style="width: 55%;">
+                <%= link_to user_path(user.id), data: {"turbolinks" => false} do %>
+                   <%= user.name %>
+                <% end %>
+              </td>
+              <td  style="width: 30%;">
+                <%= render 'user/relationships/follow_button', user: user %>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      <% else %>
+        <% if @user == current_user %>
+          たくさんレビューして、フォロワーを増やそう！</br>
+          <%= link_to 'お店紹介一覧を見る', shops_path %>
+        <% else %>
+          ユーザーがいません
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>

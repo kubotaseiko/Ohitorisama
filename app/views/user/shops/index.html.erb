@@ -17,17 +17,16 @@
 
     <div class="col-lg-8 col-12">
       <% if user_signed_in? %>
-        <div class="mx-auto p-5 text-center">
-          <!--<div class='tweet-area'>-->
-            <%= render 'user/tweets/post_tweet', tweet: Tweet.new %>
+        <div class="p-5 text-center">
+            <h5 class="fas fa-comments mb-3">tweet</h5>
             <%= render 'user/tweets/index', tweets: @tweets %>
-          <!--</div>-->
+            <%= render 'user/tweets/post_tweet', tweet: Tweet.new %>
         </div>
       <% end %>
     </div>
 
     <div class="col-lg-4 col-12 text-center p-5">
-      <h5 class="fas fa-tags ">&nbsp;tag</h5>
+      <h5 class="fas fa-tags mb-3">&nbsp;tag</h5>
       <div class="tag-style">
         <% @tag_list.each do |list| %>
           <%= link_to list.tag_name, tag_shops_path(tag_id: list.id), class: "btn btn-outline-dark btn-sm" %>
@@ -42,13 +41,3 @@
 
   </div>
 </div>
-
-<script>
-  $('.average-review-rating').raty({
-    readOnly: true,
-    path: '/assets/',
-    score: function() {
-      return $(this).attr('data-score')
-    }
-  });
-</script>
