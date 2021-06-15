@@ -87,30 +87,33 @@
       <div class="row m-5">
         <div class="col-12">
           <h4>レビューした記事</h4>
-          <% @reviews.each do |review| %>
-            <table class="table table-sm">
-              <tbody>
-                <td style="width: 15%">
-                  <%= link_to shop_path(review.shop.id) do %>
-                    <%= attachment_image_tag review.shop, :shop_image, size: '150x120', format: 'jpeg' %></br>
-                    <%= review.shop.shop_name %>
-                  <% end %>
-                </td>
-                <td style="width: 40%">
-                  <%= review.review_text %></br>
-                  <%= review.created_at.strftime('%y/%m/%d') %>
-                </td>
-                <td style="width: 15%"><i class="far fa-star">&nbsp;<%= review.rate %></i><td>
-                <td style="width: 10%">
-                  <% if review.user == current_user %>
-                    <%= link_to  shop_review_path(review.shop, review), method: :delete, remote: true do %>
-                      <i class="fas fa-times-circle"></i>
+          <div class="review-list jscroll">
+            <% @reviews.each do |review| %>
+              <table class="table table-sm">
+                <tbody>
+                  <td style="width: 15%">
+                    <%= link_to shop_path(review.shop.id) do %>
+                      <%= attachment_image_tag review.shop, :shop_image, size: '150x120', format: 'jpeg' %></br>
+                      <%= review.shop.shop_name %>
                     <% end %>
-                  <% end %>
-                <td>
-              </tbody>
-            </table>
-          <% end %>
+                  </td>
+                  <td style="width: 40%">
+                    <%= review.review_text %></br>
+                    <%= review.created_at.strftime('%y/%m/%d') %>
+                  </td>
+                  <td style="width: 15%"><i class="far fa-star">&nbsp;<%= review.rate %></i><td>
+                  <td style="width: 10%">
+                    <% if review.user == current_user %>
+                      <%= link_to  shop_review_path(review.shop, review), method: :delete, remote: true do %>
+                        <i class="fas fa-times-circle"></i>
+                      <% end %>
+                    <% end %>
+                  <td>
+                </tbody>
+              </table>
+            <% end %>
+          <%= paginate @reviews %>
+          </div>
         </div>
       </div>
     </div>
