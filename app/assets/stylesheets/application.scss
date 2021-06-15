@@ -17,17 +17,6 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
-.top-image {
-  width: 100%;
-  height: 800px;
-  background-image: image-url('top-image.jpg');
-  background-size: cover;
-  background-position: center;
-  text-align: center;
-  padding-top: 300px;
-  margin-bottom: 0;
-}
-
 
 div {
   font-family: 'Noto Sans JP', sans-serif;
@@ -78,13 +67,6 @@ nav a {
   text-decoration: none;
 }
 
-// 新規投稿
-.new-post {
-  position: fixed; /* 要素の位置を固定する */
-  bottom: 20px; /* 基準の位置を画面の一番下に指定する */
-  right: 50px; /* 基準の位置を画面の一番右に指定する */
-  width: 100px; /* 幅を指定する */
-}
 
 // form
 div.form-area {
@@ -94,82 +76,4 @@ div.form-area {
     border-radius: .25rem;
     font-size: 0.9rem;
     margin-bottom: 1rem;
-}
-
-/* ---------------------------- */
-/* ---- ハンバーガーアイコン ---- */
-/* ---------------------------- */
-#hm-icon {
-  position: fixed;
-  right: 20px;
-  top: 20px;
-  z-index: 10;
-}
-.menu-trigger,
-.menu-trigger span {
-  display: inline-block;
-  transition: all .4s;
-  box-sizing: border-box;
-}
-.menu-trigger {
-  position: relative;
-  width: 50px;
-  height: 44px;
-}
-.menu-trigger span {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background-color: #000;
-  border-radius: 4px;
-}
-.menu-trigger span:nth-child(1) {
-  top: 0;
-}
-.menu-trigger span:nth-child(2) {
-  top: 20px;
-}
-.menu-trigger span:nth-child(3) {
-  bottom: 0;
-}
-.menu-trigger.active span:nth-child(1) {
-  -webkit-transform: translateY(20px) rotate(-45deg);
-  transform: translateY(20px) rotate(-45deg);
-  background-color: #fff;
-}
-.menu-trigger.active span:nth-child(2) {
-  opacity: 0;
-}
-.menu-trigger.active span:nth-child(3) {
-  -webkit-transform: translateY(-20px) rotate(45deg);
-  transform: translateY(-20px) rotate(45deg);
-  background-color: #fff;
-}
-/* ------------------------ */
-/* ------ spメニュー ------ */
-/* ------------------------ */
-#sp-menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: #000;
-  color: #fff;
-  width: 100%;
-  min-height: 100%;
-  display: none;
-  z-index: 9;
-}
-#sp-menu li {
-  text-align: center;
-  margin-bottom: 30px;
-}
-#sp-menu a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.tweets_area p {
-  font-size: 13px;
 }
