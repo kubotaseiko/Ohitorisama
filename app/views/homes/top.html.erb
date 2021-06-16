@@ -1,8 +1,40 @@
-<div class="jumbotron top-image jumbotron-fluid" style="width:100%;">
-  <div class="container top-search">
-    <div class="row">
-      <div class="col-auto search-form m-auto form-inline">
-        <%= form_with url: search_path, method: :get, local: true do |f| %>
+<div class="jumbotron jumbotron-fluid p-0" style="width:100%;">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-interval="3500" style="object-fit: cover; object-position: center;">
+          <%= image_tag 'top-image.jpg', class: 'd-block w-100'%>
+        </div>
+        <div class="carousel-item" data-interval="3500">
+          <%= image_tag 'main.jpg', class: 'd-block w-100' %>
+        </div>
+        <div class="carousel-item" data-interval="3500">
+          <%= image_tag 'top-image.jpg', class: 'd-block w-100' %>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="text-center">Ohitorisamaへようこそ</h2>
+    </div>
+    <div class="col-12">
+      <div class="search-form form-inline">
+        <%= form_with url: search_path, method: :get, class: 'mx-auto mt-5', local: true do |f| %>
           <%= f.text_field :keyword, value: @keyword, placeholder: "店名や住所で検索！", class: "form-control form-control-sm" %>
           <button type="submit" class="btn btn-outline-success btn-sm">
             <i class="fas fa-search" aria-hidden="true"></i>

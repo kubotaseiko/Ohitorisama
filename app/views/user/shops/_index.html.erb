@@ -7,14 +7,13 @@
 <% end %>
 
   <% shops.each do |shop| %>
-  <div class="col-lg-4 col-md-6 mb-2">
+  <div class="col-lg-4 col-md-12 mb-2">
     <div class="card cols-1 cols-md-2 cols-lg-3">
-
-        <div class="zoomInText">
-          <%= link_to shop_path(shop.id) do %>
-           <span class="mask">
-             <%= attachment_image_tag shop, :shop_image, size: '200x200', format: 'jpeg', class: "card-img" %>
-              <span class="cap">
+      <div class="zoomInText">
+        <%= link_to shop_path(shop.id) do %>
+         <span class="mask">
+           <%= attachment_image_tag shop, :shop_image, size: '200x200', format: 'jpeg', class: "card-img" %>
+            <span class="cap">
               <div class="shop-name">
                 <%= shop.shop_name %>
               </div>
@@ -26,11 +25,10 @@
                 <% end %>
               </h6></br>
               <h6 class="fas fa-comment-dots">&emsp;<%= shop.reviews.size %></h6>
-              </span>
             </span>
-          <% end %>
-        </div>
-
+          </span>
+        <% end %>
+      </div>
     </div>
   </div>
   <% end %>

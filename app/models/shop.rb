@@ -5,6 +5,7 @@ class Shop < ApplicationRecord
   has_many :tagmaps, dependent: :destroy
   has_many :tags, through: :tagmaps
   has_many :notifications, dependent: :destroy
+  has_many :tweets, dependent: :destroy
 
   attachment :shop_image
 
@@ -35,8 +36,6 @@ class Shop < ApplicationRecord
     end
   end
 
-  # =============rate_average=============
- 
   # =============検索機能=============
   def self.search(keyword)
     where(["shop_name like? OR address like?", "%#{keyword}%", "%#{keyword}%"])

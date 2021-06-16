@@ -1,15 +1,29 @@
 class Admin::UsersController < ApplicationController
 
   def index
-    @users = User.all.page(params[:page]).per(10)
+    @users = User.all.order(created_at: "DESC").page(params[:page]).per(10)
   end
 
   def edit
-    @users = User.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def update
-    @users = User.find(params[:id])
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      if @user.is_valid == true
+        status = '有効'
+      else
+        status = '無効'
+      end
+      flash[:notice] = "ステータスを#{status}に変更しました。"
+      redirect_to edit_admin_user_path(@user.id)
+    end
+  end
+
+  private
+  def user_params
+    params.require(:user).permit(:is_valid)
   end
 
 end

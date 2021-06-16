@@ -23,7 +23,6 @@ div {
 }
 
 header {
-  height: 50px;
   width: 100%;
   background-color: #FFF;
   opacity: 0.8;
@@ -76,4 +75,19 @@ div.form-area {
     border-radius: .25rem;
     font-size: 0.9rem;
     margin-bottom: 1rem;
+}
+
+.follow-link {
+  font-weight: bold;
+}
+
+// カルーセル画像の中央トリミング
+.carousel-inner img{
+  height: 300px;
+  object-fit: cover;
+}
+
+// エラーメッセージ
+.errors-area {
+  
 }

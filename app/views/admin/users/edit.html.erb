@@ -1,8 +1,36 @@
 <div class='container'>
-  <div class="row">
-    <div class="col-sm-8 m-5">
-      <h3>編集</h3>
+  <div class="row g-3 mt-5">
+    <div class="form-area col-lg-6 p-5 offset-md-3">
+    <%= link_to 'アカウント一覧へ戻る', admin_users_path%>
 
+      <div class="text-center mt-5">
+        <% if flash[:notice] %>
+          <div class='col-12 bg-secondary text-white text-center mb-5'>
+            <%= flash[:notice] %>
+          </div>
+        <% end %>
+        <h5><%= @user.name %>様の会員情報</h5>
+        <div class="user-info p-4">
+          <li>
+            <%= attachment_image_tag @user, :profile_image, size: "100x100", fallback: "no_image.jpeg", class: 'rounded-circle' %>
+          </li>
+          <li style="font-size: 30px;"><%= @user.name %>&thinsp;様</li>
+          <li class="pt-3">
+          <%= form_with model: @user, url: admin_user_path, local:true do |f| %>
+            <%= f.radio_button :is_valid, :true %>
+            <%= f.label :is_valid, '有効', value: :true %>
+            <%= f.radio_button :is_valid, :false %>
+            <%= f.label :is_valid, '無効', value: :false %>
+            <%= button_tag :method => :save, :class => "btn", onfocus: "this.blur();" do %>
+              <i class="far fa-check-circle"></i>
+            <% end %>
+          <% end %>
+          </li>
+          <li class='border p-2 mb-3'><%= @user.introduction %></li>
+          <li>最終ログイン：<%= @user.current_sign_in_at %></li>
+        </div>
+      </div>
+    <%= link_to '<<', admin_users_path%>
     </div>
   </div>
 </div>

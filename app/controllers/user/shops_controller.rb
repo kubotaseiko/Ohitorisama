@@ -5,7 +5,9 @@ class User::ShopsController < ApplicationController
     @tag_list = Tag.includes(:tagmaps).all
     @tweets = Tweet.includes(:user).all
     @tweet = Tweet.new
-    @mytweets = Tweet.where(user_id: current_user.following).or(Tweet.where(user_id: current_user.id))
+    if user_signed_in?
+      @mytweets = Tweet.where(user_id: current_user.following).or(Tweet.where(user_id: current_user.id))
+    end
   end
 
 

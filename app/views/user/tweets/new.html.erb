@@ -2,33 +2,31 @@
   <div class="row g-3 mt-5">
     <div class="form-area col-lg-6 p-5 offset-md-3">
       <div class="page-title">New tweet</div>
-
-      <div class='errors-area p-2'>
-        <% if @tweet.errors.any? %>
-          <%= @tweet.errors.count %>件のエラーが発生しました</br>
-          <% @tweet.errors.full_messages.each do |message| %>
-            <li>※&nbsp;<%= message %></li>
+        <div class='errors-area p-2'>
+          <% if @tweet.errors.any? %>
+            <%= @tweet.errors.count %>件のエラーが発生しました</br>
+            <% @tweet.errors.full_messages.each do |message| %>
+              <li>※&nbsp;<%= message %></li>
+            <% end %>
           <% end %>
-        <% end %>
-      </div>
-
-       <form class="form">
-        <%= form_with model: @tweet, url:'/tweets', local:true do |f| %>
-          <div class="form-group">
-            <div class="col-md-12">
-              <%= f.text_area :tweet, class: "form-control", class: 'form-control form-control-sm', rows:"5" %>
-            </div>
+        </div>
+        <div class="form">
+          <%= form_with model: @tweet,local:true do |f| %>
+          <div class="field form-group">
+            <%= f.text_area :tweet, rows:'8', placeholder: "気軽につぶやこう！", size: "50", class: "form-control" %>
           </div>
-          <div class="form-group">
-            <div class="col-12 text-center mb-5">
-              <%= button_tag :method => :get, :class => "btn", onfocus: "this.blur();" do %>
-                <i class="fas fa-paper-plane btn btn-outline-success pr-5 pl-5">&nbsp;投稿する</i>
-              <% end %>
-            </div>
+          <div class='text-center'>
+            <%= button_tag :method => :get, :class => "btn", onfocus: "this.blur();" do %>
+              <span class= "col btnripple">
+                <i class="fas fa-paper-plane">&nbsp;投稿する</i>
+              </span>
+            <% end %>
           </div>
-        <% end %>
-      </form>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+
+

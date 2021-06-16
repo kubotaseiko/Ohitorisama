@@ -47,3 +47,6 @@ $(window).on('scroll', function() {
           });
     }
 });
+
+// ========カルーセル=========
+$('.carousel').carousel()

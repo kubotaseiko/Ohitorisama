@@ -1,20 +1,53 @@
 <div class='container'>
   <div class="row">
-    <div class="col-sm-8 m-5">
+    <div class="col-9 col-12 p-5">
       <h3>Contacts</h3>
-      <table>
+      <% if flash[:notice] %>
+        <div class='col-12 bg-secondary text-white text-center mb-5 p-3'>
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+
+        <!--ステータス絞り込み-->
+        <div class='status_serch text-center'>
+        <%= form_with url: admin_contacts_sort_path, method: :get, class: 'mx-auto mt-5', local: true do |f| %>
+          <%= f.select :keyword, Contact.contact_statuses.keys, value: @keyword, :include_blank => 'ステータス選択', class: "form-control form-control-sm w-25 mb-2" %>
+          <button type="submit" class="btn btn-outline-success btn-sm">
+            <i class="fas fa-search" aria-hidden="true"></i>
+          </button>
+        <% end %>
+        <%= link_to 'すべて表示', admin_contacts_path %>
+        </div>
+      <table class="table table-border mt-3 table-hover">
         <tr>
-        <th style="width: 30%">お名前</th>
-        <th style="width: 30%">内容</th>
-        <th style="width: 30%">受信日</th>
-        <th style="width: 10%">対応</th>
+          <th class='text-center' style="width: 5%">NO.</th>
+          <th style="width: 15%">お名前</th>
+          <th style="width: 50%">内容</th>
+          <th style="width: 10%">受信日</th>
+          <th style="width: 20%">対応</th>
         </tr>
         <% @contacts.each do |contact| %>
           <tr>
-          <td><%= contact.name %>様</td>
-          <td><%= contact.content %></td>
-          <td><%= contact.created_at %></td>
-          <td>考える</td>
+            <td class='text-center'>
+              <% if contact.contact_status == '未確認' %>
+                <div class='text-white bg-success'>
+                  <%= contact.id %>
+                </div>
+              <% else %>
+                <%= contact.id %>
+              <% end %>
+            </td>
+            <td><%= contact.name %>&thinsp;様</td>
+            <td><%= contact.content %></td>
+            <td><%= contact.created_at.strftime("%Y/%m/%d %H:%M:%S") %></td>
+            <td>
+              <%= form_with model: contact, url: admin_contact_path(contact), method: :patch, local: true do |f| %>
+                <%= f.select :contact_status, Contact.contact_statuses.keys %>
+                <%= button_tag :method => :save, :class => "btn", onfocus: "this.blur();" do %>
+                  <i class="far fa-check-circle"></i>
+                <% end %>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </table>

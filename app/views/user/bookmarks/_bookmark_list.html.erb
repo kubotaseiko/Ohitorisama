@@ -1,40 +1,34 @@
+<div class="col-12 text-center m-3">
+  <h4 style="font-weight: bold;">ブックマーク一覧</h4>
+</div>
 
-<h4>ブックマーク一覧</h4>
+  <% bookmarks.each do |bookmark| %>
+    <div class="col-md-4 col-12">
+      <div class="card cols-1">
+        <div class="card-header p-0">
+        <%= link_to shop_path(bookmark.shop) do %>
+           <%= attachment_image_tag bookmark.shop, :shop_image, size: '200x100', format: 'jpeg', class: "card-img" %>
+        <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-12 p-2">
+      <li style="font-weight: bold;"><h4><%= bookmark.shop.shop_name %></h4></li>
+      <li>住所：<%= bookmark.shop.address %></li>
+      <li>営業時間：<%= bookmark.shop.business_hours %></li>
+      <li>定休日：<%= bookmark.shop.holiday %></li>
+      <li class="d-md-block d-lg-none font-weight-bold">
+        <%= link_to user_path(bookmark.shop.user) do %>
+          <%= attachment_image_tag bookmark.shop.user, :profile_image, size: '25x25', fallback: 'no_image.jpg', class: "rounded-circle" %>
+          &ensp;<%= bookmark.shop.user.name %>さん
+      <% end %>
+      </li>
+    </div>
+    <div class="col-md-2 d-none d-lg-block">
+      <%= link_to user_path(bookmark.shop.user) do %>
+        <%= attachment_image_tag bookmark.shop.user, :profile_image, size: '50x50', fallback: 'no_image.jpg', class: "rounded-circle" %></br>
+        <%= bookmark.shop.user.name %>さん
+      <% end %>
+    </div>
+  <% end %>
 
-<table class="table table-sm">
-  <thead>
-    <tr>
-      <th>写真</th>
-      <th>店名</th>
-      <th>詳細</th>
-      <th>ユーザー</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% bookmarks.each do |bookmark| %>
-      <tr>
-        <td>
-          <%= link_to shop_path(bookmark.shop) do %>
-            <%= attachment_image_tag bookmark.shop, :shop_image, :fill, 150, 150, format: 'jpeg' %>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to shop_path(bookmark.shop) do %>
-            <%= bookmark.shop.shop_name %>
-          <% end %>
-        </td>
-        <td>
-          <li>住所：<%= bookmark.shop.address %></li>
-          <li>営業時間：カラム追加する</li>
-          <li>定休日：<%= bookmark.shop.holiday %></li>
-        </td>
-        <td>
-          <%= link_to user_path(bookmark.shop.user) do %>
-            <%= attachment_image_tag bookmark.shop.user, :profile_image, size: '40x40', fallback: 'no_image.jpg', class: "rounded-circle" %></br>
-            <%= bookmark.shop.user.name %>さん
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>

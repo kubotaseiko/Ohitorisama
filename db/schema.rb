@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_15_054710) do
+ActiveRecord::Schema.define(version: 2021_06_16_051939) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2021_06_15_054710) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "contact_status", default: 0, null: false
   end
 
   create_table "login_methods", force: :cascade do |t|
@@ -143,6 +144,8 @@ ActiveRecord::Schema.define(version: 2021_06_15_054710) do
     t.string "postal_code"
     t.string "provider"
     t.string "uid"
+    t.string "current_sign_in_ip"
+    t.datetime "current_sign_in_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

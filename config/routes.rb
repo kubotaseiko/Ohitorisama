@@ -34,7 +34,7 @@ Rails.application.routes.draw do
 
     resources 'tweets', only: [:create, :destroy, :new]
 
-    resource 'contacts', only: [:new, :create] do
+    resource 'contacts', only: [:new, :create, :update] do
       get 'thanks' => 'contacts#thanks'
     end
 
@@ -53,7 +53,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources 'users', only: [:index, :show, :edit, :update]
     resources 'contacts', only: [:index, :update]
+    get 'contacts_sort' => 'contacts#contacts_sort'
   end
-
 
 end

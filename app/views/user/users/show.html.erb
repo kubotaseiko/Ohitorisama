@@ -1,22 +1,19 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-4 m-5">
+  <div class="row mt-5 mb-3">
+    <div class="col-md-3 text-center">
       <%= attachment_image_tag @user, :profile_image, size: "100x100", fallback: "no_image.jpeg", class: 'rounded-circle' %>
       <h1><%= @user.name %></h1>
-      <a><%= @user.introduction %><a>
-      <% if current_user.id == @user.id.to_i %>
-        <%= link_to '編集', edit_user_path(@user.id), class: "btn btn-outline-dark btn-sm" %>
-      <% end %>
-      <!--フォローボタン-->
       <%= render 'user/relationships/follow_button', user: @user %>
+      <% if current_user.id == @user.id.to_i %>
+        <%= link_to '編集', edit_user_path(@user.id), class: "btn btn-outline-dark btn-sm pl-5 pr-5" %>
+      <% end %>
     </div>
-    <div class="col-md-6 mt-5">
-      <!--フォロー・フォロワー数-->
+    <div class="col-md-9 mt-3 col-12">
       <div class="follow-link">
         <table>
-          <tr>
-            <th>follow</th>
-            <th>follower</th>
+          <tr class="test-center">
+            <th class="text-center" style='width: 150px;'><%= link_to followings_user_path(@user) do %>follow<% end %></th>
+            <th class="text-center" style='width: 150px;'><%= link_to followers_user_path(@user) do %>follower<% end %></th>
           </tr>
           <tr>
             <td class="text-center"><%= link_to @user.following.count, followings_user_path(@user) %></td>
@@ -24,12 +21,21 @@
           </tr>
         </table>
       </div>
+    <% if @user.introduction != nil %>
+      <div class="col-md-9">
+        <div class="introduction-area border border-secondary mt-4 p-3" style="height: 140px;">
+          <%= @user.introduction %>
+        </div>
+      </div>
+    <% end %>
     </div>
+
+
   </div>
 
 <!------------main------------>
 
-  <ul class="nav nav-tabs tabnav">
+  <ul class="nav nav-tabs tabnav mt-5">
     <li class="nav-item"><a class="nav-link active" href="#shops">投稿一覧</a></li>
     <li class="nav-item"><a class="nav-link" href="#tweets">つぶやき</a></li>
     <li class="nav-item"><a class="nav-link" href="#bookmarks">Bookmark</a></li>
@@ -41,8 +47,8 @@
     <div id="shops" role="tabpanel" aria-labelledby="shops-tab">
       <div class="row mt-5">
         <% @shops.each do |shop| %>
-          <div class="col-lg-4 col-md-6">
-            <div class="card" style="width: 20rem;">
+          <div class="col-lg-4 col-md-12">
+            <div class="card cols-1 cols-md-2 cols-lg-3">
               <div class="card-header p-0">
                 <div class="zoomInText">
                   <%= link_to shop_path(shop.id) do %>
@@ -87,7 +93,7 @@
     </div>
 <!------------bookmarks------------>
     <div id="bookmarks" role="tabpanel" aria-labelledby="bookmarks-tab">
-      <div class="row m-5">
+      <div class="row m-3">
         <%= render 'user/bookmarks/bookmark_list', bookmarks: @bookmarks %>
       </div>
     </div>
