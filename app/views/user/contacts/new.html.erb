@@ -1,6 +1,6 @@
 <div class='container'>
   <div class="row g-3 mt-5">
-    <div class="form-area col-lg-6 p-5 offset-md-3">
+    <div class="form-area col-lg-6 p-5 mx-auto">
 
       <div class="page-title">Contact</div>
 
@@ -14,22 +14,22 @@
         </div>
         <div class="p-3">
         <%= form_with(model: @contact, local: true) do |f| %>
-          
+
             <div class="field form-group">
-              <%= f.label :name, "お名前 ※" %> 
+              <%= f.label :name, "お名前 ※" %>
               <%= f.text_field :name, class: "form-control" %>
             </div>
-            
+
             <div class="field form-group">
-              <%= f.label :email, "メールアドレス ※" %> 
+              <%= f.label :email, "メールアドレス ※" %>
               <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
             </div>
-            
+
             <div class="field form-group">
-              <%= f.label :content, "お問い合わせ内容 ※" %> 
+              <%= f.label :content, "お問い合わせ内容 ※" %>
               <%=  f.text_area :content, rows:5, class: "form-control" %>
             </div>
-            
+
             <div class='text-center'>
               <%= button_tag :method => :get, :class => "btn", onfocus: "this.blur();" do %>
                 <span class= "col btnripple">

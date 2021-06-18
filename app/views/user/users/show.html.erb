@@ -4,8 +4,10 @@
       <%= attachment_image_tag @user, :profile_image, size: "100x100", fallback: "no_image.jpeg", class: 'rounded-circle' %>
       <h1><%= @user.name %></h1>
       <%= render 'user/relationships/follow_button', user: @user %>
-      <% if current_user.id == @user.id.to_i %>
-        <%= link_to '編集', edit_user_path(@user.id), class: "btn btn-outline-dark btn-sm pl-5 pr-5" %>
+      <% if user_signed_in? %>
+        <% if current_user.id == @user.id.to_i %>
+          <%= link_to '編集', edit_user_path(@user.id), class: "btn btn-outline-dark btn-sm pl-5 pr-5" %>
+        <% end %>
       <% end %>
     </div>
     <div class="col-md-9 mt-3 col-12">
@@ -77,23 +79,39 @@
     </div>
 <!------------tweets------------>
     <div id="tweets" role="tabpanel" aria-labelledby="tweets">
-      <div class="row mt-5">
-        <div class="col-12 text-center">
-          <%= link_to 'つぶやく', new_tweet_path, class: "btn btn-outline-success pl-5 pr-5" %>
+      <% if user_signed_in? %>
+        <div class="row mt-5">
+          <div class="col-12 text-center">
+            <%= link_to 'つぶやく', new_tweet_path, class: "btn btn-outline-success pl-5 pr-5" %>
+          </div>
+          <div class="col-md-6 col-12 mt-5">
+            <% if current_user == @user %>
+              <h4 class="col-12 text-center mb-4">my tweets</h4>
+            <% else %>
+              <h4 class="col-12 text-center mb-4">my tweets</h4>
+            <% end %>
+
+            <%= render 'user/tweets/index', tweets: @mytweets %>
+          </div>
+          <div class="col-md-6 col-12 mt-5">
+            <h4 class="col-12 text-center mb-4">follow tweets</h4>
+            <%= render 'user/tweets/index', tweets: @tweets %>
+          </div>
         </div>
-        <div class="col-md-6 col-12 mt-5">
-          <h4 class="col-12 text-center mb-4">my tweets</h4>
-          <%= render 'user/tweets/index', tweets: @mytweets %>
-        </div>
-        <div class="col-md-6 col-12 mt-5">
-          <h4 class="col-12 text-center mb-4">follow tweets</h4>
-          <%= render 'user/tweets/index', tweets: @tweets %>
-        </div>
-      </div>
+      <% else %>
+        <h6 class="mx-auto m-3 p-5 border">
+          ログイン後に閲覧いただけます。
+          </br>
+          <i class="fas fa-sign-in-alt mt-5"><%= link_to ' login', new_user_session_path %></i>
+          <div class='mt-2' style='font-size: 15px;'>
+            ご登録がまだの方は<%= link_to 'こちら', new_user_registration_path, class: 'text-success font-weight-bold' %>から
+          </div>
+        </h6>
+      <% end %>
     </div>
 <!------------bookmarks------------>
     <div id="bookmarks" role="tabpanel" aria-labelledby="bookmarks-tab">
-      <div class="row m-3">
+      <div class="row m-5">
         <%= render 'user/bookmarks/bookmark_list', bookmarks: @bookmarks %>
       </div>
     </div>
@@ -101,7 +119,10 @@
     <div id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
       <div class="row m-5">
         <div class="col-12">
-          <h4>レビューした記事</h4>
+          <h4 class="mb-4 pb-2 border-bottom">レビューした記事</h4>
+          <% if @reviews.count ==  0 %>
+            <h6 class="mx-auto m-3 p-5 border">まだレビューした記事はありません。</h6>
+          <% else %>
           <div class="scroll-list jscroll">
             <% @reviews.each do |review| %>
               <table class="table table-sm">
@@ -130,6 +151,7 @@
             <div class="scroll-area">
               <%= paginate @reviews %>
             </div>
+            <% end %>
           </div>
         </div>
       </div>

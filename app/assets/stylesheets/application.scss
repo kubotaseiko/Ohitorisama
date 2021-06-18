@@ -17,7 +17,6 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
-
 div {
   font-family: 'Noto Sans JP', sans-serif;
 }
@@ -26,21 +25,30 @@ header {
   width: 100%;
   background-color: #FFF;
   opacity: 0.8;
-  // background-image: url(img/header-image.png);
   background-attachment: fixed;
 }
 
 footer {
-  height: 50px;
+  height: 80px;
   width: 100%;
-  background-color: #FFF;
-  opacity: 1;
 }
 
-.footer-area{
-  height: 50px;
+.footer-sm {
+  height: 80px;
   width: 100%;
+  background-color: #FFF;
+  font-size: 40px;
 }
+
+.footer-pc {
+  height: 30px;
+  width: 100%;
+  font-size: 15px;
+  background-color: #FFF;
+  opacity: 0.5;
+  margin: auto;
+}
+
 
 .page-title {
  font-size: 32px;
@@ -89,5 +97,11 @@ div.form-area {
 
 // エラーメッセージ
 .errors-area {
-  
+  color: red;
+}
+
+.pagination{
+  margin-right: 0;
+  display: flex;
+  justify-content: flex-start;
 }

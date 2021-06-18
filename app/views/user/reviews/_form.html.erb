@@ -12,13 +12,11 @@
     <div class='mb-3'>
     <%= f.text_area :review_text, rows:'8', placeholder: "review", size: "50", class: "form-control" %>
     </div>
-    <div id="rate-form"></div>
-    <div id="rate-form" class=''>
+    <div class="rate-area"><div id="rate-form"></div></div>
       <div class='mb-3'>
         <%= button_tag :method => :get, :class => "btn", onfocus: "this.blur();" do %>
           <i class="btn btn-outline-success pr-5 pl-5">投稿する</i>
         <% end %>
-      </div>
     </div>
   <% end %>
 
@@ -38,5 +36,6 @@
       });
     }
   });
+
 
 </script>

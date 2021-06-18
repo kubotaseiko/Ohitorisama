@@ -70,20 +70,30 @@
       </div>
 
       <!--review-->
-      <% if current_user.id != @shop.user_id.to_i %>
-        <div class="col-12 text-center mb-5">
-          <%= link_to shop_reviews_path(@shop.id) do %>
-            <i class="fas fa-paper-plane btn btn-outline-success">&nbsp;レビューする</i>
-          <% end %>
-        </div>
+       <% if user_signed_in? %>
+        <% if current_user.id != @shop.user_id.to_i %>
+          <div class="col-12 text-center mb-5">
+            <%= link_to shop_reviews_path(@shop.id) do %>
+              <i class="fas fa-paper-plane btn btn-outline-success">&nbsp;レビューする</i>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
       <div class="author-edit">
-      <% if current_user.id == @shop.user_id.to_i %>
-        <%= link_to '編集', edit_shop_path(@shop.id), class: "btn btn-sm btn-outline-secondary" %>
-        <%= link_to '削除', shop_path(@shop.id), method: :delete, remote: true, "data-confirm" => "本当に消しますか？", class: "btn btn-sm btn-outline-secondary" %>
+      <% if user_signed_in? %>
+        <% if current_user.id == @shop.user_id.to_i %>
+          <%= link_to '編集', edit_shop_path(@shop.id), class: "btn btn-sm btn-outline-secondary" %>
+          <%= link_to '削除', shop_path(@shop.id), method: :delete, remote: true, "data-confirm" => "本当に消しますか？", class: "btn btn-sm btn-outline-secondary" %>
+        <% end %>
       <% end %>
       </div>
-      全 <%= @shop.reviews.count %> 件
+      <h5 class='text-center'>---Reviews---</h5>
+
+      <% if @shop.reviews.count == 0 %>
+        <div class='m-5 text-center'>まだレビューはありません</div>
+      <% else %>
+        全 <%= @shop.reviews.count %> 件
+      <% end %>
       <% @shop.reviews.includes(:user).limit(3).each do |review| %>
         <table class="table table-sm">
           <tbody>
@@ -104,9 +114,11 @@
         </table>
       <% end %>
 
-      <% if @shop.reviews.size > 3%>
-      <%= link_to '>>もっとみる', shop_reviews_path(@shop.id), class: 'text-right' %>
-      <% end %>
+      <h5 class='text-right mr-3'>
+        <% if @shop.reviews.size > 3%>
+        <%= link_to '>>more', shop_reviews_path(@shop.id) %>
+        <% end %>
+      </h5>
     </div>
   </div>
 

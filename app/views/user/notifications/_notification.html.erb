@@ -1,7 +1,7 @@
 <% visitor = notification.visitor %>
 <% visited = notification.visited %>
 <div class='.col-md-6.mx-auto'>
-  <div class='form-inline'>
+  <div class='form-inline border-top'>
     <li>
     <span>
       <%= link_to user_path(visitor), data: {"turbolinks" => false} do %>
@@ -25,15 +25,15 @@
               <%= notification.shop.user.name + 'さんの投稿' %>
             <% end %>
             のレビューを投稿しました
-            <p class="text-muted mb-0">
-              <%= Review.find_by(id: notification.review_id)&.review %>
+            <p class="small text-muted mb-0">
+              <%= Review.find_by(id: notification.review_id)&.review_text %>
             </p>
+    <p class="small text-muted text-right">
+      &thinsp;<%= time_ago_in_words(notification.created_at).upcase %>前
+    </p>
           </span>
         <% end %>
       <% end %>
-    <span class="small text-muted text-right">
-      &thinsp;<%= time_ago_in_words(notification.created_at).upcase %>前
-    </span>
   </li>
   </div>
 </div>

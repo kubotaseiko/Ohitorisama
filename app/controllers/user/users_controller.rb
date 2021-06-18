@@ -3,7 +3,7 @@ class User::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @shops = @user.shops.includes(:reviews).all.order(created_at: "DESC")
-    @bookmarks = Bookmark.includes(:shop,shop: :user).where(user_id: current_user.id).page(params[:page]).per(8)
+    @bookmarks = Bookmark.includes(:shop,shop: :user).where(user_id: @user.id).page(params[:page]).per(8)
     @tweet = Tweet.new
     @tweets = Tweet.where(user_id: @user.following)
     @mytweets = Tweet.where(user_id: @user.id)

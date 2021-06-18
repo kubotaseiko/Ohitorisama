@@ -1,5 +1,5 @@
 <div class="tweets_area">
-<% tweets.order('updated_at DESC').each do |tweet|  %>
+<% tweets.includes(:user).order('updated_at DESC').each do |tweet|  %>
   <table class="table table-sm rounded border border-4 rounded">
     <td style="width: 20%" class="text-center">
       <%= link_to user_path(current_user), data: {"turbolinks" => false} do %>
@@ -11,11 +11,11 @@
       <%= tweet.tweet %>
     </td>
     <td style="width: 5%">
-      <% if current_user.id == tweet.user_id.to_i %>
-        <%= link_to tweet_path(tweet.id), method: :delete, "data-confirm" => "本当に消しますか？" do %>
-          <i class="fas fa-times-circle"></i>
+        <% if current_user.id == tweet.user_id.to_i %>
+          <%= link_to tweet_path(tweet.id), method: :delete, "data-confirm" => "本当に消しますか？" do %>
+            <i class="fas fa-times-circle"></i>
+          <% end %>
         <% end %>
-      <% end %>
     </td>
   </table>
 <% end %>

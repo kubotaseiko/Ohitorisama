@@ -1,6 +1,11 @@
 <div class='container'>
   <div class="row">
     <div class="col-9 col-12 p-5">
+      <% if flash[:notice] %>
+        <div class='col-12 bg-secondary text-white text-center mb-5 p-3'>
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
 
       <h3>Users</h3>
       <table class="table table-border mt-3">

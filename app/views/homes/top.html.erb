@@ -7,13 +7,13 @@
       </ol>
       <div class="carousel-inner">
         <div class="carousel-item active" data-interval="3500" style="object-fit: cover; object-position: center;">
-          <%= image_tag 'top-image.jpg', class: 'd-block w-100'%>
+          <%= image_tag 'top2', class: 'd-block w-100'%>
         </div>
         <div class="carousel-item" data-interval="3500">
-          <%= image_tag 'main.jpg', class: 'd-block w-100' %>
+          <%= image_tag 'top3', class: 'd-block w-100' %>
         </div>
         <div class="carousel-item" data-interval="3500">
-          <%= image_tag 'top-image.jpg', class: 'd-block w-100' %>
+          <%= image_tag 'top1', class: 'd-block w-100' %>
         </div>
       </div>
       <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -30,17 +30,17 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h2 class="text-center">Ohitorisamaへようこそ</h2>
+      <h4 class="text-center">贅沢なひとり時間を...</h4>
     </div>
-    <div class="col-12">
-      <div class="search-form form-inline">
-        <%= form_with url: search_path, method: :get, class: 'mx-auto mt-5', local: true do |f| %>
-          <%= f.text_field :keyword, value: @keyword, placeholder: "店名や住所で検索！", class: "form-control form-control-sm" %>
-          <button type="submit" class="btn btn-outline-success btn-sm">
-            <i class="fas fa-search" aria-hidden="true"></i>
-          </button>
-        <% end %>
+        <% if user_signed_in? %>
+        <% else %>
+      <div class="sign-content col-12 text-center p-5">
+        <i class="fas fa-sign-in-alt"><%= link_to ' login', new_user_session_path %></i>
+          <div class='mt-2' style='font-size: 15px;'>
+            ご登録がまだの方は<%= link_to 'こちら', new_user_registration_path, class: 'text-success font-weight-bold' %>から
+          </div>
       </div>
+        <% end %>
     </div>
   </div>
 </div>

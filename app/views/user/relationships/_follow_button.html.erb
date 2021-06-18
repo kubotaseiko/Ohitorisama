@@ -1,15 +1,15 @@
 <div class='follow-link'>
-
-  <% if current_user != user %>
-  <% if current_user.following?(user) %>
-    <%= link_to relationship_path(user.id), method: :DELETE do  %>
-    <div class="btn btn-outline-dark btn-sm">フォローを外す</div>
-    <% end %>
-  <% else %>
-    <%= link_to relationships_path(followed_id: user.id), method: :POST do %>
-    <div class="btn btn-dark btn-sm">フォロー</div>
+  <% if user_signed_in? %>
+    <% if current_user != user %>
+      <% if current_user.following?(user) %>
+        <%= link_to relationship_path(user.id), method: :DELETE do  %>
+          <div class="btn btn-outline-dark btn-sm">フォローを外す</div>
+        <% end %>
+      <% else %>
+        <%= link_to relationships_path(followed_id: user.id), method: :POST do %>
+          <div class="btn btn-dark btn-sm">フォロー</div>
+        <% end %>
+      <% end %>
     <% end %>
   <% end %>
-<% end %>
-  
 </div>

@@ -1,13 +1,15 @@
 <header class="sticky-top">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container container-fluid">
-      <a class="navbar-brand" href="/"><span>Ohitorisama</span></a>
+      <%= link_to "/" do %>
+          <%= image_tag 'header-logo.png', :size =>'120x70', class: 'navbar-brand'%>
+      <% end %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <% if user_signed_in? %>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav ml-auto">
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          <% if user_signed_in? %>
             <form class="d-flex p-2 font-weight-bold">
               <%= form_with url: search_path, method: :get, local: true do |f| %>
                   <%= f.text_field :keyword, value: @keyword, placeholder: "店名や住所で検索！", class: "form-control form-control-sm" %>
@@ -17,22 +19,16 @@
             <li class="nav-link d-none d-lg-block">
               <%= render 'user/partial/circle' %>
             </li>
-            <li class="hb-nav m-3 d-md-block d-lg-none font-weight-bold">
-              <%= link_to(notifications_path) do %>通知<% end %>&emsp;<%= render 'user/partial/circle' %>
-            </li>
-
-            <li class="nav-link">
+            <li class="nav-link d-none d-lg-block">
               <%= link_to 'MyPage',user_path(current_user), class: "d-none d-lg-block", data: {"turbolinks" => false} %>
-              <%= link_to 'MyPage',user_path(current_user), class: "m-3 d-md-block d-lg-none font-weight-bold", data: {"turbolinks" => false} %>
             </li>
-            <li class="nav-link">
+            <li class="nav-link d-none d-lg-block">
               <%= link_to 'Shops', shops_path, class: "d-none d-lg-block" %>
-              <%= link_to 'Shops', shops_path, class: "m-3 d-md-block d-lg-none font-weight-bold" %>
             </li>
             <li class="nav-link d-none d-lg-block">
               <%= link_to 'Post', new_shop_path, class: "d-none d-lg-block" %>
             </li>
-            <li class="nav-link d-none d-lg-block">
+            <li class="nav-link">
               <%= link_to 'Contact', new_contacts_path, class: "d-none d-lg-block" %>
               <%= link_to 'Contact', new_contacts_path, class: "m-3 d-md-block d-lg-none font-weight-bold" %>
             </li>
@@ -47,17 +43,26 @@
               <% end %>
             </li>
           <% else %>
-            <li class="nav-link">
-              <%= link_to ' About', about_path, class: "d-none d-lg-block" %>
-              <%= link_to ' About', about_path, class: "m-3 d-md-block d-lg-none font-weight-bold" %>
+            <li class="nav-link w-50 mt-3 d-md-block d-lg-none mx-auto">
+              <form class="d-flex font-weight-bold">
+                <%= form_with url: search_path, method: :get, local: true do |f| %>
+                    <%= f.text_field :keyword, value: @keyword, placeholder: "店名や住所で検索！", class: "form-control form-control-sm" %>
+                <button class="btn btn-outline-success btn-sm" type="submit"><i class="fas fa-search"></i></button>
+                 <% end %>
+              </form>
             </li>
-            <li class="nav-link"><%= link_to ' Shops', shops_path, class: "d-none d-lg-block" %></li>
-            <li class="nav-link"><%= link_to 'Contact', new_contacts_path, class: "d-none d-lg-block" %></li>
-            <li class="nav-link"><%= link_to ' sign up', new_user_registration_path, class: "d-none d-lg-block" %></li>
-            <li class="nav-link"><%= link_to ' login', new_user_session_path, class: "d-none d-lg-block" %></li>
-          </ul>
-        </div>
-      <% end %>
+            <li class="nav-link d-none d-lg-block p-2">
+              <%= link_to 'Ohitorisamaとは？', about_path %>
+            </li>
+            <li class="nav-link d-none d-lg-block">
+              <%= link_to 'Shops', shops_path %>
+            </li>
+            <li class="nav-link d-none d-lg-block">
+              <%= link_to 'Contact', new_contacts_path %>
+            </li>
+        　<% end %>
+        </ul>
+      </div>
     </div>
   </nav>
 </header>
