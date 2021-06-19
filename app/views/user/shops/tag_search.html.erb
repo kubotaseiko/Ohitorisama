@@ -20,7 +20,7 @@
                 <li>定休日：<%= shop.holiday %></li>
               </td>
               <td>
-                <% shop.tags.each do |tag| %>
+                <% shop.tags.includes(:tagmaps, tagmaps: :shop).each do |tag| %>
                   <%= link_to tag.tag_name, tag_shops_path(tag_id: tag.id), class: "btn btn-outline-dark btn-sm" %>
                 <% end %>
               </td>

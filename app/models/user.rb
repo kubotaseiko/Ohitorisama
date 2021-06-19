@@ -27,6 +27,7 @@ class User < ApplicationRecord
 
   # =============バリデーション=============
   validates :name, presence: true, length: { minimum: 2, maximum: 20 }, uniqueness: true
+  validates :email, presence: true
   validates :introduction, length: { maximum: 50 }
 
   # =============ログイン関連=============

@@ -42,15 +42,6 @@ ActiveRecord::Schema.define(version: 2021_06_16_051939) do
     t.integer "contact_status", default: 0, null: false
   end
 
-  create_table "login_methods", force: :cascade do |t|
-    t.string "provider"
-    t.string "uid"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_login_methods_on_user_id"
-  end
-
   create_table "notifications", force: :cascade do |t|
     t.integer "visitor_id", null: false
     t.integer "visited_id", null: false
@@ -98,15 +89,6 @@ ActiveRecord::Schema.define(version: 2021_06_16_051939) do
     t.string "business_hours"
   end
 
-  create_table "sns", force: :cascade do |t|
-    t.string "provider"
-    t.string "uid"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_sns_on_user_id"
-  end
-
   create_table "tagmaps", force: :cascade do |t|
     t.integer "shop_id"
     t.integer "tag_id"
@@ -141,11 +123,6 @@ ActiveRecord::Schema.define(version: 2021_06_16_051939) do
     t.boolean "is_valid", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "postal_code"
-    t.string "provider"
-    t.string "uid"
-    t.string "current_sign_in_ip"
-    t.datetime "current_sign_in_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
