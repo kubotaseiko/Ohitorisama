@@ -79,9 +79,9 @@ class User::ShopsController < ApplicationController
 
 
   def tag_search
-    @tag_list = Tag.includes(:tagmaps).all
+    @tag_list = Tag.includes(:tagmaps, tagmaps: :shop).all
     @tag = Tag.find(params[:tag_id])
-    @shops = @tag.shops.includes(:tagmaps).all
+    @shops = @tag.shops.includes(:tagmaps, tagmaps: :tag).all
   end
 
 

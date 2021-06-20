@@ -18,7 +18,7 @@
     <div class="col-lg-8 col-12 mt-5">
       <% if user_signed_in? %>
         <div class="mt-2 text-center">
-            <h5 class="fas fa-comments mb-3">tweet</h5>
+            <h5 class="fas fa-comments mb-3">つぶやき</h5>
             <%= render 'user/tweets/index', tweets: @tweets %>
             <div class="col-12 text-center mt-4">
               <%= link_to 'つぶやく', new_tweet_path, class: "btn btn-outline-success pl-5 pr-5" %>

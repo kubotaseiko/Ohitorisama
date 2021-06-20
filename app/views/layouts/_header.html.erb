@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container container-fluid">
       <%= link_to "/" do %>
-          <%= image_tag 'header-logo.png', :size =>'120x70', class: 'navbar-brand'%>
+          <%= image_tag 'header-logo.png', :size =>'120x70', class: 'navbar-brand', alt: "トップページロゴ" %>
       <% end %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -29,11 +29,11 @@
               <%= link_to 'Post', new_shop_path, class: "d-none d-lg-block" %>
             </li>
             <li class="nav-link">
-              <%= link_to 'Contact', new_contacts_path, class: "d-none d-lg-block" %>
+              <%= link_to 'Contact', new_contacts_path, class: "pc-contact-link d-none d-lg-block" %>
               <%= link_to 'Contact', new_contacts_path, class: "m-3 d-md-block d-lg-none font-weight-bold" %>
             </li>
             <li class="nav-link d-none d-lg-block">
-              <%= link_to destroy_user_session_path, method: :delete do %>
+              <%= link_to destroy_user_session_path, id: 'logout-img', method: :delete do %>
                 <i class="fas fa-sign-out-alt"></i>
               <% end %>
             </li>
