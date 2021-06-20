@@ -51,11 +51,13 @@ group :development do
 end
 
 group :test do
+
   gem 'capybara'
   gem 'rspec-rails'
   gem "factory_bot_rails"
   gem 'faker'
   gem 'gimei'
+
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -84,8 +86,8 @@ group :production do
   gem 'mysql2'
 end
 
-gem 'geocoder'
-gem 'rails-i18n'
+gem 'geocoder' #gmap
+gem 'rails-i18n' #日本語変換
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
