@@ -8,5 +8,8 @@ FactoryBot.define do
     holiday { Faker::Lorem.characters(number: 5) }
     business_hours { Faker::Lorem.characters(number: 5) }
     user
+    after(:create) do |shop|
+      create_list(:tagmap, 1, shop: shop, tag: create(:tag))
+    end
   end
 end

@@ -4,10 +4,12 @@ describe '[STEP2] ユーザログイン後のテスト' do
   let(:user) { create(:user) }
   let!(:other_user) { create(:user) }
   let!(:shop) { create(:shop, user: user) }
+  let!(:tag) { create(:tag) }
   let!(:other_shop) { create(:shop, user: other_user) }
   let!(:tweet) { create(:tweet, user: user) }
   let!(:other_tweet) { create(:tweet, user: other_user) }
-  let!(:tag) { create(:tag) }
+  let!(:review) { create(:review, user: user) }
+  let!(:other_review) { create(:review, user: other_user, shop: shop) }
 
   before do
     visit new_user_session_path
@@ -88,25 +90,28 @@ describe '[STEP2] ユーザログイン後のテスト' do
         expect(page).to have_link '', href: tweet_path(tweet)
       end
     end
-    
+
     context '表示内容の確認(タグ一覧)' do
       it '「tag」の表示があるか' do
         expect(page).to have_content 'tag'
       end
       it 'タグが表示され、リンク先が正しい' do
-        expect(page).to have_link tag.tag_name, href: tag_shops_path(tag)
+        expect(page).to have_link tag.tag_name, href: tag_shops_path(shop.tag)
       end
     end
   end
-  
+
   describe '自分の投稿詳細画面のテスト' do
     before do
       visit shop_path(shop)
     end
-    
+
     context '表示内容の確認' do
       it 'URLが正しい' do
         expect(current_path).to eq '/shops/' + shop.id.to_s
+      end
+      it '投稿の画像が表示される' do
+        expect(page).to have_content shop.shop_image_id
       end
       it 'ユーザ画像・名前のリンク先が正しい' do
         expect(page).to have_link shop.user.name, href: user_path(shop.user)
@@ -117,6 +122,9 @@ describe '[STEP2] ユーザログイン後のテスト' do
       end
       it '投稿の評価が表示される' do
         expect(page).to have_content '評価なし' or shop.rate_average
+      end
+      it '「tag」の表示があるか' do
+        expect(page).to have_link shop.tags.tag_name, href: tag_shops_path(shop.tag)
       end
       it '投稿の紹介文が表示される' do
         expect(page).to have_content shop.introduction
@@ -146,8 +154,18 @@ describe '[STEP2] ユーザログイン後のテスト' do
     end
     context '表示内容の確認(review)' do
       it 'reviewが表示されている' do
+        expect(page).to have_content 'Reviews'
+
       end
-      it ''
+      it 'reviewの投稿日が表示されている'do
+        expect(page).to have_content review.created_at.strftime('%m/%d')
+      end
+      it 'review投稿者のアイコンが表示され、リンク先が正しい'do
+        expect(page).to have_link review.user.profile_image, href: user_path(review.user)
+      end
+      it 'review投稿者の名前が表示され、リンク先が正しい'do
+        expect(page).to have_link review.user.name, href: user_path(review.user)
+      end
     end
   end
 end

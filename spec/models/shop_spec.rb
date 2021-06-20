@@ -46,6 +46,9 @@ RSpec.describe 'Shopモデルのテスト', type: :model do
       it 'N:1となっている' do
         expect(Shop.reflect_on_association(:user).macro).to eq :belongs_to
       end
+      it "有効なtagを生成できる" do
+        expect(create(:tag)).to be_valid
+      end
     end
   end
 end
