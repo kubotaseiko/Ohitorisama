@@ -8,13 +8,10 @@ FactoryBot.define do
     tell { Faker::Lorem.characters(number: 5) }
     holiday { Faker::Lorem.characters(number: 5) }
     business_hours { Faker::Lorem.characters(number: 5) }
-
-    association :user
+    user
     
     after(:create) do |shop|
-      temp_tagmap = create(:tagmap)
-      create(:tag, shop: shop, tagmap: temp_tagmap)
-      create(:tagmap_shop, shop: shop, tagmap: temp_tagmap)
+      create(:tagmap, shop: shop, tag: create(:tag))
     end
   end
 end

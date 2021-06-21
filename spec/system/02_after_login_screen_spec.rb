@@ -97,7 +97,9 @@ describe '[STEP2] ユーザログイン後のテスト' do
         expect(page).to have_content 'tag'
       end
       it 'タグが表示され、リンク先が正しい' do
-        expect(page).to have_link tag.tag_name, href: tag_shops_path(tag)
+        shop.tags.each do |tag|
+         expect(page).to have_link tag.tag_name, href: tag_shops_path(tag)
+        end
       end
     end
   end
@@ -111,11 +113,6 @@ describe '[STEP2] ユーザログイン後のテスト' do
       it 'URLが正しい' do
         expect(current_path).to eq '/shops/' + shop.id.to_s
       end
-      it 'shopの画像が表示される' do
-        expect(page).to have_css ".shop-img"
-        # is_expected.to eq ("img[src$='test.jpg']")
-
-      end
       it 'ユーザ画像・名前のリンク先が正しい' do
         expect(page).to have_link shop.user.name, href: user_path(shop.user)
         expect(page).to have_link shop.user.profile_image, href: user_path(shop.user)
@@ -127,7 +124,9 @@ describe '[STEP2] ユーザログイン後のテスト' do
         expect(page).to have_content '評価なし' or shop.rate_average
       end
       it '「tag」の表示があるか' do
-        expect(page).to have_link shop.tags.tag_name, href: tag_shops_path(shop.tag)
+        shop.tags.each do |tag|
+          expect(page).to have_link tag.tag_name, href: tag_shops_path(tag)
+        end
       end
       it '投稿の紹介文が表示される' do
         expect(page).to have_content shop.introduction
@@ -170,6 +169,5 @@ describe '[STEP2] ユーザログイン後のテスト' do
         expect(page).to have_link review.user.name, href: user_path(other_user)
       end
     end
-
   end
 end

@@ -10,7 +10,6 @@ class User::ShopsController < ApplicationController
     end
   end
 
-
   def index
     @tag_list = Tag.includes(:tagmaps).all
     @shops = Shop.includes(:reviews).all.page(params[:page]).reverse_order
@@ -43,14 +42,17 @@ class User::ShopsController < ApplicationController
 
   def edit
     @shop = Shop.find(params[:id])
+    unless user_signed_in? && current_user.id == @shop.user.id
+      redirect_to action: :index
+    end
   end
 
   def update
-    shop = Shop.find(params[:id])
+    @shop = Shop.find(params[:id])
     tag_list = params[:shop][:tag_name].split(/[[:blank:]]+/)
-    if shop.update(shop_params)
-      shop.save_tag(tag_list)
-      redirect_to shop_path(shop.id)
+    if @shop.update(shop_params)
+      @shop.save_tag(tag_list)
+      redirect_to shop_path(@shop.id)
     else
       render 'edit'
     end
@@ -83,9 +85,6 @@ class User::ShopsController < ApplicationController
     @tag = Tag.find(params[:tag_id])
     @shops = @tag.shops.includes(:tagmaps, tagmaps: :tag).all
   end
-
-
-
 
   private
 
