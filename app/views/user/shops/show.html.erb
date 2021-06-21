@@ -11,7 +11,7 @@
   <div class="row pl-4 pt-5">
     <div class="col-lg-5 col-md-12">
       <div class="card">
-        <%= attachment_image_tag @shop, :shop_image, :fill, 400, 400, format: 'jpeg', class: 'rounded' %>
+        <%= attachment_image_tag @shop, :shop_image, :fill, 400, 400, format: 'jpeg', class: 'shop-img rounded' %>
         <div class="card-img-overlay text-right">
           <h1 id='bookmark_btn'>
             <%= render 'user/bookmarks/bookmark_button', shop: @shop %>

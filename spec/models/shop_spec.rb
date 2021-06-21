@@ -14,9 +14,9 @@ RSpec.describe 'Shopモデルのテスト', type: :model do
       end
     end
 
-    context 'shop_image_idカラム' do
+    context 'shop_imageカラム' do
       it '空欄でないこと' do
-        shop.shop_image_id = ''
+        shop.shop_image = ''
         is_expected.to eq false
       end
     end
@@ -47,7 +47,7 @@ RSpec.describe 'Shopモデルのテスト', type: :model do
         expect(Shop.reflect_on_association(:user).macro).to eq :belongs_to
       end
       it "有効なtagを生成できる" do
-        expect(create(:tag)).to be_valid
+        expect(create(:user)).to be_valid
       end
     end
   end
