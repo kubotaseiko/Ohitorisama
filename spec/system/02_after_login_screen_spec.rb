@@ -2,14 +2,15 @@ require 'rails_helper'
 
 describe '[STEP2] ユーザログイン後のテスト' do
   let(:user) { create(:user) }
-  let!(:other_user) { create(:user) }
   let!(:shop) { create(:shop, user: user) }
-  let!(:tag) { create(:tag) }
-  let!(:other_shop) { create(:shop, user: other_user) }
   let!(:tweet) { create(:tweet, user: user) }
+
+  let!(:other_user) { create(:user) }
+  let!(:other_shop) { create(:shop, user: other_user) }
   let!(:other_tweet) { create(:tweet, user: other_user) }
-  let!(:review) { create(:review, user: user) }
-  let!(:other_review) { create(:review, user: other_user, shop: shop) }
+  let!(:review) { create(:review, user: other_user, shop: shop) }
+
+
 
   before do
     visit new_user_session_path
@@ -96,7 +97,9 @@ describe '[STEP2] ユーザログイン後のテスト' do
         expect(page).to have_content 'tag'
       end
       it 'タグが表示され、リンク先が正しい' do
-        expect(page).to have_link tag.tag_name, href: tag_shops_path(shop.tag)
+        shop.tags.each do |tag|
+         expect(page).to have_link tag.tag_name, href: tag_shops_path(tag)
+        end
       end
     end
   end
@@ -110,9 +113,6 @@ describe '[STEP2] ユーザログイン後のテスト' do
       it 'URLが正しい' do
         expect(current_path).to eq '/shops/' + shop.id.to_s
       end
-      it '投稿の画像が表示される' do
-        expect(page).to have_content shop.shop_image_id
-      end
       it 'ユーザ画像・名前のリンク先が正しい' do
         expect(page).to have_link shop.user.name, href: user_path(shop.user)
         expect(page).to have_link shop.user.profile_image, href: user_path(shop.user)
@@ -124,7 +124,9 @@ describe '[STEP2] ユーザログイン後のテスト' do
         expect(page).to have_content '評価なし' or shop.rate_average
       end
       it '「tag」の表示があるか' do
-        expect(page).to have_link shop.tags.tag_name, href: tag_shops_path(shop.tag)
+        shop.tags.each do |tag|
+          expect(page).to have_link tag.tag_name, href: tag_shops_path(tag)
+        end
       end
       it '投稿の紹介文が表示される' do
         expect(page).to have_content shop.introduction
@@ -161,10 +163,10 @@ describe '[STEP2] ユーザログイン後のテスト' do
         expect(page).to have_content review.created_at.strftime('%m/%d')
       end
       it 'review投稿者のアイコンが表示され、リンク先が正しい'do
-        expect(page).to have_link review.user.profile_image, href: user_path(review.user)
+        expect(page).to have_link review.user.profile_image, href: user_path(other_user)
       end
       it 'review投稿者の名前が表示され、リンク先が正しい'do
-        expect(page).to have_link review.user.name, href: user_path(review.user)
+        expect(page).to have_link review.user.name, href: user_path(other_user)
       end
     end
   end

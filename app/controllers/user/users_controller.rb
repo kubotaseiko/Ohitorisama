@@ -12,6 +12,9 @@ class User::UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    unless user_signed_in? && current_user.id == @user.id
+      redirect_to user_path(current_user)
+    end
   end
 
   def update
