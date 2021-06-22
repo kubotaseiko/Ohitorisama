@@ -8,7 +8,11 @@ class CreateShops < ActiveRecord::Migration[5.2]
       t.string :address
       t.string :tell
       t.string :holiday
-
+      t.string :business_hours
+      t.float :rate_average
+      t.float :latitude
+      t.float :longitude
+        
       t.timestamps
     end
   end

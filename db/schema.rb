@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_16_051939) do
+ActiveRecord::Schema.define(version: 2021_06_09_051545) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -34,12 +34,12 @@ ActiveRecord::Schema.define(version: 2021_06_16_051939) do
   end
 
   create_table "contacts", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.text "content"
+    t.string "name", null: false
+    t.string "email", null: false
+    t.text "contant", null: false
+    t.integer "contact_status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "contact_status", default: 0, null: false
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -81,12 +81,12 @@ ActiveRecord::Schema.define(version: 2021_06_16_051939) do
     t.string "address"
     t.string "tell"
     t.string "holiday"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "business_hours"
+    t.float "rate_average"
     t.float "latitude"
     t.float "longitude"
-    t.float "rate_average"
-    t.string "business_hours"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tagmaps", force: :cascade do |t|
@@ -117,6 +117,11 @@ ActiveRecord::Schema.define(version: 2021_06_16_051939) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
     t.string "name"
     t.string "profile_image_id"
     t.text "introduction"
