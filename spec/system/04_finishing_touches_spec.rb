@@ -33,7 +33,7 @@ describe '[STEP4] 仕上げのテスト' do
         expect(page).to have_content "アカウント名は2文字以上で入力してください"
       end
     end
-    
+
     context 'ユーザのプロフィール情報編集失敗: nameを1文字にする' do
       before do
         @user_old_name = user.name
@@ -58,35 +58,23 @@ describe '[STEP4] 仕上げのテスト' do
       end
     end
 
-    # context '投稿データの新規投稿失敗: 投稿一覧画面から行い、お店の名前を空にする' do
-    #   before do
-    #     visit new_user_session_path
-    #     fill_in 'user[name]', with: user.name
-    #     fill_in 'user[password]', with: user.password
-    #     click_button 'ログイン'
-    #     visit shops_path
-    #     @introdact = Faker::Lorem.characters(number: 19)
-    #     fill_in 'book[body]', with: @body
-    #   end
+    context '投稿データの新規投稿失敗: 何も入力しないで投稿する' do
+      before do
+        visit new_user_session_path
+        fill_in 'user[name]', with: user.name
+        fill_in 'user[password]', with: user.password
+        click_button 'ログイン'
+        visit new_shop_path
+      end
 
-    #   it '投稿が保存されない' do
-    #     expect { click_button 'Create Book' }.not_to change(Book.all, :count)
-    #   end
-    #   it '投稿一覧画面を表示している' do
-    #     click_button 'Create Book'
-    #     expect(current_path).to eq '/books'
-    #     expect(page).to have_content book.body
-    #     expect(page).to have_content other_book.body
-    #   end
-    #   it '新規投稿フォームの内容が正しい' do
-    #     expect(find_field('book[title]').text).to be_blank
-    #     expect(page).to have_field 'book[body]', with: @body
-    #   end
-    #   it 'バリデーションエラーが表示される' do
-    #     click_button 'Create Book'
-    #     expect(page).to have_content "can't be blank"
-    #   end
-    # end
+      it '投稿が保存されない' do
+        expect { click_button '投稿する' }.not_to change(Shop.all, :count)
+      end
+      it 'バリデーションエラーが表示される' do
+        click_button '投稿する'
+        expect(page).to have_content "3件のエラーが発生しました"
+      end
+    end
     context '投稿データの更新失敗: shop_nameを空にする' do
       before do
         visit new_user_session_path
@@ -162,7 +150,7 @@ describe '[STEP4] 仕上げのテスト' do
       before do
         visit user_path(other_user)
       end
-  
+
       context '表示の確認' do
         it 'URLが正しい' do
           expect(current_path).to eq '/users/' + other_user.id.to_s
@@ -171,13 +159,13 @@ describe '[STEP4] 仕上げのテスト' do
           expect(page).not_to have_content shop.shop_name
         end
       end
-  
+
       context '他人のユーザ情報編集画面' do
         it '遷移できず、自分のユーザ詳細画面にリダイレクトされる' do
           visit edit_user_path(other_user)
           expect(current_path).to eq '/users/' + user.id.to_s
         end
       end
-    end 
+    end
   end
 end
