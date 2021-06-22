@@ -66,6 +66,7 @@ class User::ShopsController < ApplicationController
 
   def search
     @shops = Shop.search(params[:keyword]).page(params[:page]).reverse_order
+    @keyword = params[:keyword] 
     render 'index'
   end
 

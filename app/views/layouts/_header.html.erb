@@ -10,12 +10,14 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
-            <form class="d-flex p-2 font-weight-bold">
-              <%= form_with url: search_path, method: :get, local: true do |f| %>
-                  <%= f.text_field :keyword, value: @keyword, placeholder: "店名や住所で検索！", class: "form-control form-control-sm" %>
-              <button class="btn btn-outline-success btn-sm" type="submit"><i class="fas fa-search"></i></button>
-               <% end %>
-            </form>
+            <div class="d-flex font-weight-bold form-inline">
+              <%= form_with url: search_path, method: :get, class: 'mx-auto', local: true do |f| %>
+                <%= f.text_field :keyword, value: @keyword, placeholder: "店名や住所で検索！", class: "form-control form-control-sm" %>
+                <button type="submit" class="btn btn-outline-success btn-sm mr-2">
+                  <i class="fas fa-search" aria-hidden="true"></i>
+                </button>
+              <% end %>
+            </div>
             <li class="nav-link d-none d-lg-block">
               <%= render 'user/partial/circle' %>
             </li>
@@ -44,11 +46,13 @@
             </li>
           <% else %>
             <li class="nav-link w-50 mt-3 d-md-block d-lg-none mx-auto">
-              <form class="d-flex font-weight-bold">
-                <%= form_with url: search_path, method: :get, local: true do |f| %>
-                    <%= f.text_field :keyword, value: @keyword, placeholder: "店名や住所で検索！", class: "form-control form-control-sm" %>
-                <button class="btn btn-outline-success btn-sm" type="submit"><i class="fas fa-search"></i></button>
-                 <% end %>
+              <div class="d-flex font-weight-bold form-inline">
+                <%= form_with url: search_path, method: :get, class: 'mx-auto mt-5', local: true do |f| %>
+                  <%= f.text_field :keyword, value: @keyword, placeholder: "店名や住所で検索！", class: "form-control form-control-sm" %>
+                  <button type="submit" class="btn btn-outline-success btn-sm">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                  </div>
+                <% end %>
               </form>
             </li>
             <li class="nav-link d-none d-lg-block p-2">
