@@ -7,13 +7,13 @@
       </ol>
       <div class="carousel-inner">
         <div class="carousel-item active" data-interval="3500" style="object-fit: cover; object-position: center;">
-          <%= image_tag 'top2', class: 'd-block w-100'%>
+          <%= image_tag 'top1', class: 'd-block w-100'%>
+        </div>
+        <div class="carousel-item" data-interval="3500">
+          <%= image_tag 'top2', class: 'd-block w-100' %>
         </div>
         <div class="carousel-item" data-interval="3500">
           <%= image_tag 'top3', class: 'd-block w-100' %>
-        </div>
-        <div class="carousel-item" data-interval="3500">
-          <%= image_tag 'top1', class: 'd-block w-100' %>
         </div>
       </div>
       <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -29,18 +29,22 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-12">
-      <h4 class="text-center">贅沢なひとり時間を...</h4>
+    <div class="col-12 text-center mt-5">
+      <%= image_tag 'top-logo', :size => '480x160' %>
+      <!--<h4 class="text-center">贅沢なひとり時間を...</h4>-->
     </div>
-        <% if user_signed_in? %>
-        <% else %>
-      <div class="sign-content col-12 text-center p-5">
+    <% if user_signed_in? %>
+    <% else %>
+      <div class="sign-content col-12 text-center p-5 mb-5"  style='font-size: 12px;'>
         <i class="fas fa-sign-in-alt"><%= link_to ' login', new_user_session_path %></i>
-          <div class='mt-2' style='font-size: 15px;'>
+          <div class='mt-2'>
             ご登録がまだの方は<%= link_to 'こちら', new_user_registration_path, class: 'text-success font-weight-bold' %>から
           </div>
       </div>
-        <% end %>
+    <% end %>
+    <div class='col-12 mt-5 mb-5 text-center'>
+      <%= link_to 'Ohitorisamaの活用法', about_path %>
+    </div>
     </div>
   </div>
 </div>

@@ -2,6 +2,9 @@
   <div class="row mt-5">
     <div class="form-area col-lg-10 offset-lg-1 p-5 col-md-12 text-center">
       <div class="col-12">
+        <div class="mb-2">
+          <%= attachment_image_tag @shop, :shop_image, :fill, 500, 300, format: 'jpeg', class: 'shop-img rounded' %>
+        </div>
         <h3 ><%= @shop.shop_name %>のレビュー</h3>
         <h5 class="far fa-star mt-3">
           &nbsp;
@@ -13,7 +16,7 @@
         </h5></br>
         <div class="average-review-rating" data-score=<%= @average_review %>></div>
         <div class="col-8 mx-auto">
-          <div class="border border-secondary p-3 m-2"><%= @shop.introduction %></div>
+          <div class="border border-secondary p-3 m-2 text-left"><%= @shop.introduction %></div>
         </div>
       </div>
 

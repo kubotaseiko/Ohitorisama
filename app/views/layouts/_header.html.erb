@@ -1,72 +1,74 @@
 <header class="sticky-top">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container container-fluid">
-      <%= link_to "/" do %>
-          <%= image_tag 'header-logo.png', :size =>'120x70', class: 'navbar-brand', alt: "トップページロゴ" %>
-      <% end %>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
-          <% if user_signed_in? %>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light p-0" style="font-size: 13px;">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ml-auto">
+        <% if user_signed_in? %>
+          <div class="d-flex font-weight-bold form-inline">
+            <%= form_with url: search_path, method: :get, class: 'mx-auto', local: true do |f| %>
+              <%= f.text_field :keyword, value: @keyword, placeholder: "店名や住所で検索！", class: "form-control form-control-sm" %>
+              <button type="submit" class="btn btn-outline-success btn-sm mr-2">
+                <i class="fas fa-search" aria-hidden="true"></i>
+              </button>
+            <% end %>
+          </div>
+          <li class="nav-link d-none d-lg-block">
+            <%= render 'user/partial/circle' %>
+          </li>
+          <li class="nav-link d-none d-lg-block">
+            <%= link_to 'MyPage',user_path(current_user), class: "d-none d-lg-block", data: {"turbolinks" => false} %>
+          </li>
+          <li class="nav-link d-none d-lg-block">
+            <%= link_to 'Shops', shops_path, class: "d-none d-lg-block" %>
+          </li>
+          <li class="nav-link d-none d-lg-block">
+            <%= link_to 'Post', new_shop_path, class: "d-none d-lg-block" %>
+          </li>
+          <li class="nav-link">
+            <%= link_to 'Contact', new_contacts_path, class: "pc-contact-link d-none d-lg-block" %>
+            <%= link_to 'Contact', new_contacts_path, class: "m-3 d-md-block d-lg-none font-weight-bold" %>
+          </li>
+          <li class="nav-link d-none d-lg-block">
+            <%= link_to destroy_user_session_path, id: 'logout-img', method: :delete do %>
+              <i class="fas fa-sign-out-alt"></i>
+            <% end %>
+          </li>
+          <li class="nav-link ml-3 d-md-block d-lg-none font-weight-bold">
+            <%= link_to destroy_user_session_path, method: :delete do %>
+              logout&emsp;<i class="fas fa-sign-out-alt"></i>
+            <% end %>
+          </li>
+        <% else %>
+          <li class="nav-link w-50 mt-3 d-md-block d-lg-none mx-auto">
             <div class="d-flex font-weight-bold form-inline">
-              <%= form_with url: search_path, method: :get, class: 'mx-auto', local: true do |f| %>
+              <%= form_with url: search_path, method: :get, class: 'mx-auto mt-5', local: true do |f| %>
                 <%= f.text_field :keyword, value: @keyword, placeholder: "店名や住所で検索！", class: "form-control form-control-sm" %>
-                <button type="submit" class="btn btn-outline-success btn-sm mr-2">
+                <button type="submit" class="btn btn-outline-success btn-sm">
                   <i class="fas fa-search" aria-hidden="true"></i>
-                </button>
+                </div>
               <% end %>
-            </div>
-            <li class="nav-link d-none d-lg-block">
-              <%= render 'user/partial/circle' %>
-            </li>
-            <li class="nav-link d-none d-lg-block">
-              <%= link_to 'MyPage',user_path(current_user), class: "d-none d-lg-block", data: {"turbolinks" => false} %>
-            </li>
-            <li class="nav-link d-none d-lg-block">
-              <%= link_to 'Shops', shops_path, class: "d-none d-lg-block" %>
-            </li>
-            <li class="nav-link d-none d-lg-block">
-              <%= link_to 'Post', new_shop_path, class: "d-none d-lg-block" %>
-            </li>
-            <li class="nav-link">
-              <%= link_to 'Contact', new_contacts_path, class: "pc-contact-link d-none d-lg-block" %>
-              <%= link_to 'Contact', new_contacts_path, class: "m-3 d-md-block d-lg-none font-weight-bold" %>
-            </li>
-            <li class="nav-link d-none d-lg-block">
-              <%= link_to destroy_user_session_path, id: 'logout-img', method: :delete do %>
-                <i class="fas fa-sign-out-alt"></i>
-              <% end %>
-            </li>
-            <li class="nav-link ml-3 d-md-block d-lg-none font-weight-bold">
-              <%= link_to destroy_user_session_path, method: :delete do %>
-                logout&emsp;<i class="fas fa-sign-out-alt"></i>
-              <% end %>
-            </li>
-          <% else %>
-            <li class="nav-link w-50 mt-3 d-md-block d-lg-none mx-auto">
-              <div class="d-flex font-weight-bold form-inline">
-                <%= form_with url: search_path, method: :get, class: 'mx-auto mt-5', local: true do |f| %>
-                  <%= f.text_field :keyword, value: @keyword, placeholder: "店名や住所で検索！", class: "form-control form-control-sm" %>
-                  <button type="submit" class="btn btn-outline-success btn-sm">
-                    <i class="fas fa-search" aria-hidden="true"></i>
-                  </div>
-                <% end %>
-              </form>
-            </li>
-            <li class="nav-link d-none d-lg-block p-2">
-              <%= link_to 'Ohitorisamaとは？', about_path %>
-            </li>
-            <li class="nav-link d-none d-lg-block">
-              <%= link_to 'Shops', shops_path %>
-            </li>
-            <li class="nav-link d-none d-lg-block">
-              <%= link_to 'Contact', new_contacts_path %>
-            </li>
-        　<% end %>
-        </ul>
-      </div>
+            </form>
+          </li>
+          <li class="nav-link d-none d-lg-block p-2">
+            <%= link_to 'ログインする', about_path %>
+          </li>
+          <li class="nav-link d-none d-lg-block p-2">
+            <%= link_to '新規会員登録', new_user_session_path %>
+          </li>
+          <li class="nav-link d-none d-lg-block p-2">
+            <%= link_to 'Ohitorisamaとは？', about_path %>
+          </li>
+          <!--<li class="nav-link d-none d-lg-block">-->
+          <!--  <%= link_to 'Shops', shops_path %>-->
+          <!--</li>-->
+          <!--<li class="nav-link d-none d-lg-block">-->
+          <!--  <%= link_to 'Contact', new_contacts_path %>-->
+          <!--</li>-->
+      　<% end %>
+      </ul>
     </div>
+
   </nav>
 </header>

@@ -1,6 +1,33 @@
 <div class="container">
-  <div class="row">
 
+  <%= render 'homes/about_link' %>
+
+  <div class="row text-center m-5">
+    <div class="col-12">
+      説明あるよ！
+    </div>
+
+  </div>
+
+  <div class="row text-center">
+    <div class="col-md-8 col-12">
+      <%= image_tag 'about-map', :size => '735x680' %>
+    </div>
+    <div class="col-md-4 col-12">
+      マップ表示があり見やすいです！
+    </div>
+  </div>
+
+  <div class="row text-center" >
+    <div class="col-md-6 col-12">
+      <%= image_tag 'about-tag', :size => '400x300' %>
+    </div>
+    <div class="col-md-6 col-12">
+      タグ検索できる！
+    </div>
+  </div>
+
+  <div class="row">
     <div class="col-12">
       <div class="search-form form-inline">
         <%= form_with url: search_path, method: :get, class: 'mx-auto mt-5', local: true do |f| %>
@@ -11,9 +38,6 @@
         <% end %>
       </div>
     </div>
-
   </div>
+
 </div>
-
-
-<%= link_to 'あどみん', new_admin_session_path %>

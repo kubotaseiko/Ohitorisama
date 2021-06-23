@@ -1,16 +1,14 @@
 <footer class="footer">
 
   <div class="container">
-
-    <p class="footer-pc d-none d-lg-block w-100 fixed-bottom mb-0 text-center">
+    <p class="footer-pc d-none d-lg-block w-100 mb-0 text-center">
          Ohitorisama ©202106 inc
     </p>
+  </div>
 
-
-
-  <div class="footer-sm fixed-bottom d-md-block d-lg-none pb-3">
+  <div class="footer-sm d-md-block d-lg-none pb-3 fixed-bottom">
     <% if user_signed_in? %>
-      <ul class="navbar-nav d-flex flex-row text-center fixed-bottom">
+      <ul class="navbar-nav d-flex flex-row text-center">
         <li class="nav-link col-3 d-md-block d-lg-none">
           <%= link_to new_shop_path do %>
             <i class="far fa-plus-square"></i>
@@ -55,13 +53,5 @@
       </ul>
     <% end %>
   </div>
-
-  </div>
-
-
-
-
-
-
 
 </footer>

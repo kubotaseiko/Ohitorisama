@@ -104,8 +104,7 @@
             <td style="width: 15%"><i class="far fa-star"></i>&nbsp;<%= review.rate %></div><td>
             <td style="width: 5%">
               <%= link_to user_path(review.user) do %>
-                <%= attachment_image_tag review.user, :profile_image, size: '30x30', fallback: 'no_image.jpg', class: "rounded-circle" %></br>
-                <%= review.user.name %>
+                <%= attachment_image_tag review.user, :profile_image, size: '30x30', fallback: 'no_image.jpg', class: "rounded-circle" %>
               <% end %>
             </td>
             <td style="width: 5%">
