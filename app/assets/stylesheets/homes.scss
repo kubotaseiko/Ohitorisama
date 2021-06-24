@@ -2,9 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.top-search {
-  margin-top: 250px;
-}
+// ============== top ==============
 
 .jumbotron {
   padding: 0;
@@ -12,4 +10,80 @@
 
 .carousel-item {
   background-color: #FFF;
+}
+.top-search {
+  margin-top: 250px;
+}
+
+/* Loading背景画面設定　*/
+#splash {
+/*fixedで全面に固定*/
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  background: #FFF;
+  text-align:center;
+  color:#fff;
+}
+
+/* Loading画像中央配置　*/
+#splash_logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#splash_logo img {
+  width:480px;
+}
+
+@keyframes blurAnime{
+  from {
+	filter: blur(10px);
+	transform: scale(1.02);
+  }
+}
+
+// ============== about ==============
+.about-page {
+}
+
+.about-page h6 {
+}
+
+.description {
+  background: #DDDDDD;
+  border-radius: 30px;
+}
+
+.about-page p {
+  font-size: 12px;
+}
+
+
+/* 滑らかに変形して出現 */
+.smooth{
+	animation-name: smoothAnime;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+  transform-origin: left;
+	opacity: 0;
+}
+
+@keyframes smoothAnime{
+  from {
+  transform:translate3d(0, 100%, 0) skewY(12deg);
+  opacity:0;
+  }
+
+  to {
+  transform:translate3d(0, 0, 0) skewY(0);
+  opacity:1;
+  }
+}
+
+.smoothTrigger{
+    opacity: 0;
 }

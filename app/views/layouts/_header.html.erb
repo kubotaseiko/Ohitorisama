@@ -1,15 +1,15 @@
 <header class="sticky-top">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light p-0" style="font-size: 13px;">
+  <nav class="navbar navbar-expand-lg navbar-light p-0" style="font-size: 13px;">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
-          <div class="d-flex font-weight-bold form-inline">
-            <%= form_with url: search_path, method: :get, class: 'mx-auto', local: true do |f| %>
+          <div class="d-flex font-weight-bold">
+            <%= form_with url: search_path, method: :get, class: 'mx-auto form-inline', local: true do |f| %>
               <%= f.text_field :keyword, value: @keyword, placeholder: "店名や住所で検索！", class: "form-control form-control-sm" %>
-              <button type="submit" class="btn btn-outline-success btn-sm mr-2">
+              <button type="submit" class="btn btn-outline-light btn-sm ml-1">
                 <i class="fas fa-search" aria-hidden="true"></i>
               </button>
             <% end %>
@@ -26,7 +26,7 @@
           <li class="nav-link d-none d-lg-block">
             <%= link_to 'Post', new_shop_path, class: "d-none d-lg-block" %>
           </li>
-          <li class="nav-link">
+          <li class="nav-link text-center">
             <%= link_to 'Contact', new_contacts_path, class: "pc-contact-link d-none d-lg-block" %>
             <%= link_to 'Contact', new_contacts_path, class: "m-3 d-md-block d-lg-none font-weight-bold" %>
           </li>
@@ -35,15 +35,15 @@
               <i class="fas fa-sign-out-alt"></i>
             <% end %>
           </li>
-          <li class="nav-link ml-3 d-md-block d-lg-none font-weight-bold">
+          <li class="nav-link ml-3 d-md-block d-lg-none font-weight-bold text-center">
             <%= link_to destroy_user_session_path, method: :delete do %>
               logout&emsp;<i class="fas fa-sign-out-alt"></i>
             <% end %>
           </li>
         <% else %>
-          <li class="nav-link w-50 mt-3 d-md-block d-lg-none mx-auto">
+          <li class="nav-link w-50 d-md-block d-lg-none mx-auto">
             <div class="d-flex font-weight-bold form-inline">
-              <%= form_with url: search_path, method: :get, class: 'mx-auto mt-5', local: true do |f| %>
+              <%= form_with url: search_path, method: :get, class: 'mx-auto', local: true do |f| %>
                 <%= f.text_field :keyword, value: @keyword, placeholder: "店名や住所で検索！", class: "form-control form-control-sm" %>
                 <button type="submit" class="btn btn-outline-success btn-sm">
                   <i class="fas fa-search" aria-hidden="true"></i>
@@ -52,20 +52,17 @@
             </form>
           </li>
           <li class="nav-link d-none d-lg-block p-2">
-            <%= link_to 'ログインする', about_path %>
-          </li>
-          <li class="nav-link d-none d-lg-block p-2">
-            <%= link_to '新規会員登録', new_user_session_path %>
-          </li>
-          <li class="nav-link d-none d-lg-block p-2">
             <%= link_to 'Ohitorisamaとは？', about_path %>
           </li>
-          <!--<li class="nav-link d-none d-lg-block">-->
-          <!--  <%= link_to 'Shops', shops_path %>-->
-          <!--</li>-->
-          <!--<li class="nav-link d-none d-lg-block">-->
-          <!--  <%= link_to 'Contact', new_contacts_path %>-->
-          <!--</li>-->
+          <li class="nav-link d-none d-lg-block p-2">
+            <%= link_to 'ログインする', new_user_session_path %>
+          </li>
+          <li class="nav-link d-none d-lg-block p-2">
+            <%= link_to '新規会員登録', new_user_registration_path %>
+          </li>
+          <li class="nav-link d-none d-lg-block">
+            <%= link_to 'お問い合わせ', new_contacts_path %>
+          </li>
       　<% end %>
       </ul>
     </div>

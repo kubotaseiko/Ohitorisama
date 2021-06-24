@@ -1,5 +1,6 @@
-<div class='container'>
-  <div class="row g-3 mt-5">
+<div class='container blur'>
+  <%= render 'homes/top_link' %>
+  <div class="row g-3 mt-3 mb-5">
     <div class="form-area col-lg-6 p-5 mx-auto">
 
       <div class="page-title">New Post</div>
@@ -22,7 +23,7 @@
 
           <div class="field form-group">
             <%= f.label :shop_image, '写真 ※' %></br>
-            <%= f.attachment_field :shop_image, class: "form-control" %>
+            <%= f.attachment_field :shop_image, class: "form-control-file" %>
           </div>
 
           <div class="field form-group">

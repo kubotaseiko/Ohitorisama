@@ -28,11 +28,11 @@
             <p class="small text-muted mb-0">
               <%= Review.find_by(id: notification.review_id)&.review_text %>
             </p>
-    <p class="small text-muted text-right">
-      &thinsp;<%= time_ago_in_words(notification.created_at).upcase %>前
-    </p>
           </span>
         <% end %>
+        <p class="small text-muted text-right">
+          &thinsp;<%= time_ago_in_words(notification.created_at).upcase %>前
+        </p>
       <% end %>
   </li>
   </div>

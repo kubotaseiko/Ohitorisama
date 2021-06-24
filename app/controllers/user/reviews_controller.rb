@@ -1,4 +1,4 @@
-class User::ReviewsController < ApplicationController
+class User::ReviewsController < User::ApplicationController
 
   def index
     @shop = Shop.find(params[:shop_id])

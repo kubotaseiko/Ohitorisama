@@ -1,5 +1,4 @@
-class User::BookmarksController < ApplicationController
-  before_action :authenticate_user!
+class User::BookmarksController < User::ApplicationController
 
   def create
     @shop = Shop.find(params[:shop_id])

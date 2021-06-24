@@ -2,9 +2,14 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
  # ========= ユーザー(user)のルーティング ================
+ 
   devise_for :users
+  
   root to: 'homes#top'
   get 'about' => 'homes#about'
+  resource 'contacts', only: [:new, :create] do
+    get 'thanks' => 'contacts#thanks'
+  end
 
   scope module: :user do
     resources 'shops', only: [:index, :show, :edit, :update, :new, :create, :destroy] do
@@ -34,9 +39,7 @@ Rails.application.routes.draw do
 
     resources 'tweets', only: [:create, :destroy, :new]
 
-    resource 'contacts', only: [:new, :create, :update] do
-      get 'thanks' => 'contacts#thanks'
-    end
+
 
     resources :notifications, only: :index
 

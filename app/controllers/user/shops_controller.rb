@@ -1,4 +1,4 @@
-class User::ShopsController < ApplicationController
+class User::ShopsController < User::ApplicationController
   before_action :set_tweet
 
   def set_tweet

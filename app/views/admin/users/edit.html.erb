@@ -27,7 +27,7 @@
           <% end %>
           </li>
           <li class='border p-2 mb-3'><%= @user.introduction %></li>
-          <li>最終ログイン：設定する</li>
+          <li>最終ログイン：<%= @user.current_sign_in_at.strftime('%Y/%m/%d %H:%M:%S') if @user.current_sign_in_at %></li>
         </div>
       </div>
     <%= link_to '<<', admin_users_path%>

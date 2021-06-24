@@ -1,43 +1,103 @@
-<div class="container">
+<div class="container about-page">
 
-  <%= render 'homes/about_link' %>
-
-  <div class="row text-center m-5">
-    <div class="col-12">
-      説明あるよ！
+  <%= render 'homes/top_link' %>
+  <div class="row mt-3 blur">
+    <div class="col-6 text-right">
+      <%= link_to '新規会員登録', new_user_registration_path, class: 'btn btn-outline-dark btn-sm' %>
     </div>
-
-  </div>
-
-  <div class="row text-center">
-    <div class="col-md-8 col-12">
-      <%= image_tag 'about-map', :size => '735x680' %>
-    </div>
-    <div class="col-md-4 col-12">
-      マップ表示があり見やすいです！
+    <div class="col-6">
+      <%= link_to 'お問い合わせ', new_contacts_path, class: 'btn btn-outline-dark btn-sm' %>
     </div>
   </div>
 
-  <div class="row text-center" >
-    <div class="col-md-6 col-12">
-      <%= image_tag 'about-tag', :size => '400x300' %>
-    </div>
-    <div class="col-md-6 col-12">
-      タグ検索できる！
+  <div class="row mt-4 mb-5 text-center blur">
+    <div class="col-8 p-3 mx-auto">
+      <div class='row'>
+        <div class='col-6'>
+          <%= image_tag 'about-img', :size => '375x250' %>
+        </div>
+        <div class='col-6 p-5'>
+          <p>
+            ソロ活を始めたい</br>
+            素敵なお店と出会いたい</br>
+            おいしいお店を共有したい</br>
+            お店の記録を残したい</br>
+            </br>
+          </p>
+            そんな貴方に、</br>
+            素敵なOhitorisama時間を...</br>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="row">
+  <div class="row mt-2 mb-3 blur">
     <div class="col-12">
       <div class="search-form form-inline">
-        <%= form_with url: search_path, method: :get, class: 'mx-auto mt-5', local: true do |f| %>
+        <%= form_with url: search_path, method: :get, class: 'mx-auto', local: true do |f| %>
           <%= f.text_field :keyword, value: @keyword, placeholder: "店名や住所で検索！", class: "form-control form-control-sm" %>
           <button type="submit" class="btn btn-outline-success btn-sm">
             <i class="fas fa-search" aria-hidden="true"></i>
           </button>
         <% end %>
       </div>
+      <p class='text-center'>ログインせずに検索できます</p>
     </div>
   </div>
+
+  <div class="row text-center mx-auto">
+    <div class="col-lg-7 col-12">
+      <%= image_tag 'about-map', :size => '470x435', class: 'smoothTrigger border' %>
+    </div>
+    <div class="col-lg-5 col-12">
+      <ul class='text-left p-0 text-center'>
+        <li class='description p-3 mt-3 smoothTrigger'>
+          <h6>1.MAP表示</h6>
+          <p>地図表示で、お店の場所がイメージしやすい</p>
+        </li>
+        <li class='description p-3 mt-3 smoothTrigger'>
+          <h6>2.ブックマーク</h6>
+          <p>
+            お気に入りの投稿はブックマークを！</br>
+            mypegeでいつでも確認できます
+          </p>
+        </li>
+        <li class='description p-3 mt-3 smoothTrigger'>
+          <h6>3.評価</h6>
+          <p>★評価で、人気のお店をチェック！</p>
+        </li>
+        <li class='description p-3 mt-3 smoothTrigger'>
+          <h6>4.レビュー</h6>
+          <p>投稿を見たら、レビューしよう！</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row text-center mt-5 mb-5" >
+    <div class="col-lg-6 col-12 mb-3">
+      <h6 class='smoothTrigger'>タグ検索できる！</h6>
+      <%= image_tag 'about-tag', :size => '400x300', class: 'smoothTrigger' %>
+    </div>
+    <div class="col-lg-6 col-12 mb-3">
+      <h6 class='smoothTrigger mb-3'>スマホでも見やすい！</h6>
+      <%= image_tag 'about-phon', :size => '228x300', class: 'smoothTrigger' %>
+    </div>
+  </div>
+
+  <div class="row mb-2 mt-5 mb-5 smoothTrigger">
+    <div class="col-12">
+      <div class="search-form form-inline">
+        <%= form_with url: search_path, method: :get, class: 'mx-auto', local: true do |f| %>
+          <%= f.text_field :keyword, value: @keyword, placeholder: "店名や住所で検索！", class: "form-control form-control-sm" %>
+          <button type="submit" class="btn btn-outline-success btn-sm">
+            <i class="fas fa-search" aria-hidden="true"></i>
+          </button>
+        <% end %>
+      </div>
+      <p class='text-center mb-5'>ログインせずに検索できます</p>
+    </div>
+  </div>
+
 
 </div>

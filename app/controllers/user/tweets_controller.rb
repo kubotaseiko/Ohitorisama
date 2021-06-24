@@ -1,4 +1,4 @@
-class User::TweetsController < ApplicationController
+class User::TweetsController <User::ApplicationController
 
   def new
     @tweet = Tweet.new

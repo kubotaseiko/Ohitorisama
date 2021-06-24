@@ -1,5 +1,6 @@
-<div class='container'>
-  <div class="row g-3 mt-5">
+<div class='container blur'>
+  <%= render 'homes/top_link' %>
+  <div class="row g-3 mt-3">
     <div class="form-area col-lg-6 p-5 mx-auto">
 
       <div class="page-title">Contact</div>
@@ -26,8 +27,8 @@
             </div>
 
             <div class="field form-group">
-              <%= f.label :content, "お問い合わせ内容 ※" %>
-              <%=  f.text_area :content, rows:5, class: "form-control" %>
+              <%= f.label :contact, "お問い合わせ内容 ※" %>
+              <%=  f.text_area :contact, rows:5, class: "form-control" %>
             </div>
 
             <div class='text-center'>
