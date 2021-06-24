@@ -48,33 +48,42 @@
   <div class="tabcontent">
 <!------------shops------------>
     <div id="shops" role="tabpanel" aria-labelledby="shops-tab">
+      <div class="col-12 text-center mt-5 mb-3">
+        <%= link_to 'お店を紹介する', new_shop_path, class: "btn btn-outline-success pl-5 pr-5" %>
+      </div>
       <div class="row mt-5">
-        <% @shops.each do |shop| %>
-          <div class="col-lg-4 col-md-12">
-            <div class="card cols-1 cols-md-2 cols-lg-3">
-              <div class="card-header p-0">
-                <div class="zoomInText">
-                  <%= link_to shop_path(shop.id) do %>
-                   <span class="mask">
-                      <%= attachment_image_tag shop, :shop_image, size: '200x200', format: 'jpeg', class: "card-img" %>
-                      <span class="cap">
-                        <h4 class="shop-name"><%= shop.shop_name %></h4></br>
-                        <h6 class="fas fa-star">&nbsp;
-                          <% if shop.rate_average == nil %>
-                            評価なし
-                          <% else %>
-                            <%= shop.rate_average.round(1) %>
-                          <% end %>
-                        </h6>
-                        </br>
-                        <h6 class="fas fa-comment-dots">&emsp;<%= shop.reviews.size %></h6>
+        <% if @shops.count == 0 %>
+          <div class='col-10 mt-2 ml-5 mr-5'>
+            <h6 class=" p-5 border">まだ投稿はありません</h6>
+          </div>
+        <% else %>
+          <% @shops.each do |shop| %>
+            <div class="col-lg-4 col-md-12">
+              <div class="card cols-1 cols-md-2 cols-lg-3">
+                <div class="card-header p-0">
+                  <div class="zoomInText">
+                    <%= link_to shop_path(shop.id) do %>
+                     <span class="mask">
+                        <%= attachment_image_tag shop, :shop_image, size: '200x200', format: 'jpeg', class: "card-img" %>
+                        <span class="cap">
+                          <h4 class="shop-name"><%= shop.shop_name %></h4></br>
+                          <h6 class="fas fa-star">&nbsp;
+                            <% if shop.rate_average == nil %>
+                              評価なし
+                            <% else %>
+                              <%= shop.rate_average.round(1) %>
+                            <% end %>
+                          </h6>
+                          </br>
+                          <h6 class="fas fa-comment-dots">&emsp;<%= shop.reviews.size %></h6>
+                        </span>
                       </span>
-                    </span>
-                  <% end %>
+                    <% end %>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          <% end %>
         <% end %>
       </div>
     </div>
