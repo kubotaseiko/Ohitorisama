@@ -27,18 +27,18 @@
             <%= link_to 'Post', new_shop_path, class: "d-none d-lg-block" %>
           </li>
           <li class="nav-link text-center">
-            <%= link_to 'Contact', new_contacts_path, class: "pc-contact-link d-none d-lg-block" %>
-            <%= link_to 'Contact', new_contacts_path, class: "m-3 d-md-block d-lg-none font-weight-bold" %>
+            <%= link_to 'お問い合わせ', new_contacts_path, class: "pc-contact-link d-none d-lg-block" %>
+            <div style='font-size: 30px;'>
+              <%= link_to 'お問い合わせ', new_contacts_path, class: "m-3 d-md-block d-lg-none font-weight-bold" %>
+            </div>
           </li>
           <li class="nav-link d-none d-lg-block">
             <%= link_to destroy_user_session_path, id: 'logout-img', method: :delete do %>
               <i class="fas fa-sign-out-alt"></i>
             <% end %>
           </li>
-          <li class="nav-link ml-3 d-md-block d-lg-none font-weight-bold text-center">
-            <%= link_to destroy_user_session_path, method: :delete do %>
-              logout&emsp;<i class="fas fa-sign-out-alt"></i>
-            <% end %>
+          <li class="nav-link d-md-block d-lg-none font-weight-bold text-center mb-2" style='font-size: 30px;'>
+            <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
           </li>
         <% else %>
           <li class="nav-link w-50 d-md-block d-lg-none mx-auto">
