@@ -7,3 +7,21 @@
   background-color: #fff;
   overflow: scroll;
 }
+
+/* スクロールの幅の設定 */
+#scroll_box::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* スクロールの背景の設定 */
+#scroll_box::-webkit-scrollbar-track {
+  border-radius: 5px;
+  box-shadow: 0 0 4px #aaa inset;
+}
+
+/* スクロールのつまみ部分の設定 */
+#scroll_box::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: #A0522D;
+}

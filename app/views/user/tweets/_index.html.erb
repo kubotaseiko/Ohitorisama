@@ -1,4 +1,4 @@
-<div class="tweets_area">
+<div class="tweets_area" id='scroll_box'>
   <% tweets.includes(:user).order('updated_at DESC').each do |tweet|  %>
     <table class="table table-sm rounded border border-4 rounded">
       <td style="width: 20%" class="text-center">
