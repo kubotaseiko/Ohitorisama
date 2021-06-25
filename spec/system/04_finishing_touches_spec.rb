@@ -101,15 +101,15 @@ describe '[STEP4] 仕上げのテスト' do
     end
   end
 
-  describe 'ログインしていない場合のアクセス制限のテスト: アクセスできず、ログイン画面に遷移する' do
+  describe 'ログインしていない場合のアクセス制限のテスト' do
     subject { current_path }
-    it 'ユーザ情報編集画面' do
+    it 'ユーザ情報編集画面へ遷移できず、ログイン画面が表示される' do
       visit edit_user_path(user)
       is_expected.to eq '/users/sign_in'
     end
-    it '投稿編集画面' do
+    it '投稿編集画面へ遷移できず、shop一覧が表示される' do
       visit edit_shop_path(shop)
-      is_expected.to eq '/users/sign_in'
+      is_expected.to eq '/shops'
     end
   end
 

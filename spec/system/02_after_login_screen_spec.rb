@@ -23,6 +23,10 @@ describe '[STEP2] ユーザログイン後のテスト' do
     context 'リンクの内容を確認' do
       subject { current_path }
 
+      it 'トップページロゴを押すと、トップ画面に遷移する' do
+        click_on 'topロゴ'
+        is_expected.to eq '/'
+      end
       it 'MyPageを押すと、自分のユーザ詳細画面に遷移する' do
         click_on 'MyPage'
         is_expected.to eq '/users/' + user.id.to_s

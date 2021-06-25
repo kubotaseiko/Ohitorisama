@@ -46,28 +46,28 @@ describe '[STEP3] ユーザログイン後のテスト' do
       end
 
       it '空白で検索すると0件と表示される' do
-        fill_in 'keyword', with: '　'
-        find('.fa-search').click
+        fill_in 'keyword', with: ' '
+        find('.btn-outline-light').click
         expect(page).to have_content '検索結果 0件'
       end
       it '該当がないと0件と表示される' do
         fill_in 'keyword', with: 'スポーツ'
-        find('.fa-search').click
+        find('.btn-outline-light').click
         expect(page).to have_content '検索結果 0件'
       end
       it '店名での検索がうまく行える' do
         fill_in 'keyword', with: '居酒屋'
-        find('.fa-search').click
+        find('.btn-outline-light').click
         expect(page).to have_content '居酒屋鹿児島店'
       end
       it '住所での検索がうまく行える' do
         fill_in 'keyword', with: '鹿児島県鹿児島市'
-        find('.fa-search').click
+        find('.btn-outline-light').click
         expect(page).to have_content '居酒屋鹿児島店'
       end
       it 'タグでの検索がうまく行える' do
         fill_in 'keyword', with: '焼き鳥'
-        find('.fa-search').click
+        find('.btn-outline-light').click
         expect(page).to have_content '居酒屋鹿児島店'
       end
     end
