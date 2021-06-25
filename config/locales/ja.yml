@@ -70,3 +70,4 @@ ja:
     failure:
       invalid: "%{authentication_keys}またはパスワードが違います。"
       not_found_in_database: "%{authentication_keys}またはパスワードが違います。"
+      unauthenticated: "ログインもしくはアカウント登録してください。"

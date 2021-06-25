@@ -30,19 +30,14 @@ describe '[STEP1] ユーザログイン前のテスト' do
     context 'リンクの内容を確認' do
       subject { current_path }
 
-      it 'トップページロゴを押すと、トップ画面に遷移する' do
-        click_on 'トップページロゴ'
-        is_expected.to eq '/'
-      end
-
       it 'Ohitorisamaとは？を押すと、about画面に遷移する'do
         click_link 'Ohitorisamaとは？'
         is_expected.to eq '/about'
       end
 
-      it 'Shopsを押すと、Shop一覧画面に遷移する' do
-        click_link 'Shops'
-        is_expected.to eq '/shops'
+      it 'お問い合わせを押すと、Contact作成画面に遷移する' do
+        click_link 'お問い合わせ'
+        is_expected.to eq '/contacts/new'
       end
 
       it 'loginを押すと、ログイン画面に遷移する' do

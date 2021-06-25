@@ -23,6 +23,10 @@ describe '[STEP2] ユーザログイン後のテスト' do
     context 'リンクの内容を確認' do
       subject { current_path }
 
+      it 'トップページロゴを押すと、トップ画面に遷移する' do
+        click_on 'topロゴ'
+        is_expected.to eq '/'
+      end
       it 'MyPageを押すと、自分のユーザ詳細画面に遷移する' do
         click_on 'MyPage'
         is_expected.to eq '/users/' + user.id.to_s
@@ -164,9 +168,6 @@ describe '[STEP2] ユーザログイン後のテスト' do
       end
       it 'review投稿者のアイコンが表示され、リンク先が正しい'do
         expect(page).to have_link review.user.profile_image, href: user_path(other_user)
-      end
-      it 'review投稿者の名前が表示され、リンク先が正しい'do
-        expect(page).to have_link review.user.name, href: user_path(other_user)
       end
     end
   end
