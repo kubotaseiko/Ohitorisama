@@ -1,4 +1,4 @@
-class User::ShopsController < User::ApplicationController
+class User::ShopsController < ApplicationController
   before_action :set_tweet
 
   def set_tweet
@@ -65,8 +65,14 @@ class User::ShopsController < User::ApplicationController
   end
 
   def search
-    @shops = Shop.search(params[:keyword]).page(params[:page]).reverse_order
-    @keyword = params[:keyword] 
+    split_keyword = params[:keyword].split(/[[:blank:]]+/)
+    @shops = []
+    split_keyword.each do |keyword|
+      next if keyword == ""
+      @shops += Shop.joins(tagmaps: :tag).where(["shop_name like? OR address like? OR tag_name like?", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%"])
+    end
+    @shops.uniq!
+    @shops = Kaminari.paginate_array(@shops).page(params[:page])
     render 'index'
   end
 

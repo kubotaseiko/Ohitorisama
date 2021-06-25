@@ -165,9 +165,6 @@ describe '[STEP2] ユーザログイン後のテスト' do
       it 'review投稿者のアイコンが表示され、リンク先が正しい'do
         expect(page).to have_link review.user.profile_image, href: user_path(other_user)
       end
-      it 'review投稿者の名前が表示され、リンク先が正しい'do
-        expect(page).to have_link review.user.name, href: user_path(other_user)
-      end
     end
   end
 end

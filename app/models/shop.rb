@@ -35,12 +35,6 @@ class Shop < ApplicationRecord
       self.tags << new_shop_tag
     end
   end
-
-  # =============検索機能=============
-  def self.search(keyword)
-    where(["shop_name like? OR address like?", "%#{keyword}%", "%#{keyword}%"])
-  end
-
    # =============bookmark=============
   def bookmarked_by?(user)
     bookmarks.where(user_id: user).exists?
