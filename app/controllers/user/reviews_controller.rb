@@ -22,7 +22,6 @@ class User::ReviewsController < User::ApplicationController
     end
   end
 
-
   def destroy
     @shop = Shop.find(params[:shop_id])
     @review = Review.find(params[:id])

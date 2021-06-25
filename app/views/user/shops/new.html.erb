@@ -16,6 +16,10 @@
         </div>
         <%= form_with model: @shop, url:'/shops', local:true do |f| %>
 
+          <div class='mt-4 text-right' style='font-size: 12px;'>
+            ※ 必須項目
+          </div>
+          
           <div class="field form-group">
             <%= f.label :shop_name, 'お店の名前 ※' %></br>
             <%= f.text_field :shop_name, class: "form-control" %>
@@ -37,7 +41,7 @@
             <%= f.text_field :address, class: "form-control" %>
           </div>
 
-          <div>以下、お分かりであれば、ご入力ください</div></br>
+          <div class='text-center mt-5 mb-2'>--- 以下、お分かりであれば、ご入力ください ---</div></br>
 
           <div class="field form-group">
             <%= f.label :tell, '電話番号' %></br>
@@ -64,11 +68,8 @@
             </p>
           </div>
 
-          <div class='mt-2 mb-2'>
-            ※ 必須項目
-          </div>
 
-          <div class='text-center'>
+          <div class='text-center mt-4'>
             <%= button_tag :method => :get, :class => "btn", onfocus: "this.blur();" do %>
               <span class= "col btnripple">
                 <i class="fas fa-paper-plane">&nbsp;投稿する</i>

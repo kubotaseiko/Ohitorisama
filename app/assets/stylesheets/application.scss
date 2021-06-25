@@ -30,7 +30,7 @@ header {
 
 footer {
   width: 100%;
-  height: 100%;
+  height: 100px;
 }
 
 .footer-sm {
@@ -43,11 +43,12 @@ footer {
 }
 
 .footer-pc {
-  height: 30px;
+  height: 100px;
   width: 100%;
   font-size: 15px;
   background-color: #FFF;
   opacity: 0.5;
+  padding-top: 70px;
 }
 
 .top-page{

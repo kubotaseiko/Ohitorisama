@@ -3,12 +3,12 @@
   <h4 class="mb-4 pb-2 border-bottom">ブックマーク一覧</h4>
 </div>
 <% if bookmarks.count ==  0 %>
-<div class="col-12 mb-5">
-    <h6 class="mx-auto m-3 p-5 border">まだブックマークされた記事はありません。</h6>
-</div>
+  <div class="col-12 mb-5">
+      <h6 class="mx-auto m-3 p-5 border">まだブックマークされた記事はありません。</h6>
+  </div>
 <% else %>
   <% bookmarks.each do |bookmark| %>
-    <div class='row'>
+    <div class='row border-bottom mb-2'>
       <div class="col-md-4 col-12">
         <%= link_to shop_path(bookmark.shop) do %>
            <%= attachment_image_tag bookmark.shop, :shop_image, size: '200x100', format: 'jpeg', class: "card-img" %>
@@ -20,14 +20,14 @@
         <li>営業時間：<%= bookmark.shop.business_hours %></li>
         <li>定休日：<%= bookmark.shop.holiday %></li>
         <li class="d-md-block d-lg-none font-weight-bold">
-          <%= link_to user_path(bookmark.shop.user) do %>
+          <%= link_to user_path(bookmark.shop.user), data: {"turbolinks" => false} do %>
             <%= attachment_image_tag bookmark.shop.user, :profile_image, size: '25x25', fallback: 'no_image.jpg', class: "rounded-circle" %>
             &ensp;<%= bookmark.shop.user.name %>さん
         <% end %>
         </li>
       </div>
       <div class="col-md-2 d-none d-lg-block">
-        <%= link_to user_path(bookmark.shop.user) do %>
+        <%= link_to user_path(bookmark.shop.user), data: {"turbolinks" => false} do %>
           <%= attachment_image_tag bookmark.shop.user, :profile_image, size: '50x50', fallback: 'no_image.jpg', class: "rounded-circle" %></br>
           <%= bookmark.shop.user.name %>さん
         <% end %>

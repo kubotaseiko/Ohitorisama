@@ -1,36 +1,36 @@
 <div class="row">
 
-<% if shops.count == 0 %>
-    <div class="form-area col-lg-6 p-5 mx-auto">
-    検索結果 0件
-    </div>
-<% end %>
+  <% if shops.count == 0 %>
+      <div class="form-area col-lg-6 p-5 mx-auto">
+      検索結果 0件
+      </div>
+  <% end %>
 
   <% shops.each do |shop| %>
-  <div class="col-lg-4 col-md-12 mb-2 fadeIn">
-    <div class="card cols-1 cols-md-2">
-      <div class="zoomInText">
-        <%= link_to shop_path(shop.id) do %>
-         <span class="mask">
-           <%= attachment_image_tag shop, :shop_image, size: '200x200', format: 'jpeg', class: "card-img" %>
-            <span class="cap p-0">
-              <div class="shop-name">
-                <%= shop.shop_name %>
-              </div>
-              <h6 class="fas fa-star">&nbsp;
-                <% if shop.rate_average == nil %>
-                  評価なし
-                <% else %>
-                  <%= shop.rate_average.round(1) %>
-                <% end %>
-              </h6></br>
-              <h6 class="fas fa-comment-dots">&emsp;<%= shop.reviews.size %></h6>
+    <div class="col-lg-4 col-md-12 mb-2 fadeIn">
+      <div class="card cols-1 cols-md-2">
+        <div class="zoomInText">
+          <%= link_to shop_path(shop.id) do %>
+           <span class="mask">
+             <%= attachment_image_tag shop, :shop_image, size: '200x200', format: 'jpeg', class: "card-img" %>
+              <span class="cap p-0">
+                <div class="shop-name">
+                  <%= shop.shop_name %>
+                </div>
+                <h6 class="fas fa-star">&nbsp;
+                  <% if shop.rate_average == nil %>
+                    評価なし
+                  <% else %>
+                    <%= shop.rate_average.round(1) %>
+                  <% end %>
+                </h6></br>
+                <h6 class="fas fa-comment-dots">&emsp;<%= shop.reviews.size %></h6>
+              </span>
             </span>
-          </span>
-        <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
   <% end %>
 </div>
 

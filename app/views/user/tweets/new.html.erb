@@ -12,16 +12,16 @@
         </div>
         <div class="form">
           <%= form_with model: @tweet,local:true do |f| %>
-          <div class="field form-group">
-            <%= f.text_area :tweet, rows:'8', placeholder: "気軽につぶやこう！", size: "50", class: "form-control" %>
-          </div>
-          <div class='text-center'>
-            <%= button_tag :method => :get, :class => "btn", onfocus: "this.blur();" do %>
-              <span class= "col btnripple">
-                <i class="fas fa-paper-plane">&nbsp;投稿する</i>
-              </span>
-            <% end %>
-          </div>
+            <div class="field form-group">
+              <%= f.text_area :tweet, rows:'8', placeholder: "気軽につぶやこう！", size: "50", class: "form-control" %>
+            </div>
+            <div class='text-center'>
+              <%= button_tag :method => :get, :class => "btn", onfocus: "this.blur();" do %>
+                <span class= "col btnripple">
+                  <i class="fas fa-paper-plane">&nbsp;投稿する</i>
+                </span>
+              <% end %>
+            </div>
           <% end %>
         </div>
       </div>
