@@ -1,4 +1,4 @@
-<div class="container about-page">
+<div class="about-page">
 
   <%= render 'homes/top_link' %>
   <div class="row mt-3 blur">
@@ -10,23 +10,20 @@
     </div>
   </div>
 
-  <div class="row mt-4 mb-5 text-center blur">
-    <div class='row mx-auto'>
-      <div class='col-lg-6 col-12 pt-5'>
-        <%= image_tag 'about-img', :size => '300x200' %>
-      </div>
-      <div class='col-lg-6 col-12 p-5'>
-        <p>
-          </br>
-          ソロ活を始めたい</br>
-          素敵なお店と出会いたい</br>
-          おいしいお店を共有したい</br>
-          お店の記録を残したい</br>
-          </br>
-        </p>
-          そんな貴方に、</br>
-          素敵なOhitorisama時間を...</br>
-      </div>
+  <div class="row mt-4 mb-5 about-main">
+    <div class='col-lg-5 col-10 p-3 text-center blur about-text mx-auto'>
+      <p>
+        </br>
+        ソロ活を始めたい</br>
+        素敵なお店と出会いたい</br>
+        おいしいお店を共有したい</br>
+        お店の記録を残したい</br>
+        </br>
+      </p>
+      <h5>
+        そんな貴方に、</br>
+        素敵なOhitorisama時間を...</br>
+      </h5>
     </div>
   </div>
 
@@ -44,29 +41,30 @@
     </div>
   </div>
 
-  <div class="row text-center mx-auto">
+<div class='container'>
+  <div class="row text-center mx-auto m-5">
     <div class="col-lg-7 col-12">
       <%= image_tag 'about-map', :size => '470x435', class: 'smoothTrigger border' %>
     </div>
-    <div class="col-lg-5 col-12">
+    <div class="col-lg-5 col-10">
       <ul class='text-left p-0 text-center'>
-        <li class='description p-3 mt-3 smoothTrigger'>
-          <h6>1.MAP表示</h6>
+        <li class='description p-2 mt-3 smoothTrigger'>
+          <h5>1.MAP表示</h5>
           <p>地図表示で、お店の位置がイメージしやすい</p>
         </li>
-        <li class='description p-3 mt-3 smoothTrigger'>
-          <h6>2.ブックマーク</h6>
+        <li class='description p-2 mt-3 smoothTrigger'>
+          <h5>2.ブックマーク</h5>
           <p>
             お気に入りの投稿はブックマークを！</br>
             mypegeでいつでもご確認いただけます
           </p>
         </li>
-        <li class='description p-3 mt-3 smoothTrigger'>
-          <h6>3.評価</h6>
+        <li class='description p-2 mt-3 smoothTrigger'>
+          <h5>3.評価</h5>
           <p>★評価で、人気のお店をチェック！</p>
         </li>
-        <li class='description p-3 mt-3 smoothTrigger'>
-          <h6>4.レビュー</h6>
+        <li class='description p-2 mt-3 smoothTrigger'>
+          <h5>4.レビュー</h5>
           <p>投稿を見たら、レビューしよう！</p>
         </li>
       </ul>
@@ -75,11 +73,11 @@
 
   <div class="row text-center mt-5 mb-5" >
     <div class="col-lg-6 col-12 mb-3">
-      <h6 class='smoothTrigger'>タグ検索できる！</h6>
+      <h4 class='smoothTrigger'>タグ検索できる！</h4>
       <%= image_tag 'about-tag', :size => '400x300', class: 'smoothTrigger' %>
     </div>
     <div class="col-lg-6 col-12 mb-3">
-      <h6 class='smoothTrigger mb-3'>スマホでも見やすい！</h6>
+      <h4 class='smoothTrigger mb-3'>スマホでも見やすい！</h4>
       <%= image_tag 'about-phon', :size => '228x300', class: 'smoothTrigger' %>
     </div>
   </div>
@@ -97,6 +95,4 @@
       <p class='text-center mb-5 pb-5'>ログインせずに検索できます</p>
     </div>
   </div>
-
-
 </div>

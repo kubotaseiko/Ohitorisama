@@ -50,8 +50,6 @@
 .about-page {
 }
 
-.about-page h6 {
-}
 
 .description {
   background: #DDDDDD;
@@ -59,7 +57,7 @@
 }
 
 .about-page p {
-  font-size: 12px;
+  font-size: 16px;
 }
 
 
@@ -86,4 +84,16 @@
 
 .smoothTrigger{
     opacity: 0;
+}
+
+.about-main {
+  background-image: image-url("about-img");
+  height: 250px;
+}
+
+.about-text {
+  background-color: #800000;
+  opacity: 0.8;
+  color: #fff;
+  height: 250px;
 }

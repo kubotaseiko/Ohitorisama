@@ -43,13 +43,13 @@ class Shop < ApplicationRecord
   # =============bookmark通知=============
   def create_notification_bookmark!(current_user)
     # すでに「bookmark」されているか検索
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and shop_id = ? and action = ? ", current_user.id, user_id, id, 'like'])
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and shop_id = ? and action = ? ", current_user.id, user_id, id, 'bookmark'])
     # bookmarkされていない場合のみ、通知レコードを作成
     if temp.blank?
       notification = current_user.active_notifications.new(
         shop_id: id,
         visited_id: user_id,
-        action: 'like'
+        action: 'bookmark'
     )
     # 自分の投稿に対するbookmarkの場合は、通知済みとする
     if notification.visitor_id == notification.visited_id

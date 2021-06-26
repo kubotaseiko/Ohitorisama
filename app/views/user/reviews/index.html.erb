@@ -6,12 +6,12 @@
           <%= attachment_image_tag @shop, :shop_image, :fill, 500, 300, format: 'jpeg', class: 'shop-img rounded' %>
         </div>
         <h3 ><%= @shop.shop_name %>のレビュー</h3>
-        <h5 class="far fa-star mt-3">
+        <h5 class="far fa-star mt-3 review-average">
           &nbsp;
           <% if @shop.rate_average == nil %>
-          評価なし
+            評価なし
           <% else %>
-          <%= @shop.rate_average.round(1) %>
+            <%= @shop.rate_average.round(1) %>
           <% end %>
         </h5></br>
         <div class="average-review-rating" data-score=<%= @average_review %>></div>
@@ -21,7 +21,7 @@
       </div>
 
 
-      <h5 class='mt-5 p-5'>Review ( <%= @shop.reviews.count %>件 )</h5>
+      <h5 class='mt-5 p-5 review_count'>Review ( <%= @shop.reviews.count %>件 )</h5>
       <div id='review_area'>
         <%= render 'user/reviews/index', reviews: @reviews %>
       </div>

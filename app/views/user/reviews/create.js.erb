@@ -1,4 +1,5 @@
 $("#review_area").html("<%= j(render 'user/reviews/index', shop: @shop, review: @review) %>");
 $("textarea").val('')
-$(".review_count").html("<%= @shop.reviews.count %>件");
+$(".review_count").html("Review ( <%= @shop.reviews.count %>件 )");
+$(".review-average").html("<%= @shop.rate_average.round(1) %>件");
 $('#rate-form').data('raty').cancel();

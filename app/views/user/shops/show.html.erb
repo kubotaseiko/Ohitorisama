@@ -71,7 +71,7 @@
       </div>
 
       <!--review-->
-       <% if user_signed_in? %>
+      <% if user_signed_in? %>
         <% if current_user.id != @shop.user_id.to_i %>
           <div class="col-12 text-center mb-5">
             <%= link_to shop_reviews_path(@shop.id) do %>
@@ -96,7 +96,7 @@
         全 <%= @shop.reviews.count %> 件
       <% end %>
       <% @shop.reviews.includes(:user).limit(3).each do |review| %>
-        <table class="table table-sm col-md-6 col-12">
+        <table class="table table-sm col-12">
           <tbody>
             <td style="width: 15%" class="text-cente" ><%= review.created_at.strftime('%m/%d') %></td>
             <td style="width: 60%"><%= review.review_text %></td>
