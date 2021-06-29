@@ -72,3 +72,7 @@ ja:
       invalid: "%{authentication_keys}またはパスワードが違います。"
       not_found_in_database: "%{authentication_keys}またはパスワードが違います。"
       unauthenticated: "ログインもしくはアカウント登録してください。"
+    sessions:
+      user:
+        signed_out: 'ログアウトしました'
+        signed_in: 'ログインしました'
