@@ -78,7 +78,7 @@ a:hover {
 /* ナビゲーションバーの下線はなし */
 nav a {
   text-decoration: none;
-  color: #FFF;
+  // color: #FFF;
 }
 
 
@@ -122,4 +122,8 @@ div.form-area {
 
 #wrap {
   overflow: hidden;
+}
+
+header a{
+  color: #FFF;
 }
