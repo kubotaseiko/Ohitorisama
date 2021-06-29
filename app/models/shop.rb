@@ -13,7 +13,7 @@ class Shop < ApplicationRecord
   # =============バリデーション=============
   validates :shop_name, presence: true
   validates :shop_image, presence: true
-  validates :introduction, length: { maximum:200 }
+  validates :introduction, presence: true, length: { maximum:200 }
   validates :address, presence: true
 
   # =============GoogleMapに使用=============

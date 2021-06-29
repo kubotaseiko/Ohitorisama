@@ -46,7 +46,8 @@ ja:
       shop:
         shop_name: 'お店の名前'
         shop_image: '写真'
-      　address: '住所'
+        introduction: '紹介文'
+        address: '住所'
       user:
         name: 'アカウント名'
         introduction: '自己紹介文'
