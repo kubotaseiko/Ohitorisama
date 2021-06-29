@@ -21,22 +21,22 @@
 
         <div class="field form-group">
           <%= f.label :'アカウント名' %><br />
-          <%= f.text_field :name %>
+          <%= f.text_field :name, class: "form-control" %>
         </div>
 
         <div class="field form-group">
           <%= f.label :'プロフィール画像' %><br />
           <%= attachment_image_tag @user, :profile_image, :fill, 80, 80, fallback: "no_image.jpg", class: "rounded-circle" %></br>
           </br>
-          <%= f.attachment_field :profile_image %>
+          <%= f.attachment_field :profile_image, class: "form-control-file" %>
         </div>
 
         <div class="field form-group">
           <%= f.label :'自己紹介文' %><br />
-          <%= f.text_area :introduction %>
+          <%= f.text_area :introduction, class: "form-control" %>
         </div>
 
-        <%= f.submit '更新' %>
+        <%= f.submit '更新', class: 'btn btn-outline-dark' %>
       <% end %>
 
     </div>

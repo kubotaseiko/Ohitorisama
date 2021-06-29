@@ -2,36 +2,42 @@
   <%= render 'homes/top_link' %>
   <div class="row justify-content-center">
     <div class="form-area col-lg-6 col-md-12 p-5 m-5">
-      <div class=' text-right'>
-        <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: 'btn btn-outline-dark' %>
-      </div>
+
     <h4>ログイン</h4>
       <div style="color: red;"><%= flash[:alert]%></div>
-      <%= form_with model: @user, url: user_session_path, local: true do |f| %>
-        <div class="field form-group">
-          <%= f.label :name %><br />
-          <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+      <%= form_with model: @user, url: user_session_path, class: 'text-center m-5', local: true do |f| %>
+        <div class="field form-group mt-3">
+          <% f.label :name %>
+          <%= f.text_field :name, autofocus: true, placeholder: "\uf007 アカウント名を入力してください", class: 'fa form-control', autocomplete: "name" %>
         </div>
 
         <div class="field form-group">
-          <%= f.label :password %><br />
-          <%= f.password_field :password, autocomplete: "current-password" %>
+          <% f.label :password %>
+          <%= f.password_field :password, placeholder: "\uf084 パスワードを入力してください", class: 'fa form-control', autocomplete: "current-password" %>
         </div>
 
         <% if devise_mapping.rememberable? %>
-          <div class="field form-group">
+          <div class="field form-group text-left">
             <%= f.check_box :remember_me %>
             <%= f.label :remember_me %>
           </div>
         <% end %>
 
         <div class="actions">
-          <%= f.submit "ログイン" %>
+          <%= f.submit "ログイン", class: 'btn btn-outline-dark btn-sm form-control' %>
         </div>
       <% end %>
+      <div class='border text-center pt-1 font-weight-bold'>
+        <p>
+          -- テストアカウントでのログイン --</br>
+          アカウント名：テスト1</br>
+          パスワード：123456
+        </p>
+      </div>
       <br />
-      <%= render "devise/shared/links", class: 'btn btn-outline-dark' %>
-
+      <div class='mt-2'>
+        ご登録がまだの方は<%= link_to 'こちら', new_user_registration_path, class: 'text-success font-weight-bold' %>から
+      </div>
     </div>
   </div>
 </div>
