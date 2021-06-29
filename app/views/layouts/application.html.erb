@@ -16,16 +16,18 @@
   </head>
 
   <body>
+    <div id="wrap">
 
-    <% if admin_signed_in? %>
-      <%= render "layouts/admin_header" %>
-    <% else %>
-      <%= render "layouts/header" %>
-    <% end %>
-    <%= yield %>
-
-    <%= render "layouts/footer" %>
-
+      <% if admin_signed_in? %>
+        <%= render "layouts/admin_header" %>
+      <% else %>
+        <%= render "layouts/header" %>
+      <% end %>
+      <%= yield %>
+  
+      <%= render "layouts/footer" %>
+    </div>
+    
   </body>
 
 </html>
