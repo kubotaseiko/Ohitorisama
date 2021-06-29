@@ -4,7 +4,7 @@
   <div class='form-inline border-top'>
     <li>
     <span>
-      <%= link_to user_path(visitor), data: {"turbolinks" => false} do %>
+      <%= link_to user_path(visitor), data: {"turbolinks" => false}, style: "font-weight: bold;" do %>
         <%= attachment_image_tag visitor, :profile_image, size: '20x20', fallback: 'no_image.jpg', class: "icon_mini" %>
         <%= visitor.name %>さんが
       <% end %>
@@ -20,7 +20,7 @@
           <%= link_to "あなたの投稿", notification.shop, style: "font-weight: bold;" %>
         <% else %>
           <span>
-            <%= link_to shop_path(notification.shop) do %>
+            <%= link_to shop_path(notification.shop), style: "font-weight: bold;" do %>
               <%= attachment_image_tag visitor, :profile_image, size: '20x20', fallback: 'no_image.jpg', class: "icon_mini" %>
               <%= notification.shop.user.name + 'さんの投稿' %>
             <% end %>
