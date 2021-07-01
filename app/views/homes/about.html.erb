@@ -29,7 +29,7 @@
 
   <div class="row mt-2 mb-3 blur">
     <div class="col-12">
-      <div class="search-form form-inline">
+      <div class="search-form form-inline m-3">
         <%= form_with url: search_path, method: :get, class: 'mx-auto form-inline', local: true do |f| %>
           <%= f.text_field :keyword, value: @keyword, placeholder: "店名や住所で検索！", class: "form-control form-control-sm" %>
           <!--PC-->
@@ -37,7 +37,7 @@
             <i class="fas fa-search" aria-hidden="true"></i>
           </button>
           <!--スマホ-->
-          <button type="submit" class="btn btn-outline-success btn-sm d-md-block d-lg-none w-100">
+          <button type="submit" class="btn btn-outline-success btn-sm d-md-block d-lg-none w-100 mt-1">
             <i class="fas fa-search" aria-hidden="true">検索</i>
           </button>
         <% end %>
@@ -89,7 +89,7 @@
 
   <div class="row mb-2 mt-5 mb-5 smoothTrigger">
     <div class="col-12">
-      <div class="search-form form-inline">
+      <div class="search-form form-inline m-3">
         <%= form_with url: search_path, method: :get, class: 'mx-auto form-inline', local: true do |f| %>
           <%= f.text_field :keyword, value: @keyword, placeholder: "店名や住所で検索！", class: "form-control form-control-sm" %>
           <!--PC-->
@@ -97,7 +97,7 @@
             <i class="fas fa-search" aria-hidden="true"></i>
           </button>
           <!--スマホ-->
-          <button type="submit" class="btn btn-outline-success btn-sm d-md-block d-lg-none w-100">
+          <button type="submit" class="btn btn-outline-success btn-sm d-md-block d-lg-none w-100 mt-1">
             <i class="fas fa-search" aria-hidden="true">検索</i>
           </button>
         <% end %>
