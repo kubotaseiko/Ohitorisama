@@ -1,12 +1,15 @@
   <% @shop.reviews.each do |review| %>
     <table class="table table-sm">
       <tbody>
-        <td style="width: 20%" class="text-cente" ><%= review.created_at.strftime('%Y/%m/%d') %></td>
+        <td style="width: 20%" class="text-cente" >
+          <span class='d-none d-lg-block'><%= review.created_at.strftime('%Y/%m/%d') %></span>
+          <span class='d-md-block d-lg-none'><%= review.created_at.strftime('%m/%d') %></span>
+        </td>
         <td style="width: 50%" class="text-left"><%= review.review_text %></td>
         <td style="width: 10%">
           <%= link_to user_path(review.user.id), data: {"turbolinks" => false} do %>
             <%= attachment_image_tag review.user, :profile_image, size: '30x30', fallback: 'no_image.jpg', class: "rounded-circle" %></br>
-            <%= review.user.name %>
+            <span class='d-none d-lg-block'><%= review.user.name %></span>
           <% end %>
         <td>
         <td style="width: 10%"><i class="far fa-star">&nbsp;<%= review.rate %></i></div><td>

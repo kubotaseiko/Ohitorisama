@@ -9,8 +9,13 @@
           <div class="d-flex font-weight-bold">
             <%= form_with url: search_path, method: :get, class: 'mx-auto form-inline', local: true do |f| %>
               <%= f.text_field :keyword, value: @keyword, placeholder: "店名や住所で検索！", class: "form-control form-control-sm" %>
-              <button type="submit" class="btn btn-outline-light btn-sm ml-1">
+              <!--PC-->
+              <button type="submit" class="btn btn-light btn-sm  d-none d-lg-block">
                 <i class="fas fa-search" aria-hidden="true"></i>
+              </button>
+              <!--スマホ-->
+              <button type="submit" class="btn btn-light btn-sm d-md-block d-lg-none w-100 mt-2">
+                <i class="fas fa-search" aria-hidden="true">検索</i>
               </button>
             <% end %>
           </div>
@@ -28,16 +33,14 @@
           </li>
           <li class="nav-link text-center">
             <%= link_to 'お問い合わせ', new_contacts_path, class: "pc-contact-link d-none d-lg-block" %>
-            <div style='font-size: 30px;'>
-              <%= link_to 'お問い合わせ', new_contacts_path, class: "m-3 d-md-block d-lg-none font-weight-bold" %>
-            </div>
+            <%= link_to 'お問い合わせ', new_contacts_path, class: "m-3 d-md-block d-lg-none font-weight-bold" %>
           </li>
           <li class="nav-link d-none d-lg-block">
             <%= link_to destroy_user_session_path, id: 'logout-img', method: :delete do %>
               <i class="fas fa-sign-out-alt"></i>
             <% end %>
           </li>
-          <li class="nav-link d-md-block d-lg-none font-weight-bold text-center mb-2" style='font-size: 30px;'>
+          <li class="nav-link d-md-block d-lg-none font-weight-bold text-center mb-2">
             <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
           </li>
         <% else %>
@@ -45,9 +48,15 @@
             <div class="d-flex font-weight-bold form-inline">
               <%= form_with url: search_path, method: :get, class: 'mx-auto', local: true do |f| %>
                 <%= f.text_field :keyword, value: @keyword, placeholder: "店名や住所で検索！", class: "form-control form-control-sm" %>
-                <button type="submit" class="btn btn-outline-success btn-sm">
-                  <i class="fas fa-search" aria-hidden="true"></i>
-                </div>
+              <!--PC-->
+              <button type="submit" class="btn btn-light btn-sm  d-none d-lg-block">
+                <i class="fas fa-search" aria-hidden="true"></i>
+              </button>
+              <!--スマホ-->
+              <button type="submit" class="btn btn-light btn-sm d-md-block d-lg-none w-100 mt-2">
+                <i class="fas fa-search" aria-hidden="true">検索</i>
+              </button>
+            </div>
               <% end %>
             </form>
           </li>

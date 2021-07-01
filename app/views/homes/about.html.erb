@@ -30,10 +30,15 @@
   <div class="row mt-2 mb-3 blur">
     <div class="col-12">
       <div class="search-form form-inline">
-        <%= form_with url: search_path, method: :get, class: 'mx-auto', local: true do |f| %>
+        <%= form_with url: search_path, method: :get, class: 'mx-auto form-inline', local: true do |f| %>
           <%= f.text_field :keyword, value: @keyword, placeholder: "店名や住所で検索！", class: "form-control form-control-sm" %>
-          <button type="submit" class="btn btn-outline-success btn-sm">
+          <!--PC-->
+          <button type="submit" class="btn btn-outline-success btn-sm  d-none d-lg-block ml-2">
             <i class="fas fa-search" aria-hidden="true"></i>
+          </button>
+          <!--スマホ-->
+          <button type="submit" class="btn btn-outline-success btn-sm d-md-block d-lg-none w-100">
+            <i class="fas fa-search" aria-hidden="true">検索</i>
           </button>
         <% end %>
       </div>
@@ -44,7 +49,7 @@
 <div class='container'>
   <div class="row text-center mx-auto m-5">
     <div class="col-lg-7 col-12">
-      <%= image_tag 'about-map', :size => '470x435', class: 'smoothTrigger border' %>
+      <%= image_tag 'about-map', :size => '470x435', class: 'smoothTrigger border img-fluid' %>
     </div>
     <div class="col-lg-5 col-12">
       <ul class='text-left p-0 text-center'>
@@ -74,21 +79,26 @@
   <div class="row text-center mt-5 mb-5" >
     <div class="col-lg-6 col-12 mb-3">
       <h4 class='smoothTrigger'>タグ検索できる！</h4>
-      <%= image_tag 'about-tag', :size => '400x300', class: 'smoothTrigger' %>
+      <%= image_tag 'about-tag', :size => '400x300', class: 'smoothTrigger img-fluid' %>
     </div>
     <div class="col-lg-6 col-12 mb-3">
       <h4 class='smoothTrigger mb-3'>スマホでも見やすい！</h4>
-      <%= image_tag 'about-phon', :size => '228x300', class: 'smoothTrigger' %>
+      <%= image_tag 'about-phon', :size => '228x300', class: 'smoothTrigger img-fluid' %>
     </div>
   </div>
 
   <div class="row mb-2 mt-5 mb-5 smoothTrigger">
     <div class="col-12">
       <div class="search-form form-inline">
-        <%= form_with url: search_path, method: :get, class: 'mx-auto', local: true do |f| %>
+        <%= form_with url: search_path, method: :get, class: 'mx-auto form-inline', local: true do |f| %>
           <%= f.text_field :keyword, value: @keyword, placeholder: "店名や住所で検索！", class: "form-control form-control-sm" %>
-          <button type="submit" class="btn btn-outline-success btn-sm">
+          <!--PC-->
+          <button type="submit" class="btn btn-outline-success btn-sm d-none d-lg-block ml-2">
             <i class="fas fa-search" aria-hidden="true"></i>
+          </button>
+          <!--スマホ-->
+          <button type="submit" class="btn btn-outline-success btn-sm d-md-block d-lg-none w-100">
+            <i class="fas fa-search" aria-hidden="true">検索</i>
           </button>
         <% end %>
       </div>

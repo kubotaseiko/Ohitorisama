@@ -1,4 +1,4 @@
-<footer class="footer">
+<footer>
 
   <div class="container">
     <p class="footer-pc d-none d-lg-block w-100 mb-0 text-center">
@@ -6,30 +6,30 @@
     </p>
   </div>
 
-  <div class="footer-sm d-md-block d-lg-none pb-3 fixed-bottom">
+  <div class="footer-sm d-md-block d-lg-none fixed-bottom">
     <% if user_signed_in? %>
       <ul class="navbar-nav d-flex flex-row text-center">
-        <li class="nav-link col-3 d-md-block d-lg-none p-0">
+        <li class="nav-link col-3 d-md-block d-lg-none">
           <%= link_to new_shop_path do %>
             <i class="far fa-plus-square"></i>
           <% end %>
         </li>
-        <li class="nav-link col-3 d-md-block d-lg-none p-0">
+        <li class="nav-link col-3 d-md-block d-lg-none">
           <%= link_to shops_path do %>
             <i class="fas fa-utensils"></i>
           <% end %>
         </li>
-        <li class="nav-link col-3 d-md-block d-lg-none p-0 footer-circle">
+        <li class="nav-link col-3 d-md-block d-lg-none footer-circle">
           <%= render 'user/partial/footer_circle' %>
         </li>
         <li class="nav-link col-3 d-md-block d-lg-none">
           <%= link_to user_path(current_user), class: 'pb-3', data: {"turbolinks" => false}  do %>
-             <%= attachment_image_tag current_user, :profile_image, size: "65x65", fallback: "no_image.jpeg", class: 'rounded-circle mb-4' %>
+             <%= attachment_image_tag current_user, :profile_image, size: "20x20", fallback: "no_image.jpeg", class: 'rounded-circle img-fluid' %>
           <% end %>
         </li>
       </ul>
     <% else %>
-      <ul class="navbar-nav d-flex flex-row text-center fixed-bottom">
+      <ul class="footer-sm navbar-nav d-flex flex-row text-center fixed-bottom">
         <li class="nav-link col-3 d-md-block d-lg-none">
           <%= link_to about_path do %>
             <i class="fas fa-question-circle"></i>

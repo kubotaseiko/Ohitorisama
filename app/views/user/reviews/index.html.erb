@@ -1,11 +1,12 @@
 <div class='container'>
+  <%= render 'homes/top_link' %>
   <div class="row mt-5">
-    <div class="form-area col-lg-10 offset-lg-1 p-5 col-md-12 text-center">
+    <div class="form-area col-lg-10 offset-lg-1 pt-5 col-12 text-center">
       <div class="col-12">
         <div class="mb-2">
-          <%= attachment_image_tag @shop, :shop_image, :fill, 500, 300, format: 'jpeg', class: 'shop-img rounded' %>
+          <%= attachment_image_tag @shop, :shop_image, :fill, 500, 300, format: 'jpeg', class: 'shop-img rounded img-fluid' %>
         </div>
-        <h3 ><%= @shop.shop_name %>のレビュー</h3>
+        <h5><%= @shop.shop_name %>のレビュー</h5>
         <h5 class="far fa-star mt-3 review-average">
           &nbsp;
           <% if @shop.rate_average == nil %>
@@ -15,19 +16,20 @@
           <% end %>
         </h5></br>
         <div class="average-review-rating" data-score=<%= @average_review %>></div>
-        <div class="col-8 mx-auto">
+        <div class="col-lg-8 col-12 mx-auto">
           <div class="border border-secondary p-3 m-2 text-left"><%= @shop.introduction %></div>
         </div>
       </div>
 
-
-      <h5 class='mt-5 p-5 review_count'>Review ( <%= @shop.reviews.count %> )</h5>
-      <div id='review_area'>
-        <%= render 'user/reviews/index', reviews: @reviews %>
-      </div>
-
-      <div id='review_form' class="w-75 mx-auto">
-        <%= render 'user/reviews/form', shop: @shop, review: @review %>
+      <div class="col-md-9 col-12 mx-auto mb-5">
+        <h5 class='mt-5 p-5 review_count'>Review ( <%= @shop.reviews.count %> )</h5>
+        <div id='review_area'>
+          <%= render 'user/reviews/index', reviews: @reviews %>
+        </div>
+  
+        <div id='review_form'>
+          <%= render 'user/reviews/form', shop: @shop, review: @review %>
+        </div>
       </div>
     </div>
   </div>

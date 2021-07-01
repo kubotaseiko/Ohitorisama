@@ -7,7 +7,7 @@
     </div>
   </div>
 
-  <div class="row pl-4 pt-5">
+  <div class="row  pt-5">
     <div class="col-lg-5 col-md-12">
       <div class="card">
         <%= attachment_image_tag @shop, :shop_image, :fill, 400, 400, format: 'jpeg', class: 'shop-img rounded card-img' %>
@@ -25,35 +25,35 @@
 
     <div class="col-lg-7 col-md-12">
       <div class="row">
-        <div class="col-lg-9 col-12">
+        <div class="col-6">
           <!--星評価-->
-          <h3 class="far fa-star mt-3">&nbsp;
+          <h5 class="far fa-star mt-3">&nbsp;
             <% if @shop.rate_average == nil %>
             評価なし
             <% else %>
             <%= @shop.rate_average.round(1) %>
             <% end %>
-          </h3></br>
+          </h5></br>
         </div>
-        <div class="col-lg-8 col-10">
-          <div class="border border-secondary p-3 mt-3">
-            <%= @shop.introduction %>
-          </div>
-        </div>
-        <div class="col-lg-4 col-2 mt-3 text-center">
+        <div class="col-6 mt-3 text-center">
           <%= link_to user_path(@user.id), data: {"turbolinks" => false} do %>
-            <%= attachment_image_tag @user, :profile_image, size: '80x80', fallback: 'no_image.jpg', class: "rounded-circle" %>
+            <%= attachment_image_tag @user, :profile_image, size: '60x60', fallback: 'no_image.jpg', class: "rounded-circle" %>
             </br>
             <%= @user.name %>
           <% end %>
         </div>
+        <div class="col-lg-8 col-12">
+          <div class="border border-secondary p-3 mt-3">
+            <%= @shop.introduction %>
+          </div>
+        </div>
       </div>
 
-      <div class="m-4">
+      <div class="mt-4">
         <table class='table'>
           <tr>
-            <th style="width: 30%">住所</th>
-            <td style="width: 70%"><%= @shop.address %></td>
+            <th style="width: 35%">住所</th>
+            <td style="width: 65%"><%= @shop.address %></td>
           </tr>
           <tr>
             <th>電話番号</th>
