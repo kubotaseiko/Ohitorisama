@@ -2,44 +2,43 @@
   <%= render 'homes/top_link' %>
   <div class="row justify-content-center">
     <div class="form-area col-lg-6 col-md-12">
-     <div class="col-lg-9 col-md-12 pt-5 pb-5 mx-auto">
-
-    <h4>ログイン</h4>
-      <div style="color: red;"><%= flash[:alert]%></div>
-      <%= form_with model: @user, url: user_session_path, class: 'text-centetr', local: true do |f| %>
-        <div class="field form-group mt-3">
-          <% f.label :name %>
-          <%= f.text_field :name, autofocus: true, placeholder: "\uf007 アカウント名を入力してください", class: 'fa form-control', autocomplete: "name" %>
-        </div>
-
-        <div class="field form-group">
-          <% f.label :password %>
-          <%= f.password_field :password, placeholder: "\uf084 パスワードを入力してください", class: 'fa form-control', autocomplete: "current-password" %>
-        </div>
-
-        <% if devise_mapping.rememberable? %>
-          <div class="field form-group text-left">
-            <%= f.check_box :remember_me %>
-            <%= f.label :remember_me %>
+      <div class="col-lg-9 col-md-12 pt-5 pb-5 mx-auto">
+        <h4 class='text-center font-weight-bold mb-4'>ログイン</h4>
+        <div style="color: red;"><%= flash[:alert]%></div>
+        <%= form_with model: @user, url: user_session_path, class: 'text-centetr', local: true do |f| %>
+          <div class="field form-group mt-3">
+            <% f.label :name %>
+            <%= f.text_field :name, autofocus: true, placeholder: "\uf007 アカウント名を入力してください", class: 'fa form-control', autocomplete: "name" %>
+          </div>
+  
+          <div class="field form-group">
+            <% f.label :password %>
+            <%= f.password_field :password, placeholder: "\uf084 パスワードを入力してください", class: 'fa form-control', autocomplete: "current-password" %>
+          </div>
+  
+          <% if devise_mapping.rememberable? %>
+            <div class="field form-group text-left">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+          <% end %>
+  
+          <div class="actions mb-5">
+            <%= f.submit "ログイン", class: 'btn btn-outline-dark btn-sm form-control' %>
           </div>
         <% end %>
-
-        <div class="actions">
-          <%= f.submit "ログイン", class: 'btn btn-outline-dark btn-sm form-control' %>
+        <div class='border text-center pt-1 font-weight-bold'>
+          <p>
+            -- テストアカウントでのログイン --</br>
+            アカウント名：テスト1</br>
+            パスワード：123456
+          </p>
         </div>
-      <% end %>
-      <div class='border text-center pt-1 font-weight-bold'>
-        <p>
-          -- テストアカウントでのログイン --</br>
-          アカウント名：テスト1</br>
-          パスワード：123456
-        </p>
+        <br />
+        <div class='mt-2'>
+          ご登録がまだの方は<%= link_to 'こちら', new_user_registration_path, class: 'text-success font-weight-bold' %>から
+        </div>
       </div>
-      <br />
-      <div class='mt-2'>
-        ご登録がまだの方は<%= link_to 'こちら', new_user_registration_path, class: 'text-success font-weight-bold' %>から
-      </div>
-    </div>
     </div>
   </div>
 </div>

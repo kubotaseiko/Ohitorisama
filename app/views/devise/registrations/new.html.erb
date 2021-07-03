@@ -2,46 +2,44 @@
   <%= render 'homes/top_link' %>
   <div class="row justify-content-center">
     <div class="form-area col-lg-6 col-md-12">
-     <div class="col-lg-9 col-md-12 pt-5 pb-5 mx-auto">
-      <h4>新規会員登録</h4>
-
-      <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
-
-        <div class="field">
-        <%= f.label :name %><br />
-        <%= f.text_field :name, autofocus: true, class: "name form-control" %>
+      <div class="col-lg-9 col-md-12 pt-5 pb-5 mx-auto">
+        <h4 class='text-center font-weight-bold mb-4'>新規会員登録</h4>
+        <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+  
+          <div class="field">
+          <%= f.label :name %><br />
+          <%= f.text_field :name, autofocus: true, class: "name form-control" %>
+          </div>
+  
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, class: 'form-control', autocomplete: "email" %>
+          </div>
+  
+          <div class="field">
+            <%= f.label :password %>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> 文字以上)</em>
+            <% end %><br />
+            <%= f.password_field :password, class: 'form-control', autocomplete: "new-password form-control" %>
+          </div>
+  
+          <div class="field">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: "new-password form-control" %>
+          </div>
+  
+          <div class="actions">
+            <%= f.submit "登録", class: 'btn btn-outline-dark btn-sm form-control mt-4' %>
+          </div>
+        <% end %>
+        <br />
+        <div class='mt-2'>
+          既にご登録済の場合、<%= link_to 'こちら', new_user_session_path, class: 'text-success font-weight-bold' %>から</br>
+          ※テストアカウントもご用意しております。
         </div>
-
-        <div class="field">
-          <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, class: 'form-control', autocomplete: "email" %>
-        </div>
-
-        <div class="field">
-          <%= f.label :password %>
-          <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> 文字以上)</em>
-          <% end %><br />
-          <%= f.password_field :password, class: 'form-control', autocomplete: "new-password form-control" %>
-        </div>
-
-        <div class="field">
-          <%= f.label :password_confirmation %><br />
-          <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: "new-password form-control" %>
-        </div>
-
-        <div class="actions">
-          <%= f.submit "登録", class: 'btn btn-outline-dark btn-sm form-control mt-4' %>
-        </div>
-      <% end %>
-      <br />
-      <div class='mt-2'>
-        既にご登録済の場合、<%= link_to 'こちら', new_user_session_path, class: 'text-success font-weight-bold' %>から</br>
-        ※テストアカウントもご用意しております。
       </div>
-      </div>
-
     </div>
   </div>
 </div>

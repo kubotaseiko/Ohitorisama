@@ -157,7 +157,7 @@
                 <div class='row border-bottom mb-2'>
                   <div class="col-md-4 col-12">
                     <%= link_to shop_path(review.shop.id) do %>
-                      <%= attachment_image_tag review.shop, :shop_image, size: '300x200', format: 'jpeg', style: 'object-fit: cover;'%></br>
+                      <%= attachment_image_tag review.shop, :shop_image, size: '300x200', format: 'jpeg',class: 'img-fluid', style: 'object-fit: cover;'%></br>
                       <%= review.shop.shop_name %>
                     <% end %>
                   </div>
