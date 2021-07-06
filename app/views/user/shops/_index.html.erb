@@ -1,9 +1,13 @@
 <div class="row">
 
   <% if shops.count == 0 %>
-      <div class="form-area col-lg-6 p-5 mx-auto">
+    <div class="form-area col-lg-6 p-5 mx-auto">
       検索結果 0件
-      </div>
+    </div>
+  <% else %>
+    <div class="col-12 text-center">
+      全 <%= shops.length %>件
+    </div>
   <% end %>
 
   <% shops.each do |shop| %>
