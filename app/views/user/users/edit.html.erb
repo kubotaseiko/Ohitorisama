@@ -26,7 +26,7 @@
 
         <div class="field form-group">
           <%= f.label :'プロフィール画像' %><br />
-          <%= attachment_image_tag @user, :profile_image, :fill, 80, 80, fallback: "no_image.jpg", class: "rounded-circle" %></br>
+          <%= attachment_image_tag @user, :profile_image, fallback: "no_image.jpg", id: "user_img_prev", class: "rounded-circle", style: "height: 80px; width:80px;" %><br>
           </br>
           <%= f.attachment_field :profile_image, class: "form-control-file" %>
         </div>

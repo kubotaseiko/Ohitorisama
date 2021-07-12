@@ -22,8 +22,8 @@
 
         <div class="field form-group">
           <%= f.label :shop_image, '写真 ※' %></br>
-          <%= attachment_image_tag @shop, :shop_image, :fill, 200, 200, fallback: "no_image.jpg"%></br>
-          <%= f.attachment_field :shop_image, class: "form-control" %>
+          <%= attachment_image_tag @shop, :shop_image, fallback: "no_shop_image.jpg", id: "img_prev", style: "height: 250px; width:300px;" %><br>
+          <%= f.attachment_field :shop_image, class: "form-control-file" %>
         </div>
 
         <div class="field form-group">

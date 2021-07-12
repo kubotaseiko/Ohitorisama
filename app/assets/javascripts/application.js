@@ -84,3 +84,38 @@ function fadeAnime(){
   $(window).on('turbolinks:load', function(){
     fadeAnime();/* アニメーション用の関数を呼ぶ*/
   });// ここまで画面が読み込まれたらすぐに動かしたい場合の記述
+  
+  
+// ========shopプレビュー=========
+  
+$(document).on("turbolinks:load", function(){
+  function readURL(input) {
+    if(input.files && input.files[0]){
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $('#img_prev').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+  $("#shop_shop_image").change(function(){
+    readURL(this);
+  });
+});
+
+// ========userプレビュー=========
+  
+$(document).on("turbolinks:load", function(){
+  function readURL(input) {
+    if(input.files && input.files[0]){
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $('#user_img_prev').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+  $("#user_profile_image").change(function(){
+    readURL(this);
+  });
+});
