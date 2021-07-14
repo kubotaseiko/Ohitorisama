@@ -22,10 +22,10 @@
 おいしいお店を共有したい、
 お店の記録を残したい方。
 
-### 主な利用シーン
+ ### 主な利用シーン
 ひとりでおいしいものが食べたいとき
 ひとりでお酒を楽しみたいとき
-一人で行きやすい店を発見し、共有したい時
+一人で行きやすい店を発見し、共有したい
 
 ## 設計書
 [ER図](https://app.diagrams.net/#G120VELJeHWzVP9ikMH_gNlI2Hm1kmwotm) / [テーブル定義書](https://docs.google.com/spreadsheets/d/1X2m4--OhGo-udLdgg2Ti3hiOds6uG1aofqfEk9Qn7Rw/edit#gid=0) / [詳細設計書](https://docs.google.com/spreadsheets/d/1ax1ASPWxX8YRhjrtDPhbMeRb6cbMNh6NEozthiKesP4/edit?copiedFromTrash#gid=0)
