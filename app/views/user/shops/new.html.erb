@@ -16,29 +16,25 @@
         </div>
         <%= form_with model: @shop, url:'/shops', local:true do |f| %>
 
-          <div class='mt-4 text-right' style='font-size: 12px;'>
-            ※ 必須項目
-          </div>
-
           <div class="field form-group">
-            <%= f.label :shop_name, 'お店の名前 ※' %></br>
+            <%= f.label :shop_name, 'お店の名前' %>&nbsp;<span class="badge rounded-pill bg-secondary">必須</span></br>
             <%= f.text_field :shop_name, class: "form-control" %>
           </div>
 
           <div class="field form-group">
-            <%= f.label :shop_image, '写真 ※' %></br>
+            <%= f.label :shop_image, '写真' %>&nbsp;<span class="badge rounded-pill bg-secondary">必須</span></br>
             <%= attachment_image_tag @shop, :shop_image, fallback: "no_shop_image.jpg", id: "img_prev", style: "height: 250px; width:300px;" %><br>
             <%= f.attachment_field :shop_image, class: "form-control-file" %>
           </div>
 
           <div class="field form-group">
-            <%= f.label :introduction, '紹介文 ※' %></br>
+            <%= f.label :introduction, '紹介文' %>&nbsp;<span class="badge rounded-pill bg-secondary">必須</span></br>
             <%= f.text_area :introduction, rows:3, class: "form-control" %>
           </div>
 
 
           <div class="field form-group">
-            <%= f.label :address, '住所 ※' %></br>
+            <%= f.label :address, '住所' %>&nbsp;<span class="badge rounded-pill bg-secondary">必須</span></br>
             <%= f.text_field :address, class: "form-control" %>
           </div>
 
