@@ -5,14 +5,14 @@ class Shop < ApplicationRecord
   has_many :tagmaps, dependent: :destroy
   has_many :tags, through: :tagmaps
   has_many :notifications, dependent: :destroy
-  has_many :tweets, dependent: :destroy
+  has_many :post_images, dependent: :destroy
 
   attachment :shop_image
-
+  accepts_attachments_for :post_images, attachment: :post_image
 
   # =============バリデーション=============
   validates :shop_name, presence: true
-  validates :shop_image, presence: true
+  # validates :shop_image, presence: true
   validates :introduction, presence: true, length: { maximum:200 }
   validates :address, presence: true
 

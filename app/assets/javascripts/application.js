@@ -103,6 +103,23 @@ $(document).on("turbolinks:load", function(){
   });
 });
 
+// ========shopプレビュー=========
+  
+$(document).on("turbolinks:load", function(){
+  function readURL(input) {
+    if(input.files && input.files[0]){
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $('#imgs_prev').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+  $("#shop_post_images_post_images").change(function(){
+    readURL(this);
+  });
+});
+
 // ========userプレビュー=========
   
 $(document).on("turbolinks:load", function(){

@@ -34,6 +34,9 @@ class User::ShopsController < ApplicationController
     tag_list = params[:shop][:tag_name].split(/[[:blank:]]+/)
     if @shop.save
       @shop.save_tag(tag_list)
+      # params[:shop][:post_image].each do |a|
+      #     @post_image = @shop.shop_images.create!(post_image: a, shop_id: @shop.id)
+      # end
       redirect_to shops_path
     else
       render 'new'
@@ -96,7 +99,7 @@ class User::ShopsController < ApplicationController
   private
 
   def shop_params
-     params.require(:shop).permit(:shop_name, :shop_image, :introduction, :address, :tell, :holiday, :latitude, :longitude, :business_hours)
+     params.require(:shop).permit(:shop_name, :shop_image, :introduction, :address, :tell, :holiday, :latitude, :longitude, :business_hours, post_images_images: [])
   end
 
 end
