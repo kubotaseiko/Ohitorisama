@@ -29,7 +29,9 @@
 
           <div class="field form-group">
             <%= f.label :post_image, '写真' %>&nbsp;<span class="badge rounded-pill bg-secondary">必須</span></br>
-            <%= attachment_image_tag @post_image, :post_image, fallback: "no_shop_image.jpg", id: "imgs_prev", style: "height: 250px; width:300px;" %><br>
+            <!--<% @shop.post_images.each do |image| %>-->
+              <%= attachment_image_tag post_image, :post_image, fallback: "no_shop_image.jpg", id: "imgs_prev", style: "height: 250px; width:300px;" %><br>
+            <!--<% end %>-->
             <%= f.attachment_field :post_images_post_images, multiple: true, class: "form-control-file"  %>
           </div>
 
