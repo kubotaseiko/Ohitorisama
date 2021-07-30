@@ -21,19 +21,19 @@
             <%= f.text_field :shop_name, class: "form-control" %>
           </div>
 
-          <!--<div class="field form-group">-->
-          <!--  <%= f.label :shop_image, '写真' %>&nbsp;<span class="badge rounded-pill bg-secondary">必須</span></br>-->
-          <!--  <%= attachment_image_tag @shop_image, :shop_image, fallback: "no_shop_image.jpg", id: "img_prev", style: "height: 250px; width:300px;" %><br>-->
-          <!--  <%= f.attachment_field :shop_image, class: "form-control-file" %>-->
-          <!--</div>-->
-
           <div class="field form-group">
-            <%= f.label :post_image, '写真' %>&nbsp;<span class="badge rounded-pill bg-secondary">必須</span></br>
-            <% @shop.post_images.each do |post_image| %>
-              <%= attachment_image_tag post_image, :post_image, fallback: "no_shop_image.jpg", id: "imgs_prev", style: "height: 250px; width:300px;" %><br>
-            <% end %>
-            <%= f.attachment_field :post_images_post_images, multiple: true, class: "form-control-file"  %>
+            <%= f.label :shop_image, '写真' %>&nbsp;<span class="badge rounded-pill bg-secondary">必須</span></br>
+            <%= attachment_image_tag @shop_image, :shop_image, fallback: "no_shop_image.jpg", id: "img_prev", style: "height: 250px; width:300px;" %><br>
+            <%= f.attachment_field :shop_image, class: "form-control-file" %>
           </div>
+
+          <!--<div class="field form-group">-->
+          <!--  <%= f.label :post_image, '写真' %>&nbsp;<span class="badge rounded-pill bg-secondary">必須</span></br>-->
+          <!--  <% @shop.post_images.each do |post_image| %>-->
+          <!--    <%= attachment_image_tag post_image, :post_image, fallback: "no_shop_image.jpg", id: "imgs_prev", style: "height: 250px; width:300px;" %><br>-->
+          <!--  <% end %>-->
+          <!--  <%= f.attachment_field :post_images_post_images, multiple: true, class: "form-control-file"  %>-->
+          <!--</div>-->
 
           <div class="field form-group">
             <%= f.label :introduction, '紹介文' %>&nbsp;<span class="badge rounded-pill bg-secondary">必須</span></br>

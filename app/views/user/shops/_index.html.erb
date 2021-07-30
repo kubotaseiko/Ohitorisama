@@ -16,10 +16,10 @@
         <div class="zoomInText">
           <%= link_to shop_path(shop.id) do %>
            <span class="mask">
-            <!--<%= attachment_image_tag shop, :shop_image, size: '200x200', format: 'jpeg', class: "card-img" %>-->
-            <% shop.post_images.each do |post_image| %>
-            <%= attachment_image_tag post_image, :post_image, size: '200x200', format: 'jpeg', class: "card-img" %>
-            <% end %>
+            <%= attachment_image_tag shop, :shop_image, size: '200x200', format: 'jpeg', class: "card-img" %>
+            <!--<% shop.post_images.each do |post_image| %>-->
+            <!--<%= attachment_image_tag post_image, :post_image, size: '200x200', format: 'jpeg', class: "card-img" %>-->
+            <!--<% end %>-->
               <span class="cap p-0">
                 <div class="shop-name">
                   <%= shop.shop_name %>
