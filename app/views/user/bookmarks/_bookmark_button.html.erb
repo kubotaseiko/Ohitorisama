@@ -1,9 +1,11 @@
 <% if shop.bookmarked_by?(current_user) %>
-  <%= link_to shop_bookmarks_path(shop), method: :delete, remote: true do %>
-    <i class="fas fa-bookmark"></i>
+  <%= link_to shop_bookmarks_path(shop), method: :delete, remote: true, class: 'btnripple3' do %>
+    <%= image_tag 'BM-on' %>
+    <!--<i class="fas fa-bookmark"></i>-->
   <% end %>
 <% else %>
-  <%= link_to shop_bookmarks_path(shop), method: :post, remote: true do %>
-    <i class="far fa-bookmark"></i>
+  <%= link_to shop_bookmarks_path(shop), method: :post, remote: true, class: 'btnripple3' do %>
+    <%= image_tag 'BM-off' %>
+    <!--<i class="far fa-bookmark"></i>-->
   <% end %>
 <% end %>
