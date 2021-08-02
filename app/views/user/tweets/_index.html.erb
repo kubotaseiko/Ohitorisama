@@ -11,11 +11,24 @@
         <%= tweet.tweet %>
       </td>
       <td style="width: 5%">
-          <% if current_user.id == tweet.user_id.to_i %>
-            <%= link_to tweet_path(tweet.id), method: :delete, "data-confirm" => "本当に消しますか？" do %>
-              <i class="fas fa-times-circle"></i>
-            <% end %>
+        <% if current_user.id == tweet.user_id.to_i %>
+          <%= link_to tweet_path(tweet.id), method: :delete, "data-confirm" => "本当に消しますか？" do %>
+            <i class="fas fa-times-circle"></i>
           <% end %>
+        <% end %>
+        <% if tweet.liked_by?(current_user) %>
+          <p>
+            <%= link_to tweet_likes_path(tweet), method: :delete do %>
+              ♥<%= tweet.likes.count %>
+            <% end %>
+          </p>
+          <% else %>
+          <p>
+            <%= link_to tweet_likes_path(tweet), method: :post do %>
+              ♡<%= tweet.likes.count %>
+            <% end %>
+          </p>
+        <% end %>
       </td>
     </table>
   <% end %>

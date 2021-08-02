@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :tweets, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
 
   # follower側
