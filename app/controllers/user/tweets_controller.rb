@@ -14,6 +14,11 @@ class User::TweetsController <User::ApplicationController
       render 'new'
     end
   end
+  
+  def show
+    @tweet = Tweet.find(params[:id])
+    @tweet_comment = TweetComment.new
+  end
 
   def destroy
     tweet = Tweet.find(params[:id])

@@ -44,8 +44,9 @@ Rails.application.routes.draw do
 
     resources 'relationships', only: [:create, :destroy]
 
-    resources 'tweets', only: [:create, :destroy, :new] do
+    resources 'tweets', only: [:create, :destroy, :new, :show] do
       resource :likes, only: [:create, :destroy]
+      resources :tweet_comments, only: [:create, :destroy]
     end
 
 

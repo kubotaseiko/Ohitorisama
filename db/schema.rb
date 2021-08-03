@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_02_130255) do
+ActiveRecord::Schema.define(version: 2021_08_03_123559) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -114,6 +114,14 @@ ActiveRecord::Schema.define(version: 2021_08_02_130255) do
 
   create_table "tags", force: :cascade do |t|
     t.string "tag_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tweet_comments", force: :cascade do |t|
+    t.text "comment"
+    t.integer "user_id"
+    t.integer "tweet_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

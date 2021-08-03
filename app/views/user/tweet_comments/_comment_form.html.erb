@@ -1,0 +1,37 @@
+<div class="comments">
+  <% tweet.tweet_comments.each do |tweet_comment| %>
+    <table class="table table-sm rounded border border-4 rounded">
+      <td style="width: 20%">
+        <%= link_to user_path(tweet.user), data: {"turbolinks" => false} do %>
+          <%= attachment_image_tag tweet.user, :profile_image, size: '25x25', fallback: 'no_image.jpg', class: 'rounded-circle' %>
+        <% end %>
+        <%= tweet_comment.user.name %>
+      </td>
+      <td style="width: 60%">
+        <%= tweet_comment.comment %>
+      </td>
+      <td style="width: 20%">
+        <%= tweet_comment.created_at.strftime('%Y/%m/%d') %>
+        <%= tweet_comment.created_at.strftime('%H:%M:%S') %>
+        <div class="text-right">
+          <% if tweet_comment.user == current_user %>
+            <%= link_to tweet_tweet_comment_path(tweet_comment.tweet, tweet_comment), method: :delete do %>
+              <i class="fas fa-times-circle">削除</i>
+            <% end %>
+          <% end %>
+        </div>
+      </td>
+    </table>
+  <% end %>
+</div>
+
+<div class="new-comment">
+  <%= form_with(model:[tweet, tweet_comment], local: true) do |f| %>
+    <%= f.text_area :comment, rows:'2',placeholder: "コメントをここに", class: 'form-control' %>
+    <div class='text-right '>
+      <%= button_tag :method => :get, :class => "btn", onfocus: "this.blur();" do %>
+        <i class="fas fa-paper-plane btn btn-outline-success">&nbsp;投稿する</i>
+      <% end %>
+    </div>
+  <% end %>
+</div>
