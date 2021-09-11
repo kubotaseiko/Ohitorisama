@@ -1,4 +1,6 @@
 # Ohitorisama
+サイトURL:http://18.181.3.251/
+![PF](https://user-images.githubusercontent.com/80659433/132946946-2fc046b8-59fe-4d69-9fbe-001deb31a82f.PNG)
 
 ## サイト概要
 写真でおいしい・楽しいを共有し、
